@@ -2,6 +2,8 @@
 
 Neon underglow for **Forza Horizon 2** on PC (Azimuth), made of the game's own lights, so it really lights up the road under your car. A mod for the [FH2 Mod Platform](https://github.com/Trinculo54/fh2-mod-platform), switched from [FH2 ANNA](https://github.com/qiangqiang101/FH2_ANNA).
 
+<img width="1920" height="1080" alt="Desktop Screenshot 2026 11 07 - 16 49 37 54" src="https://github.com/user-attachments/assets/15d57681-1ded-49e0-b9eb-a6372cd2c7ba" />
+
 ## Installing
 
 You need Azimuth 1.0.1 or later. Download `Underglow-v1.0.0.zip` from [Releases](https://github.com/qiangqiang101/FH2Underglow/releases) and extract it into the folder with `azimuth.exe`:
