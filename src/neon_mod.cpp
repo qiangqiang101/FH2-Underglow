@@ -364,13 +364,13 @@ struct Shape {
     int side = 10;              // lights down each side, front wheel to rear wheel
     int front = 6;              // lights across the front, front left wheel to front right wheel
     int rear = 6;               // lights across the back, rear left wheel to rear right wheel
-    float height = 0.2f;        // meters above the car's origin (about the ground)
-    float front_inset = 0.9f;   // meters from the headlights back to the front wheels
-    float rear_inset = 1.0f;    // meters from the tail lights forward to the rear wheels
-    float side_offset = 0.1f;   // meters out from the outermost light to the wheels (negative: in)
-    float side_trim = 0.45f;    // meters the side strips stop short of each wheel (clear of the wheel arches)
-    float range = 3.0f;         // preset +0x60
-    float power = 2.0f;         // preset +0x64
+    float height = 0.01f;       // meters above the car's origin (about the ground)
+    float front_inset = 0.5f;   // meters from the headlights back to the front wheels
+    float rear_inset = 0.7f;    // meters from the tail lights forward to the rear wheels
+    float side_offset = -0.2f;  // meters out from the outermost light to the wheels (negative: in)
+    float side_trim = 0.8f;     // meters the side strips stop short of each wheel (clear of the wheel arches)
+    float range = 1.0f;         // preset +0x60
+    float power = 4.0f;         // preset +0x64
     float inner = 60.0f;      // preset +0x68, degrees
     float outer = 170.0f;     // preset +0x6C, degrees
 };
@@ -404,7 +404,7 @@ struct Config {
     float custom[kCustomCount][3] = {};     // the ini's custom colors
     char custom_name[kCustomCount][32] = {};   // their names ("" : Custom N)
     char custom_text[kCustomCount][32] = {};   // each as the ini has it, written back as it was
-    float brightness = 1.0f;
+    float brightness = 0.5f;
     int effect[kZoneCount] = {kEffectStatic, kEffectStatic, kEffectStatic, kEffectStatic};
     bool part[kZoneCount] = {true, true, true, true};   // each part (zone) lit or not
     float speed = 0.3f;   // effect cycles a second
@@ -503,7 +503,7 @@ void load_config() {
     if (!had_customs && c.color2 == 9) c.color2 = kColorCount;
     if (c.color < 0 || c.color >= kColorTotal) c.color = 0;
     if (c.color2 < 0 || c.color2 >= kColorTotal) c.color2 = 3;
-    c.brightness = ini_float(L"Settings", L"Brightness", 1.0f);
+    c.brightness = ini_float(L"Settings", L"Brightness", 0.5f);
     const int all = ini_int(L"Settings", L"Effect", kEffectStatic);   // 0.1's one effect for the whole car
     for (int z = 0; z < kZoneCount; ++z) {
         c.effect[z] = ini_int(L"Settings", kZoneIniKeys[z], all);
@@ -605,6 +605,8 @@ void lang_load() {
         wchar_t anna[MAX_PATH];
         swprintf_s(anna, L"%s\\FH2ANNA.ini", g_mods_dir);
         GetPrivateProfileStringW(L"Language", L"Last", L"EN", code, 8, anna);
+        WritePrivateProfileStringW(L"Language", L"Last", code, g_ini);   // in the ini from the start (EN)
+        g_ini_time.store(ini_write_time());   // not a change to reload
     }
     g_lang_saved.store(lang_index(code));
 }

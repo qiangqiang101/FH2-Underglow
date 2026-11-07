@@ -57,7 +57,7 @@ Settings are kept in `fh2-mods\Underglow.ini`, and saving it while the game runs
 Neon=1
 Color=0              ; the primary color: its place in the menu (0 Cyan ... 17 Lavender, 18-27 Custom 1-10)
 Color2=3             ; the secondary color, the same way
-Brightness=1         ; 1 = as bright as your headlight
+Brightness=0.5       ; 1 = as bright as your headlight
 FrontEffect=0        ; an effect's number (see Effects)
 RightEffect=0
 RearEffect=0
@@ -72,13 +72,13 @@ Speed=0.3            ; effect cycles a second
 Side=10              ; lights down each side
 Front=6              ; lights across the front
 Rear=6               ; lights across the back
-Height=0.2           ; meters above the ground
-FrontInset=0.9       ; meters from the headlights back to the front wheels
-RearInset=1          ; meters from the tail lights forward to the rear wheels
-SideOffset=0.1       ; meters out from the car's side (negative: in)
-SideTrim=0.45        ; meters the side strips stop short of each wheel, clear of the wheel arches
-Range=3              ; how far each light reaches
-Power=2
+Height=0.01          ; meters above the ground
+FrontInset=0.5       ; meters from the headlights back to the front wheels
+RearInset=0.7        ; meters from the tail lights forward to the rear wheels
+SideOffset=-0.2      ; meters out from the car's side (negative: in)
+SideTrim=0.8         ; meters the side strips stop short of each wheel, clear of the wheel arches
+Range=1              ; how far each light reaches
+Power=4
 Inner=60             ; the light's cone, degrees
 Outer=170
 
@@ -86,6 +86,9 @@ Outer=170
 Color1=0 1 1         ; 0 to 1, or 0 to 255 ("255 105 180"), or hex ("#FF69B4")
 Name1=               ; the name in the menus (blank: Custom 1)
 ; ... up to Color10 / Name10
+
+[Language]
+Last=EN              ; the game's language seen last, for the Mods page at the next start
 ```
 
 Keep notes on lines of their own: a `;` after a value is read as part of it.
