@@ -9,9 +9,10 @@ You need Azimuth 1.0.1 or later. Download `Underglow-v1.0.0.zip` from [Releases]
 ```
 DWrite.dll                 the FH2 Mod Platform
 fh2-mods\Underglow.dll     this mod
+fh2-mods\FH2ANNA.dll       FH2 ANNA, the in-game menu (D-pad down) with Underglow's menus in Car > Underglow
 ```
 
-[FH2 ANNA](https://github.com/qiangqiang101/FH2_ANNA) has its menus (Car > Underglow); without it there's the Mods page and the commands.
+If you already have a newer [FH2 ANNA](https://github.com/qiangqiang101/FH2_ANNA) than the one in the zip, keep yours: skip `FH2ANNA.dll` when extracting. Without ANNA, Underglow still works: switch it, its parts and its colors on the Mods page, and choose effects in `Underglow.ini` or with the `effect` command.
 
 **Coming from FH2Neon** (this mod before 1.0): your settings come over by themselves (`FH2Neon.ini` is copied to `Underglow.ini`). Delete `fh2-mods\FH2Neon.dll`. If it's still there, Underglow renames it `FH2Neon.dll.old` and starts from the next launch, so you never get two underglows.
 
