@@ -1,0 +1,6 @@
+[submodule "platform"]
+	path = platform
+	url = https://github.com/Trinculo54/fh2-mod-platform.git
+[submodule "FH2ANNA"]
+	path = FH2ANNA
+	url = https://github.com/qiangqiang101/FH2_ANNA.git
