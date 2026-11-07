@@ -364,11 +364,11 @@ struct Shape {
     int side = 10;              // lights down each side, front wheel to rear wheel
     int front = 6;              // lights across the front, front left wheel to front right wheel
     int rear = 6;               // lights across the back, rear left wheel to rear right wheel
-    float height = 0.2f;        // metres above the car's origin (about the ground)
-    float front_inset = 0.9f;   // metres from the headlights back to the front wheels
-    float rear_inset = 1.0f;    // metres from the tail lights forward to the rear wheels
-    float side_offset = 0.1f;   // metres out from the outermost light to the wheels (negative: in)
-    float side_trim = 0.45f;    // metres the side strips stop short of each wheel (clear of the wheel arches)
+    float height = 0.2f;        // meters above the car's origin (about the ground)
+    float front_inset = 0.9f;   // meters from the headlights back to the front wheels
+    float rear_inset = 1.0f;    // meters from the tail lights forward to the rear wheels
+    float side_offset = 0.1f;   // meters out from the outermost light to the wheels (negative: in)
+    float side_trim = 0.45f;    // meters the side strips stop short of each wheel (clear of the wheel arches)
     float range = 3.0f;         // preset +0x60
     float power = 2.0f;         // preset +0x64
     float inner = 60.0f;      // preset +0x68, degrees
@@ -913,7 +913,7 @@ template <typename F>
 F fmod_fn(uintptr_t rva_) { return reinterpret_cast<F>(g_base + rva_); }
 
 // The four bands the visualizer shows, one per zone: the rear the bass, the left side the low mids, the right
-// side the high mids, the front the treble. 0..1, levelled to the music's loudness.
+// side the high mids, the front the treble. 0..1, leveled to the music's loudness.
 std::atomic<float> g_radio_level[kZoneCount];
 std::atomic<uint64_t> g_radio_tick{0};   // when the levels were last worked out (0: never)
 std::atomic<bool> g_radio_attached{false};   // the FFT is on the radio bus: no more made-up beat
@@ -927,7 +927,7 @@ struct RadioTap {
     void* searched_system[4] = {};
     uint64_t searched_at[4] = {};
     bool off = false;            // FMOD faulted once: leave it alone
-    // Each band levelled against its own recent peak (radio_measure).
+    // Each band leveled against its own recent peak (radio_measure).
     float peak[kZoneCount] = {};
     float level[kZoneCount] = {};
     uint64_t last = 0;
@@ -1078,7 +1078,7 @@ bool car_radio_on() {
     return rdp(radio + 0x48, &player) && rdp(player + 0x48, &station);
 }
 
-// The bands from the FFT's spectrum, levelled, into g_radio_level.
+// The bands from the FFT's spectrum, leveled, into g_radio_level.
 void radio_measure() {
     void* data = nullptr;
     unsigned length = 0;
@@ -1131,7 +1131,7 @@ void radio_measure() {
         for (float& r : raw) r = 0.0f;
     }
 
-    // Levelled: each band against its own recent peak (so the radio's volume doesn't matter), quick to rise and
+    // Leveled: each band against its own recent peak (so the radio's volume doesn't matter), quick to rise and
     // easing back down. Silence stays dark.
     const float dt = g_radio.last ? float(now - g_radio.last) / 1000.0f : 0.016f;
     g_radio.last = now;
@@ -1763,7 +1763,7 @@ void effect_now(const Config& c, int effect, const Pixel& p, double secs, float 
         mix_rgb(base, other, float(0.5 - 0.5 * std::cos((p.ring - phase) * kTau)), rgb);
         break;
     }
-    case kEffectMovingPanes: {   // panes of the two colors, neighbouring parts sliding opposite ways
+    case kEffectMovingPanes: {   // panes of the two colors, neighboring parts sliding opposite ways
         const double dir = p.zone == kZoneFront || p.zone == kZoneRight ? 1.0 : -1.0;
         const int64_t pane = int64_t(std::floor(p.t * 4.0 + dir * phase * 2.0));
         if (((pane % 2) + 2) % 2) memcpy(rgb, other, 12);
@@ -2393,17 +2393,17 @@ const char* anna_color_label(void* user, const char*) {
     return buf;
 }
 
-// Car > Underglow is greyed out while the underglow is off (Car > Lights > Underglow On). ANNA greys a list out when
-// all it shows is: so while it's off its lists hide and it shows only a stand-in that's always greyed out. (Not
-// `enabled` on every entry: ANNA gives its rows a style trigger for each label that can be greyed out, and ~120 of
+// Car > Underglow is grayed out while the underglow is off (Car > Lights > Underglow On). ANNA grays a list out when
+// all it shows is: so while it's off its lists hide and it shows only a stand-in that's always grayed out. (Not
+// `enabled` on every entry: ANNA gives its rows a style trigger for each label that can be grayed out, and ~120 of
 // them made moving through ANNA drop frames.)
 int anna_underglow_on(void*, const char*) { return config().neon ? 1 : 0; }
 int anna_underglow_off(void*, const char*) { return config().neon ? 0 : 1; }
 int anna_never(void*, const char*) { return 0; }
 void anna_nothing(void*, const char*) {}
 
-// ANNA greys an entry out with the text it had when the HUD loaded (`label`, not label_now): so they're added from
-// fh2mod_init when ANNA is already up (it loads first, by name), and the labels that show greyed are translated.
+// ANNA grays an entry out with the text it had when the HUD loaded (`label`, not label_now): so they're added from
+// fh2mod_init when ANNA is already up (it loads first, by name), and the labels that show grayed are translated.
 std::atomic<bool> g_anna_added{false};
 
 void add_anna_entries_to(const FH2AnnaApi* anna) {
@@ -2421,7 +2421,7 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
     FH2AnnaEntry ug = {sizeof ug};
     ug.key = "underglow.underglow";
     ug.parent = "car";
-    ug.label = tr("Underglow");   // what shows greyed out
+    ug.label = tr("Underglow");   // what shows grayed out
     ug.label_now = anna_text_label;
     ug.user = (void*)"Underglow";
     anna->add_entry(&ug);
@@ -2534,7 +2534,7 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
     g_api->log(g_mod, "added to FH2 ANNA (Car > Lights and Car > Underglow)");
 }
 
-// Later, from the start thread, if ANNA wasn't up at fh2mod_init (greying out may then not show).
+// Later, from the start thread, if ANNA wasn't up at fh2mod_init (graying out may then not show).
 void add_anna_entries() {
     if (g_anna_added.load()) return;
     g_api->wait_for_mods(30000);

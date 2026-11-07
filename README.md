@@ -43,7 +43,7 @@ Many of the effects from Audio Bubbles on are after those of [OpenRGB Effects Pl
 - Rainbow Wave, Comet, the marquees and Gradient Wave run round the car through every part that plays the same effect (and skip the parts that are off).
 - The rest play on each part by itself. The front and the rear run left to right, and both sides run front to back.
 - Police is red on the car's left and blue on its right.
-- The audio effects listen to the car radio, and only the radio: not the engine, the tyres, or the festival's stage music when your radio is off. The rear shows the bass, the left side the low mids, the right side the high mids, and the front the treble. Each band is levelled to the music, so the radio volume doesn't matter, and silence or a radio that's off stays dark. Only if Underglow can't hook the game's sound at all do they play a made-up beat. `fh2mod Underglow status` says which one it's using.
+- The audio effects listen to the car radio, and only the radio: not the engine, the tires, or the festival's stage music when your radio is off. The rear shows the bass, the left side the low mids, the right side the high mids, and the front the treble. Each band is leveled to the music, so the radio volume doesn't matter, and silence or a radio that's off stays dark. Only if Underglow can't hook the game's sound at all do they play a made-up beat. `fh2mod Underglow status` says which one it's using.
 
 ### The ini
 
@@ -69,11 +69,11 @@ Speed=0.3            ; effect cycles a second
 Side=10              ; lights down each side
 Front=6              ; lights across the front
 Rear=6               ; lights across the back
-Height=0.2           ; metres above the ground
-FrontInset=0.9       ; metres from the headlights back to the front wheels
-RearInset=1          ; metres from the tail lights forward to the rear wheels
-SideOffset=0.1       ; metres out from the car's side (negative: in)
-SideTrim=0.45        ; metres the side strips stop short of each wheel, clear of the wheel arches
+Height=0.2           ; meters above the ground
+FrontInset=0.9       ; meters from the headlights back to the front wheels
+RearInset=1          ; meters from the tail lights forward to the rear wheels
+SideOffset=0.1       ; meters out from the car's side (negative: in)
+SideTrim=0.45        ; meters the side strips stop short of each wheel, clear of the wheel arches
 Range=3              ; how far each light reaches
 Power=2
 Inner=60             ; the light's cone, degrees
