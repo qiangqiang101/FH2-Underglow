@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(Underglow VERSION 1.0.1 LANGUAGES C CXX)
+project(Underglow VERSION 1.0.2 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -13,9 +13,7 @@ endif()
 add_subdirectory(platform EXCLUDE_FROM_ALL)
 
 add_library(Underglow SHARED src/neon_mod.cpp)
-
-# FH2 ANNA submodule: only its public header is used (include/fh2anna.h), nothing is built from it.
-target_include_directories(Underglow PRIVATE ${CMAKE_SOURCE_DIR}/FH2ANNA/include)
+# src/fh2anna.h is FH2 ANNA's public header, copied from its repo (include/fh2anna.h).
 
 target_link_libraries(Underglow PRIVATE fh2mod_api)
 set_target_properties(Underglow PROPERTIES OUTPUT_NAME Underglow PREFIX "")
