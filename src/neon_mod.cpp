@@ -49,6 +49,8 @@
 #include <cstdlib>
 #include <cstring>
 #include "neon_text.h"
+#include "ug_upgrade.h"
+#include "car_sizes.h"
 
 #ifndef UNDERGLOW_VERSION
 #define UNDERGLOW_VERSION "0.0.0"
@@ -405,9 +407,10 @@ struct Config {
     char custom_name[kCustomCount][32] = {};   // their names ("" : Custom N)
     char custom_text[kCustomCount][32] = {};   // each as the ini has it, written back as it was
     float brightness = 0.5f;
-    int effect[kZoneCount] = {kEffectStatic, kEffectStatic, kEffectStatic, kEffectStatic};
+    int effect[kZoneCount] = {kEffectWave, kEffectWave, kEffectWave, kEffectWave};   // Rainbow Wave
     bool part[kZoneCount] = {true, true, true, true};   // each part (zone) lit or not
     float speed = 0.3f;   // effect cycles a second
+    bool require_kit = true;   // only the parts of the car's Underglow Kit (the garage upgrade) light up
     Shape shape;
 };
 
@@ -472,6 +475,14 @@ void clamp_shape(Shape& s) {
     }
 }
 
+void scale_shape(Shape& s, int leds) {
+    if (leds <= 1) return;
+    s.side = ug::scaled_leds(s.side, leds);
+    s.front = ug::scaled_leds(s.front, leds);
+    s.rear = ug::scaled_leds(s.rear, leds);
+    clamp_shape(s);
+}
+
 void load_config() {
     Config c;
     c.neon = ini_int(L"Settings", L"Neon", 1) != 0;
@@ -504,13 +515,14 @@ void load_config() {
     if (c.color < 0 || c.color >= kColorTotal) c.color = 0;
     if (c.color2 < 0 || c.color2 >= kColorTotal) c.color2 = 3;
     c.brightness = ini_float(L"Settings", L"Brightness", 0.5f);
-    const int all = ini_int(L"Settings", L"Effect", kEffectStatic);   // 0.1's one effect for the whole car
+    const int all = ini_int(L"Settings", L"Effect", kEffectWave);   // 0.1's one effect for the whole car
     for (int z = 0; z < kZoneCount; ++z) {
         c.effect[z] = ini_int(L"Settings", kZoneIniKeys[z], all);
         c.part[z] = ini_int(L"Settings", kPartIniKeys[z], 1) != 0;
-        if (c.effect[z] < 0 || c.effect[z] >= kEffectCount) c.effect[z] = kEffectStatic;
+        if (c.effect[z] < 0 || c.effect[z] >= kEffectCount) c.effect[z] = kEffectWave;
     }
     c.speed = ini_float(L"Settings", L"Speed", 0.3f);
+    c.require_kit = ini_int(L"Settings", L"RequireKit", 1) != 0;
     for (const auto& f : kShapeFields) {
         char* p = reinterpret_cast<char*>(&c.shape) + f.offset;
         wchar_t key[32];
@@ -564,6 +576,7 @@ void save_config() {
     }
     snprintf(b, sizeof b, "%g", c.speed);
     ini_write(L"Settings", L"Speed", b);
+    ini_write(L"Settings", L"RequireKit", c.require_kit ? "1" : "0");
     for (const auto& f : kShapeFields) {
         const char* p = reinterpret_cast<const char*>(&c.shape) + f.offset;
         if (f.is_int) snprintf(b, sizeof b, "%d", *reinterpret_cast<const int*>(p));
@@ -636,14 +649,16 @@ int language() {
     return now;
 }
 
-// `english` in the game's language now (itself when there's no translation).
-const char* tr(const char* english) {
-    const int l = language();
-    if (l < 0 || !english) return english;
+// `english` in language l (an index into neon_text::kCodes; -1 English), itself when there's no translation.
+const char* tr_in(int l, const char* english) {
+    if (l < 0 || l >= neon_text::kLangs || !english) return english;
     for (const auto& t : neon_text::kTexts)
         if (!strcmp(t.en, english)) return t.t[l];
     return english;
 }
+
+// `english` in the game's language now.
+const char* tr(const char* english) { return tr_in(language(), english); }
 
 // A color's name in the menus: translated, or the ini's own name for a custom one.
 const char* color_label(const Config& c, int color, char* buf, size_t size) {
@@ -669,6 +684,7 @@ DWORD WINAPI watch_ini(LPVOID) {
         g_api->set_setting(g_mod, "NeonColor", c.color);
         g_api->set_setting(g_mod, "NeonColor2", c.color2);
         for (int z = 0; z < kZoneCount; ++z) g_api->set_setting(g_mod, kPartSettings[z], c.part[z] ? 1 : 0);
+        g_api->set_setting(g_mod, "RequireKit", c.require_kit ? 1 : 0);
         publish_effects(c);
         g_api->log(g_mod, "Underglow.ini changed: reloaded");
     }
@@ -713,6 +729,8 @@ void set_color(int index, int which = 0) {
 // ---- The player's car -----------------------------------------------------------------------------------------
 
 std::atomic<uintptr_t> g_player_pres{0};
+std::atomic<long> g_player_car_id{0};   // the player's car's id in the game database (Data_Car.Id), 0 until seen
+const uintptr_t kForzaCarIdOffset = 0x118;
 
 // The effects' clock: the player's car's own update time, so they stop with the game (the pause menu, photo
 // mode) instead of running on the wall clock. In microseconds, and when it last moved.
@@ -728,6 +746,104 @@ bool note_car(void* car) {
     if (vtable_is(pres, &kDeferredPresVtable, 1) && !rdp(pres + kDeferredPresOffset, &pres)) return false;
     if (!vtable_is(pres, kCarPresVtables, 2)) return false;
     g_player_pres.store(pres);
+    int id = 0;
+    if (rd(c + kForzaCarIdOffset, &id, 4) && id > 0 && id < 100000 && g_player_car_id.exchange(id) != id)
+        ug::mark_dirty();   // another car: read its garage id again at the game's next database query
+    return true;
+}
+
+// ---- The Underglow Kit (ug_upgrade.h) ---------------------------------------------------------------------------
+
+std::atomic<bool> g_kit_set_up{false};   // the garage upgrade was added (an older platform: it isn't)
+
+// Whether the kit decides which parts light up: Require Underglow Kit, and the upgrade is in the game.
+bool kit_gates(const Config& c) { return c.require_kit && g_kit_set_up.load() && ug::ready(); }
+
+// The parts of the Underglow Kit on the car being driven (ug::kFront | kBack | kSides): all of them when the kit
+// isn't required. The kit is the one of the garage id read last; that's only read on the game's database thread, a
+// while after a change of car, so a kit stored for another model than the one driven is the last car's: none yet.
+// The garage row (ug_upgrade.h: kit and LED level) on the car being driven, or the one highlighted in the garage's
+// list (preview); 0 = none (Stock, or not known yet).
+int kit_level(const Config& c) {
+    if (!kit_gates(c)) return 0;
+    if (ug::preview() >= 0) return ug::preview();   // a row highlighted in the garage: shown on the car
+    const int level = ug::level();
+    if (level <= 0) return 0;
+    const long car = g_player_car_id.load(), ord = ug::active_ordinal();
+    if (car > 0 && ord > 0 && ord != car) return 0;
+    return level;
+}
+int kit_parts(const Config& c) {
+    if (!kit_gates(c)) return ug::kFront | ug::kBack | ug::kSides;
+    return ug::kKitParts[ug::kit_of(kit_level(c))];
+}
+
+// The shape's LEDs at an LED level: [Neon] Side / Front / Rear are Lv1's, Lv2 has 1.5 times, Lv3 twice. Without the
+// kit (Require Underglow Kit off) the ini's as they are.
+void scale_shape(Shape& s, int leds);   // below, after clamp_shape
+int led_level(const Config& c) {
+    const int level = kit_level(c);
+    return level > 0 ? ug::leds_of(level) : 1;
+}
+// The lights to have made: the most any level needs, so a level shown in the garage (where no light can be made)
+// has them all.
+int lights_to_make(const Config& c) {
+    Shape s = c.shape;
+    if (kit_gates(c)) scale_shape(s, ug::kLedLevels);
+    return total_lights(s);
+}
+
+bool kit_has(int parts, int zone) {
+    return (parts & (zone == kZoneFront ? ug::kFront : zone == kZoneRear ? ug::kBack : ug::kSides)) != 0;
+}
+
+// ---- Each car's own colors and effects (UnderglowGarage.json): chosen in ANNA for the car being driven. A car with
+// none of its own uses the ini's (the Mods page, the ini and the commands set those).
+
+// The garage id of the car being driven, once it's known to be this car's (0: not known yet, as with the kit).
+long driven_garage() {
+    if (!g_kit_set_up.load() || !ug::ready()) return 0;
+    const long g = ug::active_garage(), car = g_player_car_id.load(), ord = ug::active_ordinal();
+    if (g <= 0 || (car > 0 && ord > 0 && ord != car)) return 0;
+    return g;
+}
+
+ug::Style style_of(const Config& c) {
+    ug::Style s{};
+    s.v[0] = c.color;
+    s.v[1] = c.color2;
+    for (int z = 0; z < kZoneCount; ++z) s.v[2 + z] = c.effect[z];
+    return s;
+}
+
+// The settings, with the colors and effects of the car being driven when it has its own.
+Config car_config(bool* own = nullptr) {
+    Config c = config();
+    ug::Style s;
+    const long g = driven_garage();
+    const bool has = g && ug::get_style(g, &s);
+    if (has) {
+        if (s.v[0] >= 0 && s.v[0] < kColorTotal) c.color = s.v[0];
+        if (s.v[1] >= 0 && s.v[1] < kColorTotal) c.color2 = s.v[1];
+        for (int z = 0; z < kZoneCount; ++z)
+            if (s.v[2 + z] >= 0 && s.v[2 + z] < kEffectCount) c.effect[z] = s.v[2 + z];
+    }
+    if (own) *own = has;
+    return c;
+}
+
+// From ANNA: a color (which 0 primary, 1 secondary) or an effect (zone < 0 or kZoneCount: all four; color -1 and
+// effect -1 leave those as they are) for the car being driven. False when that car isn't known yet: the caller
+// changes the ini's instead.
+bool set_car_style(int which, int color, int zone, int effect) {
+    const long g = driven_garage();
+    if (!g) return false;
+    Config c = car_config();
+    if (color >= 0) (which ? c.color2 : c.color) = color;
+    if (effect >= 0)
+        for (int z = 0; z < kZoneCount; ++z)
+            if (zone < 0 || zone >= kZoneCount || z == zone) c.effect[z] = effect;
+    ug::set_style(g, g_player_car_id.load(), style_of(c));
     return true;
 }
 
@@ -797,12 +913,27 @@ struct Reference {
     uint32_t handle[kMaxRefLights];
     float local_pos[kMaxRefLights][3], local_rot[kMaxRefLights][4];
     float half_width = 0.8f, front = 2.0f, rear = -2.0f;   // the outermost lights, on the car
+    // When the lights don't span the car (an IndyCar's are all at the back, on its centerline), the car's own size
+    // from the game's data instead (car_sizes.h): the wheels' centers (length) or their track (width). Those are
+    // already where the neon goes, so the insets aren't applied to them.
+    bool db_length = false, db_width = false;
     uint32_t template_handle = ~0u;   // the light whose key/index/preset the neon copies (the tail glow)
     uint32_t template_preset = ~0u;
     uint64_t tick = 0;
 };
 SRWLOCK g_ref_lock = SRWLOCK_INIT;
 Reference g_ref;
+
+// A car's size from the game's data (car_sizes.h, sorted by ordinal), or nullptr.
+const CarSize* car_size(long ordinal) {
+    size_t lo = 0, hi = sizeof kCarSizes / sizeof kCarSizes[0];
+    while (lo < hi) {
+        const size_t mid = (lo + hi) / 2;
+        if (kCarSizes[mid].ordinal < ordinal) lo = mid + 1;
+        else hi = mid;
+    }
+    return lo < sizeof kCarSizes / sizeof kCarSizes[0] && kCarSizes[lo].ordinal == ordinal ? &kCarSizes[lo] : nullptr;
+}
 
 void remember_player(const Resolved& r, uintptr_t beams) {
     Reference ref;
@@ -824,6 +955,17 @@ void remember_player(const Resolved& r, uintptr_t beams) {
         if (i == 0 || std::fabs(lp[0]) > ref.half_width) ref.half_width = std::fabs(lp[0]);
         if (i == 0 || lp[2] > ref.front) ref.front = lp[2];
         if (i == 0 || lp[2] < ref.rear) ref.rear = lp[2];
+    }
+    if (const CarSize* size = car_size(g_player_car_id.load())) {
+        if (ref.front - ref.rear < 0.6f * size->wheelbase) {   // the car's origin is taken as mid-wheelbase
+            ref.front = size->wheelbase * 0.5f;
+            ref.rear = -size->wheelbase * 0.5f;
+            ref.db_length = true;
+        }
+        if (ref.half_width < 0.45f) {   // inside the tires' outer edges, under the sills
+            ref.half_width = (size->front_track < size->rear_track ? size->front_track : size->rear_track) * 0.5f - 0.15f;
+            ref.db_width = true;
+        }
     }
     if (ref.lights) {
         ref.template_handle = r.light[tail].handle;
@@ -1263,6 +1405,7 @@ void glow_off(uintptr_t glows, uint32_t handle) {
 // on, right after one of its CreateLight calls, so it never races the game's own creating (traffic spawning).
 void neon_build(const Reference& ref) {
     const Config c = config();
+    const int make = lights_to_make(c);
     void* mgr = reinterpret_cast<void*>(ref.manager);
     if (g_neon.manager != ref.manager || g_neon.beams != ref.beams) return;   // neon_frame resets it first
     if (ref.template_handle >= kMaxHandles || g_handle_manager[ref.template_handle] != ref.manager) {
@@ -1272,7 +1415,7 @@ void neon_build(const Reference& ref) {
     }
     float rgb[3];
     neon_rgb(c, rgb);
-    while (g_neon.count < total_lights(c.shape)) {
+    while (g_neon.count < make) {
         uint32_t p = g_neon.spare;
         g_neon.spare = ~0u;
         if (p == ~0u) {
@@ -1313,7 +1456,8 @@ void neon_build(const Reference& ref) {
 void edge_point(const Reference& ref, const Shape& s, int i, float out[3]) {
     float hw = ref.half_width + s.side_offset;
     if (hw < 0.1f) hw = 0.1f;
-    float zf = ref.front - s.front_inset, zr = ref.rear + s.rear_inset;
+    float zf = ref.db_length ? ref.front : ref.front - s.front_inset;
+    float zr = ref.db_length ? ref.rear : ref.rear + s.rear_inset;
     if (zf < zr + 0.2f) zf = zr = (zf + zr) * 0.5f;
     const float corner[4][2] = {{-hw, zf}, {hw, zf}, {hw, zr}, {-hw, zr}};
     const int per_edge[4] = {s.front, s.side, s.rear, s.side};
@@ -1888,8 +2032,15 @@ void effect_now(const Config& c, int effect, const Pixel& p, double secs, float 
 // that for every light, on or off).
 
 void neon_frame(const Reference& ref) {
-    const Config c = config();
+    Config c = car_config();
     void* mgr = reinterpret_cast<void*>(ref.manager);
+    // The parts the car's Underglow Kit hasn't stay dark, like the ones switched off; Stock has none. The lights are
+    // still made (dark): they can only be made while the game makes lights of its own (driving, not in the garage),
+    // and the garage's preview of a kit needs them.
+    const int kit = kit_parts(c);
+    for (int z = 0; z < kZoneCount; ++z) c.part[z] = c.part[z] && kit_has(kit, z);
+    const int make = lights_to_make(c);
+    scale_shape(c.shape, led_level(c));   // the LEDs of the kit's level (the rest stay dark)
 
     if (g_neon.manager != ref.manager || g_neon.beams != ref.beams) {   // another light manager: start over
         g_neon = Neon{};
@@ -1916,7 +2067,7 @@ void neon_frame(const Reference& ref) {
 
     // Creating lights is left to the game's own light-creating thread (see detour_create).
     const int want = total_lights(c.shape);
-    if (g_neon.count < want) g_neon_build.store(true);
+    if (g_neon.count < make) g_neon_build.store(true);
     if (!g_neon.count) return;
 
     // The car's transform: its presentation's world matrix, which the game places its own lights from.
@@ -2041,7 +2192,8 @@ void detour_beam_upload(void* system, void* graphics) { upload(kBeam, g_orig_bea
 // ---- Commands -------------------------------------------------------------------------------------------------
 
 void cmd_status(char* reply, size_t size) {
-    Config c = config();
+    bool own = false;
+    Config c = car_config(&own);   // the colors and effects the car being driven shows
     float rgb[3];
     char name1[48], name2[48];
     neon_rgb(c, rgb);
@@ -2060,20 +2212,31 @@ void cmd_status(char* reply, size_t size) {
                  radio_level(kZoneRear), radio_level(kZoneLeft), radio_level(kZoneRight), radio_level(kZoneFront));
     else
         snprintf(radio + at, sizeof radio - at, "; not listening to the radio (the Audio Visualizer plays a made-up beat)");
+    char kit[384];
+    if (!g_kit_set_up.load() || !ug::ready())
+        snprintf(kit, sizeof kit, "Underglow Kit: not in the garage (see platform.log); every part can light");
+    else
+        snprintf(kit, sizeof kit, "Underglow Kit on the driven car (garage id %ld, car %ld): %s, %s", ug::active_garage(),
+                 g_player_car_id.load(), ug::level_name(ug::level()).c_str(),
+                 c.require_kit ? "required" : "not required (Require Underglow Kit is off): every part can light");
+    const size_t used = strlen(kit);
+    snprintf(kit + used, sizeof kit - used, "; colors and effects: %s",
+             own ? "this car's own (UnderglowGarage.json)" : "the ini's");
     const Shape& s = c.shape;
     snprintf(reply, size,
              "neon %s, primary color %s (%g %g %g), secondary %s, brightness %g, effects: front %s, right %s, rear %s, left %s, at %g a second; parts on: %s%s%s%s\n"
              "shape: Side %d Front %d Rear %d Height %g FrontInset %g RearInset %g SideOffset %g SideTrim %g Range %g Power %g Inner %g Outer %g\n"
-             "car (from its lights): half width %.2f, front %.2f, rear %.2f\n"
+             "car %ld: half width %.2f (%s), front %.2f, rear %.2f (%s)\n"
              "neon: %d light(s), %s\n"
-             "%s\n%s",
+             "%s\n%s\n%s",
              c.neon ? "on" : "off", color_name(c, c.color, name1, sizeof name1), rgb[0], rgb[1], rgb[2],
              color_name(c, c.color2, name2, sizeof name2),
              c.brightness, kEffects[c.effect[kZoneFront]], kEffects[c.effect[kZoneRight]],
              kEffects[c.effect[kZoneRear]], kEffects[c.effect[kZoneLeft]], c.speed,
              c.part[kZoneFront] ? "front " : "", c.part[kZoneRight] ? "right " : "", c.part[kZoneRear] ? "rear " : "",
              c.part[kZoneLeft] ? "left" : "", s.side, s.front, s.rear, s.height, s.front_inset, s.rear_inset, s.side_offset, s.side_trim, s.range, s.power, s.inner,
-             s.outer, ref.half_width, ref.front, ref.rear, n.count, n.lit ? "lit" : "dark", radio, n.problem);
+             s.outer, g_player_car_id.load(), ref.half_width, ref.db_width ? "from the game's data" : "from its lights",
+             ref.front, ref.rear, ref.db_length ? "from the game's data" : "from its lights", n.count, n.lit ? "lit" : "dark", kit, radio, n.problem);
 }
 
 void cmd_tune(const char* args, char* reply, size_t size) {
@@ -2272,6 +2435,7 @@ void on_setting(void*, const char* key, int value) {
     if (strcmp(key, "Neon") == 0) g_cfg.neon = value != 0;
     else if (strcmp(key, "NeonColor") == 0 && value >= 0 && value < kColorTotal) g_cfg.color = value;
     else if (strcmp(key, "NeonColor2") == 0 && value >= 0 && value < kColorTotal) g_cfg.color2 = value;
+    else if (strcmp(key, "RequireKit") == 0) g_cfg.require_kit = value != 0;
     for (int z = 0; z < kZoneCount; ++z)
         if (strcmp(key, kPartSettings[z]) == 0) {
             g_cfg.part[z] = value != 0;
@@ -2308,6 +2472,14 @@ void add_settings() {
         g_api->add_setting(g_mod, &ps);
     }
 
+    FH2Setting kit = s;
+    kit.key = "RequireKit";
+    kit.label = tr("Require Underglow Kit");
+    kit.description = tr("On: a car only lights the parts of its Underglow Kit (Garage > Upgrades > Aero and "
+                         "Appearance). Off: every car lights every part.");
+    kit.value = c.require_kit ? 1 : 0;
+    g_api->add_setting(g_mod, &kit);
+
     for (int i = 0; i < kColorTotal; ++i) {
         const char* n = color_label(c, i, g_color_choice_text[i], sizeof g_color_choice_text[i]);
         if (n != g_color_choice_text[i]) strcpy_s(g_color_choice_text[i], n);
@@ -2334,7 +2506,11 @@ void add_settings() {
 
 }
 
-void anna_toggle(void*, const char*) { set_neon(!config().neon); }
+// Car > Lights > Underglow On / Off: grayed out while the car being driven has no Underglow Kit (Stock).
+int anna_has_kit(void*, const char*) { return kit_parts(config()) ? 1 : 0; }
+void anna_toggle(void* user, const char* key) {
+    if (anna_has_kit(user, key)) set_neon(!config().neon);
+}
 const char* anna_toggle_label(void*, const char*) { return tr(config().neon ? "Underglow Off" : "Underglow On"); }
 
 // A list's label, in the game's language: its user is the English.
@@ -2345,6 +2521,7 @@ const char* anna_text_label(void* user, const char*) { return tr(static_cast<con
 void anna_part(void* user, const char*) {
     const int z = (int)(intptr_t)user;
     const Config c = config();
+    if (!kit_has(kit_parts(c), z)) return;   // not in the car's Underglow Kit (grayed out)
     const bool on = !(c.part[z] && c.neon);
     set_part(z, on);
     if (on && !c.neon) set_neon(true);
@@ -2361,23 +2538,25 @@ const char* anna_part_label(void* user, const char*) {
     return buf;
 }
 
+// Colors and effects chosen in ANNA are the car's own (UnderglowGarage.json); the ini's until the game has said
+// which car is being driven.
 void anna_color(void* user, const char*) {
     const int u = (int)(intptr_t)user;
-    set_color(u % 100, u / 100);
+    if (!set_car_style(u / 100, u % 100, -1, -1)) set_color(u % 100, u / 100);
     if (!config().neon) set_neon(true);
 }
 
 // An effect entry's user: zone * 100 + effect, zone kZoneCount for all four.
 void anna_effect(void* user, const char*) {
     const int u = (int)(intptr_t)user;
-    set_effect(u / 100, u % 100);
+    if (!set_car_style(0, -1, u / 100, u % 100)) set_effect(u / 100, u % 100);
     if (!config().neon) set_neon(true);
 }
 
 const char* anna_effect_label(void* user, const char*) {
     static char buf[128];
     const int u = (int)(intptr_t)user, zone = u / 100, i = u % 100;
-    Config c = config();
+    Config c = car_config();
     bool on = c.neon;
     for (int z = 0; z < kZoneCount; ++z)
         if (zone >= kZoneCount || z == zone) on = on && c.effect[z] == i;
@@ -2388,7 +2567,7 @@ const char* anna_effect_label(void* user, const char*) {
 const char* anna_color_label(void* user, const char*) {
     static char buf[128];   // ANNA copies the label straight away
     const int u = (int)(intptr_t)user, which = u / 100, i = u % 100;
-    Config c = config();
+    Config c = car_config();
     char name[64];
     const bool on = (which ? c.color2 : c.color) == i && c.neon;
     snprintf(buf, sizeof buf, on ? "» %s" : "%s", color_label(c, i, name, sizeof name));   // the one in use: "» Cyan"
@@ -2399,9 +2578,38 @@ const char* anna_color_label(void* user, const char*) {
 // all it shows is: so while it's off its lists hide and it shows only a stand-in that's always grayed out. (Not
 // `enabled` on every entry: ANNA gives its rows a style trigger for each label that can be grayed out, and ~120 of
 // them made moving through ANNA drop frames.)
-int anna_underglow_on(void*, const char*) { return config().neon ? 1 : 0; }
+// The same while the car being driven has no Underglow Kit (Stock), with a stand-in of its own.
+int anna_underglow_on(void*, const char*) {
+    const Config c = config();
+    return c.neon && kit_parts(c) ? 1 : 0;
+}
 int anna_underglow_off(void*, const char*) { return config().neon ? 0 : 1; }
+int anna_no_kit(void*, const char*) {
+    const Config c = config();
+    return c.neon && !kit_parts(c) ? 1 : 0;
+}
 int anna_never(void*, const char*) { return 0; }
+// A part the car's Underglow Kit hasn't is grayed out (four entries: few enough for ANNA's style triggers).
+int anna_part_fitted(void* user, const char*) { return kit_has(kit_parts(config()), (int)(intptr_t)user) ? 1 : 0; }
+// The same for Effect > Front / Rear / Left Side / Right Side. ANNA only grays out a list when all it shows is
+// (its own `enabled` counts for entries you choose, not for lists), so the stand-in again: while the kit hasn't that
+// part, the list's groups hide and it shows only an always grayed-out entry. Known by their keys:
+// "underglow.effect.<zone>.<group>" and "underglow.effect.<zone>.nokit".
+int zone_of_key(const char* key) {
+    static const char kPrefix[] = "underglow.effect.";
+    if (!key || strncmp(key, kPrefix, sizeof kPrefix - 1)) return -1;
+    const char* name = key + sizeof kPrefix - 1;
+    const char* dot = strchr(name, '.');
+    const size_t n = dot ? size_t(dot - name) : strlen(name);
+    for (int z = 0; z < kZoneCount; ++z)
+        if (strlen(kZoneNames[z]) == n && !strncmp(name, kZoneNames[z], n)) return z;
+    return -1;
+}
+int anna_zone_fitted(void*, const char* key) {
+    const int z = zone_of_key(key);
+    return z < 0 || kit_has(kit_parts(config()), z) ? 1 : 0;
+}
+int anna_zone_missing(void* user, const char* key) { return anna_zone_fitted(user, key) ? 0 : 1; }
 void anna_nothing(void*, const char*) {}
 
 // ANNA grays an entry out with the text it had when the HUD loaded (`label`, not label_now): so they're added from
@@ -2413,10 +2621,11 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
     FH2AnnaEntry t = {sizeof t};
     t.key = "underglow.toggle";
     t.parent = "car.lights";
-    t.label = "Underglow On";
+    t.label = tr("Underglow On");   // what shows grayed out
     t.on_choose = anna_toggle;
     t.label_now = anna_toggle_label;
     t.stays_open = 1;
+    t.enabled = anna_has_kit;
     anna->add_entry(&t);
 
     // Car > Underglow: the colors and the effects.
@@ -2435,6 +2644,11 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
     stand_in.shown = anna_underglow_off;
     stand_in.enabled = anna_never;
     anna->add_entry(&stand_in);
+    FH2AnnaEntry no_kit = stand_in;
+    no_kit.key = "underglow.nokit";
+    no_kit.label = tr("No Underglow Kit");
+    no_kit.shown = anna_no_kit;
+    anna->add_entry(&no_kit);
 
     static const char* const color_lists[2] = {"underglow.color", "underglow.color2"};
     static const char* const color_labels[2] = {"Primary Color", "Secondary Color"};
@@ -2486,11 +2700,12 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
         FH2AnnaEntry e = {sizeof e};
         e.key = part_keys[z];
         e.parent = "underglow.parts";
-        e.label = kZoneLabels[z];
+        e.label = tr(kZoneLabels[z]);   // what shows grayed out
         e.on_choose = anna_part;
         e.label_now = anna_part_label;
         e.user = (void*)(intptr_t)z;
         e.stays_open = 1;
+        e.enabled = anna_part_fitted;
         anna->add_entry(&e);
     }
     // Effect > All / Front / Rear / Left Side / Right Side > the groups > the effects.
@@ -2505,10 +2720,23 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
         FH2AnnaEntry zl = {sizeof zl};
         zl.key = zone_keys[zi];
         zl.parent = "underglow.effect";
-        zl.label = zone < kZoneCount ? kZoneLabels[zone] : "All";
+        const char* english = zone < kZoneCount ? kZoneLabels[zone] : "All";
+        zl.label = tr(english);   // what shows grayed out
         zl.label_now = anna_text_label;
-        zl.user = (void*)zl.label;
+        zl.user = (void*)english;
         anna->add_entry(&zl);
+        static char nokit_keys[kZoneCount + 1][48];
+        if (zone < kZoneCount) {   // a part the car's kit hasn't: grayed out (see anna_zone_fitted)
+            snprintf(nokit_keys[zi], sizeof nokit_keys[zi], "%s.nokit", zone_keys[zi]);
+            FH2AnnaEntry no = {sizeof no};
+            no.key = nokit_keys[zi];
+            no.parent = zone_keys[zi];
+            no.label = tr("No Underglow Kit");
+            no.on_choose = anna_nothing;
+            no.shown = anna_zone_missing;
+            no.enabled = anna_never;
+            anna->add_entry(&no);
+        }
         for (int g = 0; g < kGroupCount; ++g) {
             snprintf(group_keys[zi][g], sizeof group_keys[zi][g], "%s.%s", zone_keys[zi], kGroupKeys[g]);
             FH2AnnaEntry ge = {sizeof ge};
@@ -2517,6 +2745,7 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
             ge.label = kGroupNames[g];
             ge.label_now = anna_text_label;
             ge.user = (void*)kGroupNames[g];
+            if (zone < kZoneCount) ge.shown = anna_zone_fitted;
             anna->add_entry(&ge);
         }
         for (int k = 0; k < kEffectCount; ++k) {
@@ -2610,7 +2839,8 @@ FH2MOD_EXPORT int fh2mod_init(const FH2ModApi* api) {
     info.github_repo = "qiangqiang101/FH2Underglow";
     info.platform_version = FH2MOD_PLATFORM_VERSION;
     info.description = "Neon underglow made of the game's own lights, so it lights up the road: 61 effects (15 follow "
-                       "the car radio's music), 28 colors, and each part of the car on its own. In ANNA: Car > Underglow.";
+                       "the car radio's music), 28 colors, and each part of the car on its own. Buy an Underglow Kit for a car "
+                       "in the garage (Upgrades > Aero and Appearance); set it up in ANNA: Car > Underglow.";
     info.check_updates = 1;
     g_mod = api->register_mod(&info);
     if (!g_mod) return 1;
@@ -2645,6 +2875,35 @@ FH2MOD_EXPORT int fh2mod_init(const FH2ModApi* api) {
     load_config();
     save_config();
     lang_load();   // the Mods page's rows are written in the language seen last
+
+    // The Underglow Kit, a garage upgrade bought for each car. Which car has which kit is kept beside the game's
+    // saves, outside the saves folder itself (Azimuth checks the hashes of what's in there):
+    // <azimuth>\data\titles\1A96545B\Underglow\<player-N>\UnderglowGarage.json, for the player-N saved last.
+    {
+        wchar_t title[MAX_PATH], player[64] = L"player-1", pattern[MAX_PATH], json[MAX_PATH];
+        swprintf_s(title, L"%s\\data\\titles\\1A96545B", api->azimuth_dir);
+        swprintf_s(pattern, L"%s\\saves\\player-*", title);
+        FILETIME newest{};
+        WIN32_FIND_DATAW fd;
+        HANDLE h = FindFirstFileW(pattern, &fd);
+        if (h != INVALID_HANDLE_VALUE) {
+            do {
+                if ((fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && CompareFileTime(&fd.ftLastWriteTime, &newest) > 0) {
+                    newest = fd.ftLastWriteTime;
+                    wcsncpy_s(player, fd.cFileName, _TRUNCATE);
+                }
+            } while (FindNextFileW(h, &fd));
+            FindClose(h);
+        }
+        swprintf_s(json, L"%s\\Underglow\\%s\\UnderglowGarage.json", title, player);
+        const Shape lv1 = config().shape;
+        g_kit_set_up.store(ug::init(api, g_mod, g_ini, json, tr_in, language, neon_text::kLangs, lv1.side, lv1.front,
+                                    lv1.rear));
+        char msg[MAX_PATH * 3];
+        if (g_kit_set_up.load()) snprintf(msg, sizeof msg, "Underglow Kit of each car: %ls", json);
+        else snprintf(msg, sizeof msg, "the Underglow Kit couldn't be added to the garage (platform too old?): every car lights every part");
+        api->log(g_mod, msg);
+    }
     add_settings();
     add_commands();
     if (const void* anna = api->get_interface(FH2ANNA_INTERFACE, 4))

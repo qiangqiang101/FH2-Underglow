@@ -6,7 +6,7 @@ Neon underglow for **Forza Horizon 2** on PC (Azimuth), made of the game's own l
 
 ## Installing
 
-You need Azimuth 1.0.1 or later. Download `Underglow-v1.0.0.zip` from [Releases](https://github.com/qiangqiang101/FH2Underglow/releases) and extract it into the folder with `azimuth.exe`:
+You need Azimuth 1.0.1 or later. Download `Underglow-v1.1.0.zip` from [Releases](https://github.com/qiangqiang101/FH2Underglow/releases) and extract it into the folder with `azimuth.exe`:
 
 ```
 DWrite.dll                 the FH2 Mod Platform
@@ -17,17 +17,48 @@ To get Underglow's menus in the game (Car > Underglow, D-pad down), install [FH2
 
 ## Using it
 
+- **The garage**: buy an **Underglow Kit** for each car in Garage > Upgrades > Custom upgrade > **Aero and Appearance** > **Underglow Kit**. The kit sets which parts of that car can light up (see [The Underglow Kit](#the-underglow-kit)). A car on Stock has no underglow.
 - **FH2 ANNA**, Car > Lights: **Underglow On / Off**.
 - **FH2 ANNA**, Car > **Underglow**:
   - **Primary Color** and **Secondary Color**: 18 colors and your 10 custom ones.
   - **Effect** > All, Front, Rear, Left Side or Right Side > a group > the effect. Each part of the car can play its own effect.
-  - **Parts**: switch the front, the rear and each side on or off (only the sides, say).
-- **Pause > Settings > MODS**: Underglow (On/Off), each part On/Off, Primary Color and Secondary Color. There are more effects than a row there can list, so they're in ANNA.
+  - **Parts**: switch the front, the rear and each side on or off (only the sides, say). Parts the car's Underglow Kit doesn't have are grayed out, here and under Effect. The colors and effects can still be changed.
+  - A car on Stock (no Underglow Kit) has Car > Underglow, and Car > Lights > Underglow On / Off, grayed out.
+- **Pause > Settings > MODS**: Underglow (On/Off), each part On/Off, Require Underglow Kit, Primary Color and Secondary Color. There are more effects than a row there can list, so they're in ANNA.
 - **Commands** (see [Commands](#commands)): `fh2mod Underglow effect comet`, `fh2mod Underglow effect left police`, `fh2mod Underglow part front off`.
 
 The menus are in the game's language (Brazilian Portuguese, German, French, Spanish, Mexican Spanish, Italian, Japanese, Korean, Traditional Chinese, Polish, Russian and Dutch; Czech and Hungarian show English, as the game does there).
 
 The underglow stops with the game: in the pause menu and in photo mode its effects hold still.
+
+### The Underglow Kit
+
+Each kit comes in three levels: **Lv1**, **Lv2** and **Lv3** have more LEDs (Lv2 1.5 times Lv1's, Lv3 twice), and each level costs 600 CR more than the one below.
+
+| Kit | Parts | Lv1 | Lv2 | Lv3 |
+|---|---|---|---|---|
+| Stock | none: no underglow | free | | |
+| Front | front | 1,000 CR | 1,600 CR | 2,200 CR |
+| Back | rear | 1,000 CR | 1,600 CR | 2,200 CR |
+| Sides | left and right sides | 1,250 CR | 1,850 CR | 2,450 CR |
+| Front and Back | front, rear | 1,800 CR | 2,400 CR | 3,000 CR |
+| Front and Sides | front, both sides | 2,000 CR | 2,600 CR | 3,200 CR |
+| Back and Sides | rear, both sides | 2,000 CR | 2,600 CR | 3,200 CR |
+| Front, Back and Sides | all four | 3,000 CR | 3,600 CR | 4,200 CR |
+
+LEDs per part, with the ini's `[Neon]` as it comes: Lv1 10 down each side, 6 across the front and 6 across the back; Lv2 15, 9 and 9; Lv3 20, 12 and 12. Lv1 is the `[Neon]` `Side`, `Front` and `Rear`, so the levels follow them if you change those. With **Require Underglow Kit** off, every car has the `[Neon]` counts as they are.
+
+In the garage's list, the kit you highlight is previewed on your car, in its colors and effects (Stock goes dark). Back out without buying and the car shows its own kit again. The camera glides to a view of each kit: Front looks at the front (the drivetrain upgrade's view), Back from behind (the paint menu's wing view), Front and Back low along the side (the paint menu's rims view), Back and Sides from behind and above (the rear wing upgrade's view), and the rest at the whole car (the paint menu's body view).
+
+A part lights up when the car's kit has it **and** it's switched on under Parts, so you can still turn off a part your kit has. Kits you've bought for a car stay bought: switching back to one is free.
+
+Turn off **Require Underglow Kit** (Mods page, or `RequireKit=0` in the ini) to let every car light every part, as before the kit existed. Every car starts on Stock, so with the setting on, a car has no underglow until you buy it a kit.
+
+The kit on each car you own is kept beside the game's saves, in `data\titles\1A96545B\Underglow\player-1\UnderglowGarage.json` (the `player-N` saved last), written when you fit a kit. It's outside the `saves` folder on purpose: Azimuth checks the hashes of what's in there. `garageId` is the game's id for one car you own, `carOrdinal` its model, `kit` 0 (Stock) to 7, in the table's order, and `leds` its level, 1 to 3.
+
+The same file keeps each car's own colors and effects. When you choose a color or an effect in ANNA, it's saved for the car you're driving (`color`, `color2`, `frontEffect`, `rightEffect`, `rearEffect`, `leftEffect`, numbered as in the ini). A car you haven't set up in ANNA uses the colors and effects in `Underglow.ini`, which the Mods page and the commands change.
+
+The garage upgrade works the way NitroSystem's NOS Kit does: the kit's rows go into the game database through the platform, and the game's database queries are edited in memory. Nothing of the game changes on disk. Buying a kit goes through the game's own shop, so the save records it in its list of bought parts (part type 48). Those entries stay in the save if you uninstall Underglow. Back up your saves first.
 
 ### Effects
 
@@ -55,15 +86,26 @@ Neon=1
 Color=0              ; the primary color: its place in the menu (0 Cyan ... 17 Lavender, 18-27 Custom 1-10)
 Color2=3             ; the secondary color, the same way
 Brightness=0.5       ; 1 = as bright as your headlight
-FrontEffect=0        ; an effect's number (see Effects)
-RightEffect=0
-RearEffect=0
-LeftEffect=0
+FrontEffect=2        ; an effect's number (see Effects); 2 Rainbow Wave by default
+RightEffect=2
+RearEffect=2
+LeftEffect=2
 FrontOn=1            ; each part on (1) or off (0)
 RightOn=1
 RearOn=1
 LeftOn=1
 Speed=0.3            ; effect cycles a second
+RequireKit=1         ; 1: a car lights only the parts of its Underglow Kit; 0: every car lights every part
+
+[Upgrade]
+Price1=1000          ; the Underglow Kits' Lv1 prices in CR, read at startup: 1 Front, 2 Back, 3 Sides,
+Price2=1000          ; 4 Front and Back, 5 Front and Sides, 6 Back and Sides, 7 Front, Back and Sides
+Price3=1250
+Price4=1800
+Price5=2000
+Price6=2000
+Price7=3000
+LevelPrice=600       ; added for each level above Lv1
 
 [Neon]
 Side=10              ; lights down each side
@@ -95,7 +137,7 @@ Keep notes on lines of their own: a `;` after a value is read as part of it.
 Through the platform's command tool (`fh2mod.exe`, in the platform zip's `tools` folder), while the game runs:
 
 ```
-fh2mod Underglow status                       # the neon, its colors, effects and parts, and the radio
+fh2mod Underglow status                       # the neon, its colors, effects and parts, the car's kit, and the radio
 fh2mod Underglow neon on|off
 fh2mod Underglow color Red                    # the primary color: a name, Custom1..Custom10, r g b or #RRGGBB
 fh2mod Underglow color2 #FF69B4               # the secondary color
@@ -109,6 +151,12 @@ fh2mod Underglow tune SideTrim 0.8            # any of the [Neon] values, saved 
 ## How it works
 
 FH2's ForwardPlus renderer keeps all the lights of a scene in one light system: a vector of 64-byte records, each pointing at a preset. Every frame the game uploads it to the GPU (`0x10F6C40` beams, `0x10F6970` glows). [Extra Options](https://github.com/RokkuDayo/ForzaHorizon2_ExtraOptions) found the path from the player's car to its own headlight records (`fh2/features/headlight_beams.c`). Underglow creates its lights through the game's own light manager, each a copy of your headlight with a preset of its own (always on, its own color), placed round the car between the wheels and pointing down. The source ([src/neon_mod.cpp](src/neon_mod.cpp)) has the whole chain of offsets at the top.
+
+Some cars' lights don't span the car (an IndyCar's are all at the back, on its centerline). For those, the length or width the lights can't give comes from the game's own data on the car, its wheelbase and track. `tools/gen_car_sizes.py` reads them from the game's databases (the base game and the car packs) into `src/car_sizes.h`.
+
+In the garage, the kit's rows move the camera with the game's own shots (`UICarTargetCameraPresets.xml` in `media\Camera.zip`). The kit uses copies of five of them (the paint menu's body, rims and wing views, the drivetrain and rear wing upgrades' views) that hold the camera at their angle until it's there, added to that file by `tools/gen_camera_presets.py` (into `src/camera_presets.h`) and handed to the game through the platform. The garage ends a camera move right after each row of a part list (harmless in its own lists, where the shot doesn't change), so Underglow skips that while its own move is under way.
+
+The Underglow Kit ([src/ug_upgrade.h](src/ug_upgrade.h)) uses the garage-upgrade method of Levilente's [NitroSystem II](https://github.com/Levilente/NitroSystem-II) (MIT License), first used by the Universal Wheel Spacers mod. It adds part type 48 to Aero and Appearance, and edits the game's upgrade-list, installed-part and install statements as they run. It answers the game's string lookup for its names, and records the garage id of the car you drive from the game's own getter. Its numbers stay clear of the other mods that use this method: part enum 48, part ids 900520-900541, string keys 0xA4E0-0xA535.
 
 The audio effects put an FMOD FFT on the game's radio bus, and read whether the car radio is on from the game's RadioSystem. The effects' clock is the player car's own update time, so they stop when the game does.
 
@@ -124,5 +172,7 @@ cmake --build build --config Release      # build/Release/Underglow.dll
 ```
 
 Put `Underglow.dll` in `fh2-mods` next to `azimuth.exe` (with the platform's `DWrite.dll` next to `azimuth.exe`).
+
+The Underglow Kit's garage pictures are PNGs in `icons/` (200x200, and 916x458 for `_LG`), drawn by `tools/draw_icons.py`: the kit's tile and large picture from `tools/icon_src/led_strip.png`, and each kit's large picture, a car glowing under its parts. Each kit's tile is the game's Forza logo, the one on the Forza race bumpers and wings (`Aftermarket_Logos\decal146`), used straight from the game's files. `tools/gen_icons.py --prefix underglow` packs them into `src/icon_data.h`, which the DLL carries (needs pillow and numpy; takes about a minute). Both tools and `tools/icontools/` come from Levilente's [NitroSystem II](https://github.com/Levilente/NitroSystem-II) (MIT License).
 
 `tools/vfont.py` and `tools/check_text.py` check the translations against the game's fonts, which only have the characters the game's own text uses (a missing one shows as a box).
