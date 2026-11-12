@@ -85,7 +85,7 @@ Settings are kept in `fh2-mods\Underglow.ini`, and saving it while the game runs
 Neon=1
 Color=0              ; the primary color: its place in the menu (0 Cyan ... 17 Lavender, 18-27 Custom 1-10)
 Color2=3             ; the secondary color, the same way
-Brightness=0.5       ; 1 = as bright as your headlight
+Brightness=0.25      ; 1 = as bright as your headlight
 FrontEffect=2        ; an effect's number (see Effects); 2 Rainbow Wave by default
 RightEffect=2
 RearEffect=2
@@ -157,6 +157,8 @@ Some cars' lights don't span the car (an IndyCar's are all at the back, on its c
 In the garage, the kit's rows move the camera with the game's own shots (`UICarTargetCameraPresets.xml` in `media\Camera.zip`). The kit uses copies of five of them (the paint menu's body, rims and wing views, the drivetrain and rear wing upgrades' views) that hold the camera at their angle until it's there, added to that file by `tools/gen_camera_presets.py` (into `src/camera_presets.h`) and handed to the game through the platform. The garage ends a camera move right after each row of a part list (harmless in its own lists, where the shot doesn't change), so Underglow skips that while its own move is under way.
 
 The Underglow Kit ([src/ug_upgrade.h](src/ug_upgrade.h)) uses the garage-upgrade method of Levilente's [NitroSystem II](https://github.com/Levilente/NitroSystem-II) (MIT License), first used by the Universal Wheel Spacers mod. It adds part type 48 to Aero and Appearance, and edits the game's upgrade-list, installed-part and install statements as they run. It answers the game's string lookup for its names, and records the garage id of the car you drive from the game's own getter. Its numbers stay clear of the other mods that use this method: part enum 48, part ids 900520-900541, string keys 0xA4E0-0xA535.
+
+The game sets its lights' places on one thread and draws on another, and the two race: placed only where the game moves the car's lights, the neon was sometimes a frame late, trailing the car at speed. So it's placed again where the frame goes to the renderer (the beam upload), from the car's place at that moment.
 
 The audio effects put an FMOD FFT on the game's radio bus, and read whether the car radio is on from the game's RadioSystem. The effects' clock is the player car's own update time, so they stop when the game does.
 

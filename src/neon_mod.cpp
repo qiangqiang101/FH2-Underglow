@@ -406,7 +406,7 @@ struct Config {
     float custom[kCustomCount][3] = {};     // the ini's custom colors
     char custom_name[kCustomCount][32] = {};   // their names ("" : Custom N)
     char custom_text[kCustomCount][32] = {};   // each as the ini has it, written back as it was
-    float brightness = 0.5f;
+    float brightness = 0.25f;
     int effect[kZoneCount] = {kEffectWave, kEffectWave, kEffectWave, kEffectWave};   // Rainbow Wave
     bool part[kZoneCount] = {true, true, true, true};   // each part (zone) lit or not
     float speed = 0.3f;   // effect cycles a second
@@ -514,7 +514,7 @@ void load_config() {
     if (!had_customs && c.color2 == 9) c.color2 = kColorCount;
     if (c.color < 0 || c.color >= kColorTotal) c.color = 0;
     if (c.color2 < 0 || c.color2 >= kColorTotal) c.color2 = 3;
-    c.brightness = ini_float(L"Settings", L"Brightness", 0.5f);
+    c.brightness = ini_float(L"Settings", L"Brightness", 0.25f);
     const int all = ini_int(L"Settings", L"Effect", kEffectWave);   // 0.1's one effect for the whole car
     for (int z = 0; z < kZoneCount; ++z) {
         c.effect[z] = ini_int(L"Settings", kZoneIniKeys[z], all);
@@ -2031,6 +2031,11 @@ void effect_now(const Config& c, int effect, const Pixel& p, double secs, float 
 // Runs on the game's light thread, each frame, right after it updated one of the player's lights (it does
 // that for every light, on or off).
 
+// What neon_frame placed last (under g_neon_lock): the shape (at the kit's level), how many lights, and from which car.
+Shape g_placed_shape;
+int g_placed_n = 0;
+Reference g_placed_ref;
+
 void neon_frame(const Reference& ref) {
     Config c = car_config();
     void* mgr = reinterpret_cast<void*>(ref.manager);
@@ -2143,6 +2148,9 @@ void neon_frame(const Reference& ref) {
     }
     if (reshape) g_neon.shape_sig = shape_sig;
     if (dirty) set_dirty();   // the presets go to the GPU again (the game only uploads them when told)
+    g_placed_shape = c.shape;
+    g_placed_n = n;
+    g_placed_ref = ref;
     g_neon.lit = true;
     g_neon.problem[0] = 0;
 }
@@ -2167,6 +2175,34 @@ void detour_set_int(void* mgr, uint32_t handle, float v) {
 
 SRWLOCK g_render_lock = SRWLOCK_INIT;
 
+// The neon's lights placed again from the car's place now (render thread, g_neon_lock held). The lights' places are
+// set on the light thread (neon_frame), which races the renderer: they were sometimes a frame late, trailing the car
+// at speed (a lead of a frame of travel then put them ahead in the other frames, seen in game). Placed again where the
+// frame is handed to the renderer (the beam upload), from the car's place at that moment, they keep up with the body.
+void place_again() {
+    const Reference& ref = g_placed_ref;
+    if (!g_placed_n || ref.manager != g_neon.manager) return;
+    alignas(16) float world[16];
+    if (!vtable_is(ref.pres, kCarPresVtables, 2) || !rd(ref.pres + kPresWorld, world, sizeof world) || !finite(world, 16))
+        return;
+    alignas(16) float car_rot[4];
+    _mm_store_ps(car_rot, reinterpret_cast<MatrixToQuatFn>(g_base + kMatrixToQuat)(world));
+    if (!finite(car_rot, 4)) return;
+    const float down[4] = {0.70710678f, 0.0f, 0.0f, 0.70710678f};
+    alignas(16) float rot[4];
+    qmul(car_rot, down, rot);
+    void* mgr = reinterpret_cast<void*>(ref.manager);
+    const int n = g_placed_n < g_neon.count ? g_placed_n : g_neon.count;
+    for (int i = 0; i < n; ++i) {
+        float local[3], w[3];
+        edge_point(ref, g_placed_shape, i, local);
+        qrot(car_rot, local, w);
+        alignas(16) const float pos[4] = {world[12] + w[0], world[13] + w[1], world[14] + w[2], 1.0f};
+        g_orig_set_pos(mgr, g_neon.handle[i], pos);
+        g_orig_set_dir(mgr, g_neon.handle[i], rot);
+    }
+}
+
 void upload(const Kind& k, UploadFn orig, void* system_p, void* graphics) {
     const uintptr_t system = reinterpret_cast<uintptr_t>(system_p);
     if (!TryAcquireSRWLockExclusive(&g_render_lock)) {
@@ -2180,6 +2216,7 @@ void upload(const Kind& k, UploadFn orig, void* system_p, void* graphics) {
     // The neon goes dark when the game stops updating the car (menus, garage, loading).
     if (&k == &kBeam && TryAcquireSRWLockExclusive(&g_neon_lock)) {
         if (g_neon.lit && GetTickCount64() - g_neon.last_frame > 250 && g_neon.beams == system) neon_dark();
+        else if (g_neon.lit && g_neon.beams == system) place_again();
         ReleaseSRWLockExclusive(&g_neon_lock);
     }
 
@@ -2871,7 +2908,9 @@ FH2MOD_EXPORT int fh2mod_init(const FH2ModApi* api) {
     WritePrivateProfileStringW(L"NeonOverrides", nullptr, nullptr, g_ini);
     WritePrivateProfileStringW(L"Neon", L"Spread", nullptr, g_ini);
     WritePrivateProfileStringW(L"Neon", L"Count", nullptr, g_ini);
-    WritePrivateProfileStringW(L"Neon", L"Lead", nullptr, g_ini);   // a test build's
+    WritePrivateProfileStringW(L"Neon", L"Lead", nullptr, g_ini);          // test builds'
+    WritePrivateProfileStringW(L"Neon", L"LeadFrames", nullptr, g_ini);
+    WritePrivateProfileStringW(L"Neon", L"RenderPlace", nullptr, g_ini);
     load_config();
     save_config();
     lang_load();   // the Mods page's rows are written in the language seen last
