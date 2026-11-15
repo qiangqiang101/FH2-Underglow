@@ -1,0 +1,560 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Underglow\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "mod.description"
+msgid "Neon underglow made of the game's own lights, so it lights up the road: 61 effects (15 follow the car radio's music), 28 colors, and each part of the car on its own. Buy an Underglow Kit for a car in the garage (Upgrades > Aero and Appearance); set it up in ANNA: Car > Underglow."
+msgstr "Neon-Unterbodenbeleuchtung aus den eigenen Lichtern des Spiels, die wirklich die Straße beleuchtet: 61 Effekte (15 folgen der Musik des Autoradios), 28 Farben und jeder Teil des Autos für sich. Kaufe in der Garage ein Unterbodenbeleuchtungs-Kit für ein Auto (Upgrades > Aerodynamik und Aussehen) und stelle es bei ANNA ein: Auto > Unterbodenbeleuchtung."
+
+msgctxt "color.Cyan"
+msgid "Cyan"
+msgstr "Cyan"
+
+msgctxt "color.Blue"
+msgid "Blue"
+msgstr "Blau"
+
+msgctxt "color.Purple"
+msgid "Purple"
+msgstr "Lila"
+
+msgctxt "color.Pink"
+msgid "Pink"
+msgstr "Pink"
+
+msgctxt "color.Red"
+msgid "Red"
+msgstr "Rot"
+
+msgctxt "color.Orange"
+msgid "Orange"
+msgstr "Orange"
+
+msgctxt "color.Yellow"
+msgid "Yellow"
+msgstr "Gelb"
+
+msgctxt "color.Green"
+msgid "Green"
+msgstr "Grün"
+
+msgctxt "color.White"
+msgid "White"
+msgstr "Weiß"
+
+msgctxt "color.Lime"
+msgid "Lime"
+msgstr "Limettengrün"
+
+msgctxt "color.Teal"
+msgid "Teal"
+msgstr "Petrol"
+
+msgctxt "color.SkyBlue"
+msgid "Sky Blue"
+msgstr "Himmelblau"
+
+msgctxt "color.Indigo"
+msgid "Indigo"
+msgstr "Indigo"
+
+msgctxt "color.Magenta"
+msgid "Magenta"
+msgstr "Magenta"
+
+msgctxt "color.Crimson"
+msgid "Crimson"
+msgstr "Karmesinrot"
+
+msgctxt "color.Amber"
+msgid "Amber"
+msgstr "Bernstein"
+
+msgctxt "color.Mint"
+msgid "Mint"
+msgstr "Mint"
+
+msgctxt "color.Lavender"
+msgid "Lavender"
+msgstr "Lavendel"
+
+msgctxt "effect.Static"
+msgid "Static"
+msgstr "Statisch"
+
+msgctxt "effect.Rainbow"
+msgid "Rainbow"
+msgstr "Regenbogen"
+
+msgctxt "effect.RainbowWave"
+msgid "Rainbow Wave"
+msgstr "Regenbogenwelle"
+
+msgctxt "effect.Breathe"
+msgid "Breathe"
+msgstr "Atmen"
+
+msgctxt "effect.Wipe"
+msgid "Wipe"
+msgstr "Wischen"
+
+msgctxt "effect.Stack"
+msgid "Stack"
+msgstr "Stapeln"
+
+msgctxt "effect.Blink"
+msgid "Blink"
+msgstr "Blinken"
+
+msgctxt "effect.Police"
+msgid "Police"
+msgstr "Polizei"
+
+msgctxt "effect.AudioVisualizer"
+msgid "Audio Visualizer"
+msgstr "Audio-Visualizer"
+
+msgctxt "effect.CrossingBeams"
+msgid "Crossing Beams"
+msgstr "Kreuzende Strahlen"
+
+msgctxt "effect.Hypnotoad"
+msgid "Hypnotoad"
+msgstr "Hypnotoad"
+
+msgctxt "effect.Lightning"
+msgid "Lightning"
+msgstr "Blitz"
+
+msgctxt "effect.RandomMarquee"
+msgid "Random Marquee"
+msgstr "Zufalls-Lauflicht"
+
+msgctxt "effect.Comet"
+msgid "Comet"
+msgstr "Komet"
+
+msgctxt "effect.Fill"
+msgid "Fill"
+msgstr "Füllen"
+
+msgctxt "effect.Swap"
+msgid "Swap"
+msgstr "Wechseln"
+
+msgctxt "effect.Visor"
+msgid "Visor"
+msgstr "Visier"
+
+msgctxt "effect.AudioPulse"
+msgid "Audio Pulse"
+msgstr "Audio-Puls"
+
+msgctxt "effect.PeakMeter"
+msgid "Peak Meter"
+msgstr "Spitzenpegel"
+
+msgctxt "effect.AudioBlend"
+msgid "Audio Blend"
+msgstr "Audio-Überblendung"
+
+msgctxt "effect.BassFlash"
+msgid "Bass Flash"
+msgstr "Bass-Blitz"
+
+msgctxt "effect.AudioSparkle"
+msgid "Audio Sparkle"
+msgstr "Audio-Funkeln"
+
+msgctxt "effect.AudioRainbow"
+msgid "Audio Rainbow"
+msgstr "Audio-Regenbogen"
+
+msgctxt "effect.CenterBurst"
+msgid "Center Burst"
+msgstr "Explosion aus der Mitte"
+
+msgctxt "effect.AudioBubbles"
+msgid "Audio Bubbles"
+msgstr "Audio-Blasen"
+
+msgctxt "effect.AudioParty"
+msgid "Audio Party"
+msgstr "Audio-Party"
+
+msgctxt "effect.AudioSine"
+msgid "Audio Sine"
+msgstr "Audio-Sinus"
+
+msgctxt "effect.AudioStar"
+msgid "Audio Star"
+msgstr "Audio-Sterne"
+
+msgctxt "effect.AudioSync"
+msgid "Audio Sync"
+msgstr "Audio-Sync"
+
+msgctxt "effect.VUMeter"
+msgid "VU Meter"
+msgstr "VU-Meter"
+
+msgctxt "effect.AudioSwirl"
+msgid "Audio Swirl"
+msgstr "Audio-Wirbel"
+
+msgctxt "effect.BouncingBall"
+msgid "Bouncing Ball"
+msgstr "Springender Ball"
+
+msgctxt "effect.BreathingCircle"
+msgid "Breathing Circle"
+msgstr "Atmender Kreis"
+
+msgctxt "effect.FractalMotion"
+msgid "Fractal Motion"
+msgstr "Fraktale Bewegung"
+
+msgctxt "effect.MotionPoint"
+msgid "Motion Point"
+msgstr "Wandernder Punkt"
+
+msgctxt "effect.Rain"
+msgid "Rain"
+msgstr "Regen"
+
+msgctxt "effect.RotatingBeam"
+msgid "Rotating Beam"
+msgstr "Drehender Strahl"
+
+msgctxt "effect.SmoothBlink"
+msgid "Smooth Blink"
+msgstr "Sanftes Blinken"
+
+msgctxt "effect.SparkleFade"
+msgid "Sparkle Fade"
+msgstr "Verblassendes Funkeln"
+
+msgctxt "effect.ZigZag"
+msgid "Zig Zag"
+msgstr "Zickzack"
+
+msgctxt "effect.Marquee"
+msgid "Marquee"
+msgstr "Lauflicht"
+
+msgctxt "effect.AlternateBlink"
+msgid "Alternate Blink"
+msgstr "Wechselblinken"
+
+msgctxt "effect.GradientWave"
+msgid "Gradient Wave"
+msgstr "Verlaufswelle"
+
+msgctxt "effect.MovingPanes"
+msgid "Moving Panes"
+msgstr "Wandernde Felder"
+
+msgctxt "effect.NoiseMap"
+msgid "Noise Map"
+msgstr "Rauschkarte"
+
+msgctxt "effect.Sequence"
+msgid "Sequence"
+msgstr "Sequenz"
+
+msgctxt "effect.Wavy"
+msgid "Wavy"
+msgstr "Wellig"
+
+msgctxt "effect.TwoColorMarquee"
+msgid "Two-Color Marquee"
+msgstr "Zweifarbiges Lauflicht"
+
+msgctxt "effect.Bloom"
+msgid "Bloom"
+msgstr "Blüte"
+
+msgctxt "effect.Bubbles"
+msgid "Bubbles"
+msgstr "Blasen"
+
+msgctxt "effect.ColorWheel"
+msgid "Color Wheel"
+msgstr "Farbrad"
+
+msgctxt "effect.DoubleRainbow"
+msgid "Double Rainbow"
+msgstr "Doppelter Regenbogen"
+
+msgctxt "effect.MotionPoints"
+msgid "Motion Points"
+msgstr "Wandernde Punkte"
+
+msgctxt "effect.Mosaic"
+msgid "Mosaic"
+msgstr "Mosaik"
+
+msgctxt "effect.RadialRainbow"
+msgid "Radial Rainbow"
+msgstr "Radialer Regenbogen"
+
+msgctxt "effect.RandomSpin"
+msgid "Random Spin"
+msgstr "Zufallsdrehung"
+
+msgctxt "effect.RotatingRainbow"
+msgid "Rotating Rainbow"
+msgstr "Drehender Regenbogen"
+
+msgctxt "effect.Spiral"
+msgid "Spiral"
+msgstr "Spirale"
+
+msgctxt "effect.StarryNight"
+msgid "Starry Night"
+msgstr "Sternennacht"
+
+msgctxt "effect.Sunrise"
+msgid "Sunrise"
+msgstr "Sonnenaufgang"
+
+msgctxt "effect.SwirlCircles"
+msgid "Swirl Circles"
+msgstr "Wirbelkreise"
+
+msgctxt "zone.Front"
+msgid "Front"
+msgstr "Vorne"
+
+msgctxt "zone.Right"
+msgid "Right Side"
+msgstr "Rechte Seite"
+
+msgctxt "zone.Rear"
+msgid "Rear"
+msgstr "Hinten"
+
+msgctxt "zone.Left"
+msgid "Left Side"
+msgstr "Linke Seite"
+
+msgctxt "zone.All"
+msgid "All"
+msgstr "Alle"
+
+msgctxt "group.audio"
+msgid "Audio Visualizer"
+msgstr "Audio-Visualizer"
+
+msgctxt "group.one"
+msgid "Effects with 1 Color"
+msgstr "Effekte mit 1 Farbe"
+
+msgctxt "group.two"
+msgid "Effects with 2 Colors"
+msgstr "Effekte mit 2 Farben"
+
+msgctxt "group.none"
+msgid "Multicolor Effects"
+msgstr "Mehrfarbige Effekte"
+
+msgctxt "color.custom"
+msgid "Custom {n}"
+msgstr "Eigene {n}"
+
+msgctxt "row.NeonFront.label"
+msgid "Underglow: Front"
+msgstr "Unterbodenbeleuchtung: Vorne"
+
+msgctxt "row.NeonRight.label"
+msgid "Underglow: Right Side"
+msgstr "Unterbodenbeleuchtung: Rechte Seite"
+
+msgctxt "row.NeonRear.label"
+msgid "Underglow: Rear"
+msgstr "Unterbodenbeleuchtung: Hinten"
+
+msgctxt "row.NeonLeft.label"
+msgid "Underglow: Left Side"
+msgstr "Unterbodenbeleuchtung: Linke Seite"
+
+msgctxt "row.Neon.label"
+msgid "Underglow"
+msgstr "Unterbodenbeleuchtung"
+
+msgctxt "row.Neon.description"
+msgid "Neon lights under your car. Also in ANNA: Car > Lights and Car > Underglow."
+msgstr "Neonlicht unter deinem Auto. Auch bei ANNA: Auto > Lichter und Auto > Unterbodenbeleuchtung."
+
+msgctxt "row.NeonPart.description"
+msgid "Turns this part of the underglow on or off."
+msgstr "Schaltet diesen Teil der Unterbodenbeleuchtung an oder aus."
+
+msgctxt "row.RequireKit.label"
+msgid "Require Underglow Kit"
+msgstr "Unterbodenbeleuchtungs-Kit erforderlich"
+
+msgctxt "row.RequireKit.description"
+msgid "On: a car only lights the parts of its Underglow Kit (Garage > Upgrades > Aero and Appearance). Off: every car lights every part."
+msgstr "An: Ein Auto leuchtet nur an den Teilen seines Unterbodenbeleuchtungs-Kits (Garage > Upgrades > Aerodynamik und Aussehen). Aus: Jedes Auto leuchtet überall."
+
+msgctxt "row.NeonColor.label"
+msgid "Primary Color"
+msgstr "Primärfarbe"
+
+msgctxt "row.NeonColor.description"
+msgid "The underglow's main color. Custom 1 to 10 are set in fh2-mods\\Underglow.ini ([CustomColors])."
+msgstr "Die Hauptfarbe der Beleuchtung. Eigene 1 bis 10 stehen in fh2-mods\\Underglow.ini ([CustomColors])."
+
+msgctxt "row.NeonColor2.label"
+msgid "Secondary Color"
+msgstr "Sekundärfarbe"
+
+msgctxt "row.NeonColor2.description"
+msgid "The second color, for the effects with 2 colors and some audio visualizers."
+msgstr "Die zweite Farbe, für die Effekte mit 2 Farben und einige Audio-Visualizer."
+
+msgctxt "anna.toggle.on"
+msgid "Underglow On"
+msgstr "Unterbodenbeleuchtung an"
+
+msgctxt "anna.toggle.off"
+msgid "Underglow Off"
+msgstr "Unterbodenbeleuchtung aus"
+
+msgctxt "anna.nokit"
+msgid "No Underglow Kit"
+msgstr "Kein Unterbodenbeleuchtungs-Kit"
+
+msgctxt "anna.underglow"
+msgid "Underglow"
+msgstr "Unterbodenbeleuchtung"
+
+msgctxt "anna.color"
+msgid "Primary Color"
+msgstr "Primärfarbe"
+
+msgctxt "anna.color2"
+msgid "Secondary Color"
+msgstr "Sekundärfarbe"
+
+msgctxt "anna.effect"
+msgid "Effect"
+msgstr "Lichteffekt"
+
+msgctxt "anna.parts"
+msgid "Parts"
+msgstr "Bereiche"
+
+msgctxt "anna.part.Front.off"
+msgid "Front Off"
+msgstr "Vorne aus"
+
+msgctxt "anna.part.Front.on"
+msgid "Front On"
+msgstr "Vorne an"
+
+msgctxt "anna.part.Right.off"
+msgid "Right Side Off"
+msgstr "Rechte Seite aus"
+
+msgctxt "anna.part.Right.on"
+msgid "Right Side On"
+msgstr "Rechte Seite an"
+
+msgctxt "anna.part.Rear.off"
+msgid "Rear Off"
+msgstr "Hinten aus"
+
+msgctxt "anna.part.Rear.on"
+msgid "Rear On"
+msgstr "Hinten an"
+
+msgctxt "anna.part.Left.off"
+msgid "Left Side Off"
+msgstr "Linke Seite aus"
+
+msgctxt "anna.part.Left.on"
+msgid "Left Side On"
+msgstr "Linke Seite an"
+
+msgctxt "garage.stock.name"
+msgid "Stock"
+msgstr "Serie"
+
+msgctxt "garage.front.name"
+msgid "Front"
+msgstr "Vorne"
+
+msgctxt "garage.back.name"
+msgid "Back"
+msgstr "Hinten"
+
+msgctxt "garage.sides.name"
+msgid "Sides"
+msgstr "Seiten"
+
+msgctxt "garage.front_back.name"
+msgid "Front and Back"
+msgstr "Vorne und hinten"
+
+msgctxt "garage.front_sides.name"
+msgid "Front and Sides"
+msgstr "Vorne und Seiten"
+
+msgctxt "garage.back_sides.name"
+msgid "Back and Sides"
+msgstr "Hinten und Seiten"
+
+msgctxt "garage.all.name"
+msgid "Front, Back and Sides"
+msgstr "Vorne, hinten und Seiten"
+
+msgctxt "garage.stock.description"
+msgid "No underglow."
+msgstr "Keine Unterbodenbeleuchtung."
+
+msgctxt "garage.front.description"
+msgid "Underglow at the front."
+msgstr "Unterbodenbeleuchtung vorne."
+
+msgctxt "garage.back.description"
+msgid "Underglow at the back."
+msgstr "Unterbodenbeleuchtung hinten."
+
+msgctxt "garage.sides.description"
+msgid "Underglow along both sides."
+msgstr "Unterbodenbeleuchtung an beiden Seiten."
+
+msgctxt "garage.front_back.description"
+msgid "Underglow at the front and the back."
+msgstr "Unterbodenbeleuchtung vorne und hinten."
+
+msgctxt "garage.front_sides.description"
+msgid "Underglow at the front and along both sides."
+msgstr "Unterbodenbeleuchtung vorne und an beiden Seiten."
+
+msgctxt "garage.back_sides.description"
+msgid "Underglow at the back and along both sides."
+msgstr "Unterbodenbeleuchtung hinten und an beiden Seiten."
+
+msgctxt "garage.all.description"
+msgid "Underglow all around the car."
+msgstr "Unterbodenbeleuchtung rund um das Auto."
+
+msgctxt "garage.kit.name"
+msgid "Underglow Kit"
+msgstr "Unterbodenbeleuchtungs-Kit"
+
+msgctxt "garage.kit.description"
+msgid "Neon lights under the car. The kit sets which parts of the car can light up; the colors and effects are in ANNA: Car > Underglow."
+msgstr "Neonlicht unter dem Auto. Das Kit legt fest, welche Teile des Autos leuchten; Farben und Effekte gibt es bei ANNA: Auto > Unterbodenbeleuchtung."
+
+msgctxt "garage.leds"
+msgid "{count} LEDs."
+msgstr "{count} LEDs."

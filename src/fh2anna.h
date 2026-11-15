@@ -3,7 +3,8 @@
  *   const FH2AnnaApi* anna = (const FH2AnnaApi*)api->get_interface(FH2ANNA_INTERFACE, 4);
  *
  * Look it up after wait_for_mods (mods start in name order); NULL without FH2 ANNA (or an older
- * one, for version 2). Ask for version 5 for hold_input, falling back to 4 without it.
+ * one, for version 2). Ask for version 5 for hold_input, falling back to 4 without it; 6 for
+ * cinematic_button.
  *
  * Adding to the menu (version 2):
  *
@@ -74,6 +75,14 @@ typedef struct FH2AnnaApi {
        1 while it has, 0 when it's given back. Meanwhile ANNA's autodrive doesn't take that for a
        menu or the pause and keeps driving (in events too). ANNA itself stays closed. Any thread. */
     void (*hold_input)(int held);
+    /* ---- version 6 ---- */
+    /* While ANNA's autodrive is on: the controller button that turns its cinematic camera on and off
+       (FH2ANNA.ini's [Autodrive] Cinematic, LB unless it says another), as XInput's bit
+       (XINPUT_GAMEPAD_LEFT_SHOULDER...); 0 while it isn't driving, or with no cinematic camera. ANNA
+       reads it from the pad (the input's XInput buttons as read), so a keyboard mod gives it a key by
+       holding that bit there, and can show its key in the prompt's picture of it: the control's
+       resource "FH2ANNA_Icon_Cinematic". Any thread. */
+    uint16_t (*cinematic_button)(void);
 } FH2AnnaApi;
 
 #endif

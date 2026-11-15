@@ -1,0 +1,777 @@
+# Underglow: the English text to translate, from tools/l10n/extract.py. Don't edit this file: run it again.
+# Translate it into l10n/<language>.po (pl.po, pt_BR.po): docs/translating.md in the FH2 Mod Platform.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: Underglow\n"
+
+#: src/neon_mod.cpp:277
+msgctxt "color.Cyan"
+msgid "Cyan"
+msgstr ""
+
+#: src/neon_mod.cpp:278
+msgctxt "color.Blue"
+msgid "Blue"
+msgstr ""
+
+#: src/neon_mod.cpp:279
+msgctxt "color.Purple"
+msgid "Purple"
+msgstr ""
+
+#: src/neon_mod.cpp:280
+msgctxt "color.Pink"
+msgid "Pink"
+msgstr ""
+
+#: src/neon_mod.cpp:281
+msgctxt "color.Red"
+msgid "Red"
+msgstr ""
+
+#: src/neon_mod.cpp:282
+msgctxt "color.Orange"
+msgid "Orange"
+msgstr ""
+
+#: src/neon_mod.cpp:283
+msgctxt "color.Yellow"
+msgid "Yellow"
+msgstr ""
+
+#: src/neon_mod.cpp:284
+msgctxt "color.Green"
+msgid "Green"
+msgstr ""
+
+#: src/neon_mod.cpp:285
+msgctxt "color.White"
+msgid "White"
+msgstr ""
+
+#: src/neon_mod.cpp:286
+msgctxt "color.Lime"
+msgid "Lime"
+msgstr ""
+
+#: src/neon_mod.cpp:287
+msgctxt "color.Teal"
+msgid "Teal"
+msgstr ""
+
+#: src/neon_mod.cpp:288
+msgctxt "color.SkyBlue"
+msgid "Sky Blue"
+msgstr ""
+
+#: src/neon_mod.cpp:289
+msgctxt "color.Indigo"
+msgid "Indigo"
+msgstr ""
+
+#: src/neon_mod.cpp:290
+msgctxt "color.Magenta"
+msgid "Magenta"
+msgstr ""
+
+#: src/neon_mod.cpp:291
+msgctxt "color.Crimson"
+msgid "Crimson"
+msgstr ""
+
+#: src/neon_mod.cpp:292
+msgctxt "color.Amber"
+msgid "Amber"
+msgstr ""
+
+#: src/neon_mod.cpp:293
+msgctxt "color.Mint"
+msgid "Mint"
+msgstr ""
+
+#: src/neon_mod.cpp:294
+msgctxt "color.Lavender"
+msgid "Lavender"
+msgstr ""
+
+#: src/neon_mod.cpp:329
+msgctxt "effect.Static"
+msgid "Static"
+msgstr ""
+
+#: src/neon_mod.cpp:330
+msgctxt "effect.Rainbow"
+msgid "Rainbow"
+msgstr ""
+
+#: src/neon_mod.cpp:331
+msgctxt "effect.RainbowWave"
+msgid "Rainbow Wave"
+msgstr ""
+
+#: src/neon_mod.cpp:332
+msgctxt "effect.Breathe"
+msgid "Breathe"
+msgstr ""
+
+#: src/neon_mod.cpp:333
+msgctxt "effect.Wipe"
+msgid "Wipe"
+msgstr ""
+
+#: src/neon_mod.cpp:334
+msgctxt "effect.Stack"
+msgid "Stack"
+msgstr ""
+
+#: src/neon_mod.cpp:335
+msgctxt "effect.Blink"
+msgid "Blink"
+msgstr ""
+
+#: src/neon_mod.cpp:336
+msgctxt "effect.Police"
+msgid "Police"
+msgstr ""
+
+#: src/neon_mod.cpp:337
+msgctxt "effect.AudioVisualizer"
+msgid "Audio Visualizer"
+msgstr ""
+
+#: src/neon_mod.cpp:338
+msgctxt "effect.CrossingBeams"
+msgid "Crossing Beams"
+msgstr ""
+
+#: src/neon_mod.cpp:339
+msgctxt "effect.Hypnotoad"
+msgid "Hypnotoad"
+msgstr ""
+
+#: src/neon_mod.cpp:340
+msgctxt "effect.Lightning"
+msgid "Lightning"
+msgstr ""
+
+#: src/neon_mod.cpp:341
+msgctxt "effect.RandomMarquee"
+msgid "Random Marquee"
+msgstr ""
+
+#: src/neon_mod.cpp:342
+msgctxt "effect.Comet"
+msgid "Comet"
+msgstr ""
+
+#: src/neon_mod.cpp:343
+msgctxt "effect.Fill"
+msgid "Fill"
+msgstr ""
+
+#: src/neon_mod.cpp:344
+msgctxt "effect.Swap"
+msgid "Swap"
+msgstr ""
+
+#: src/neon_mod.cpp:345
+msgctxt "effect.Visor"
+msgid "Visor"
+msgstr ""
+
+#: src/neon_mod.cpp:346
+msgctxt "effect.AudioPulse"
+msgid "Audio Pulse"
+msgstr ""
+
+#: src/neon_mod.cpp:347
+msgctxt "effect.PeakMeter"
+msgid "Peak Meter"
+msgstr ""
+
+#: src/neon_mod.cpp:348
+msgctxt "effect.AudioBlend"
+msgid "Audio Blend"
+msgstr ""
+
+#: src/neon_mod.cpp:349
+msgctxt "effect.BassFlash"
+msgid "Bass Flash"
+msgstr ""
+
+#: src/neon_mod.cpp:350
+msgctxt "effect.AudioSparkle"
+msgid "Audio Sparkle"
+msgstr ""
+
+#: src/neon_mod.cpp:351
+msgctxt "effect.AudioRainbow"
+msgid "Audio Rainbow"
+msgstr ""
+
+#: src/neon_mod.cpp:352
+msgctxt "effect.CenterBurst"
+msgid "Center Burst"
+msgstr ""
+
+#: src/neon_mod.cpp:353
+msgctxt "effect.AudioBubbles"
+msgid "Audio Bubbles"
+msgstr ""
+
+#: src/neon_mod.cpp:354
+msgctxt "effect.AudioParty"
+msgid "Audio Party"
+msgstr ""
+
+#: src/neon_mod.cpp:355
+msgctxt "effect.AudioSine"
+msgid "Audio Sine"
+msgstr ""
+
+#: src/neon_mod.cpp:356
+msgctxt "effect.AudioStar"
+msgid "Audio Star"
+msgstr ""
+
+#: src/neon_mod.cpp:357
+msgctxt "effect.AudioSync"
+msgid "Audio Sync"
+msgstr ""
+
+#: src/neon_mod.cpp:358
+msgctxt "effect.VUMeter"
+msgid "VU Meter"
+msgstr ""
+
+#: src/neon_mod.cpp:359
+msgctxt "effect.AudioSwirl"
+msgid "Audio Swirl"
+msgstr ""
+
+#: src/neon_mod.cpp:360
+msgctxt "effect.BouncingBall"
+msgid "Bouncing Ball"
+msgstr ""
+
+#: src/neon_mod.cpp:361
+msgctxt "effect.BreathingCircle"
+msgid "Breathing Circle"
+msgstr ""
+
+#: src/neon_mod.cpp:362
+msgctxt "effect.FractalMotion"
+msgid "Fractal Motion"
+msgstr ""
+
+#: src/neon_mod.cpp:363
+msgctxt "effect.MotionPoint"
+msgid "Motion Point"
+msgstr ""
+
+#: src/neon_mod.cpp:364
+msgctxt "effect.Rain"
+msgid "Rain"
+msgstr ""
+
+#: src/neon_mod.cpp:365
+msgctxt "effect.RotatingBeam"
+msgid "Rotating Beam"
+msgstr ""
+
+#: src/neon_mod.cpp:366
+msgctxt "effect.SmoothBlink"
+msgid "Smooth Blink"
+msgstr ""
+
+#: src/neon_mod.cpp:367
+msgctxt "effect.SparkleFade"
+msgid "Sparkle Fade"
+msgstr ""
+
+#: src/neon_mod.cpp:368
+msgctxt "effect.ZigZag"
+msgid "Zig Zag"
+msgstr ""
+
+#: src/neon_mod.cpp:369
+msgctxt "effect.Marquee"
+msgid "Marquee"
+msgstr ""
+
+#: src/neon_mod.cpp:370
+msgctxt "effect.AlternateBlink"
+msgid "Alternate Blink"
+msgstr ""
+
+#: src/neon_mod.cpp:371
+msgctxt "effect.GradientWave"
+msgid "Gradient Wave"
+msgstr ""
+
+#: src/neon_mod.cpp:372
+msgctxt "effect.MovingPanes"
+msgid "Moving Panes"
+msgstr ""
+
+#: src/neon_mod.cpp:373
+msgctxt "effect.NoiseMap"
+msgid "Noise Map"
+msgstr ""
+
+#: src/neon_mod.cpp:374
+msgctxt "effect.Sequence"
+msgid "Sequence"
+msgstr ""
+
+#: src/neon_mod.cpp:375
+msgctxt "effect.Wavy"
+msgid "Wavy"
+msgstr ""
+
+#: src/neon_mod.cpp:376
+msgctxt "effect.TwoColorMarquee"
+msgid "Two-Color Marquee"
+msgstr ""
+
+#: src/neon_mod.cpp:377
+msgctxt "effect.Bloom"
+msgid "Bloom"
+msgstr ""
+
+#: src/neon_mod.cpp:378
+msgctxt "effect.Bubbles"
+msgid "Bubbles"
+msgstr ""
+
+#: src/neon_mod.cpp:379
+msgctxt "effect.ColorWheel"
+msgid "Color Wheel"
+msgstr ""
+
+#: src/neon_mod.cpp:380
+msgctxt "effect.DoubleRainbow"
+msgid "Double Rainbow"
+msgstr ""
+
+#: src/neon_mod.cpp:381
+msgctxt "effect.MotionPoints"
+msgid "Motion Points"
+msgstr ""
+
+#: src/neon_mod.cpp:382
+msgctxt "effect.Mosaic"
+msgid "Mosaic"
+msgstr ""
+
+#: src/neon_mod.cpp:383
+msgctxt "effect.RadialRainbow"
+msgid "Radial Rainbow"
+msgstr ""
+
+#: src/neon_mod.cpp:384
+msgctxt "effect.RandomSpin"
+msgid "Random Spin"
+msgstr ""
+
+#: src/neon_mod.cpp:385
+msgctxt "effect.RotatingRainbow"
+msgid "Rotating Rainbow"
+msgstr ""
+
+#: src/neon_mod.cpp:386
+msgctxt "effect.Spiral"
+msgid "Spiral"
+msgstr ""
+
+#: src/neon_mod.cpp:387
+msgctxt "effect.StarryNight"
+msgid "Starry Night"
+msgstr ""
+
+#: src/neon_mod.cpp:388
+msgctxt "effect.Sunrise"
+msgid "Sunrise"
+msgstr ""
+
+#: src/neon_mod.cpp:389
+msgctxt "effect.SwirlCircles"
+msgid "Swirl Circles"
+msgstr ""
+
+#. the front of the car, in ANNA (Car > Underglow > Parts, and Effect)
+#: src/neon_mod.cpp:683
+msgctxt "zone.Front"
+msgid "Front"
+msgstr ""
+
+#. the car's right side, in ANNA (Car > Underglow > Parts, and Effect)
+#: src/neon_mod.cpp:685
+msgctxt "zone.Right"
+msgid "Right Side"
+msgstr ""
+
+#. the back of the car, in ANNA (Car > Underglow > Parts, and Effect)
+#: src/neon_mod.cpp:687
+msgctxt "zone.Rear"
+msgid "Rear"
+msgstr ""
+
+#. the car's left side, in ANNA (Car > Underglow > Parts, and Effect)
+#: src/neon_mod.cpp:689
+msgctxt "zone.Left"
+msgid "Left Side"
+msgstr ""
+
+#. all four parts of the car at once, in ANNA (Car > Underglow > Effect)
+#: src/neon_mod.cpp:691
+msgctxt "zone.All"
+msgid "All"
+msgstr ""
+
+#. the effects that follow the car radio's music
+#: src/neon_mod.cpp:699
+msgctxt "group.audio"
+msgid "Audio Visualizer"
+msgstr ""
+
+#. the effects in the primary color
+#: src/neon_mod.cpp:701
+msgctxt "group.one"
+msgid "Effects with 1 Color"
+msgstr ""
+
+#. the effects in the primary and the secondary color
+#: src/neon_mod.cpp:703
+msgctxt "group.two"
+msgid "Effects with 2 Colors"
+msgstr ""
+
+#. the effects with colors of their own (rainbows and the like)
+#: src/neon_mod.cpp:705
+msgctxt "group.none"
+msgid "Multicolor Effects"
+msgstr ""
+
+#. one of the ten colors the player sets in Underglow.ini; {n} is its number, 1 to 10
+#: src/neon_mod.cpp:715
+msgctxt "color.custom"
+msgid "Custom {n}"
+msgstr ""
+
+#. the switch for the front part of the underglow
+#: src/neon_mod.cpp:2565
+#, max-length:30
+msgctxt "row.NeonFront.label"
+msgid "Underglow: Front"
+msgstr ""
+
+#. the switch for the right side's part of the underglow
+#: src/neon_mod.cpp:2567
+#, max-length:30
+msgctxt "row.NeonRight.label"
+msgid "Underglow: Right Side"
+msgstr ""
+
+#. the switch for the back part of the underglow
+#: src/neon_mod.cpp:2569
+#, max-length:30
+msgctxt "row.NeonRear.label"
+msgid "Underglow: Rear"
+msgstr ""
+
+#. the switch for the left side's part of the underglow
+#: src/neon_mod.cpp:2571
+#, max-length:30
+msgctxt "row.NeonLeft.label"
+msgid "Underglow: Left Side"
+msgstr ""
+
+#. the switch for the whole underglow
+#: src/neon_mod.cpp:2581
+#, max-length:30
+msgctxt "row.Neon.label"
+msgid "Underglow"
+msgstr ""
+
+#: src/neon_mod.cpp:2582
+#, max-length:450
+msgctxt "row.Neon.description"
+msgid "Neon lights under your car. Also in ANNA: Car > Lights and Car > Underglow."
+msgstr ""
+
+#. the description of each of the four part rows (Underglow: Front, ...)
+#: src/neon_mod.cpp:2596
+#, max-length:450
+msgctxt "row.NeonPart.description"
+msgid "Turns this part of the underglow on or off."
+msgstr ""
+
+#: src/neon_mod.cpp:2603
+#, max-length:30
+msgctxt "row.RequireKit.label"
+msgid "Require Underglow Kit"
+msgstr ""
+
+#: src/neon_mod.cpp:2604
+#, max-length:450
+msgctxt "row.RequireKit.description"
+msgid "On: a car only lights the parts of its Underglow Kit (Garage > Upgrades > Aero and Appearance). Off: every car lights every part."
+msgstr ""
+
+#: src/neon_mod.cpp:2615
+#, max-length:30
+msgctxt "row.NeonColor.label"
+msgid "Primary Color"
+msgstr ""
+
+#: src/neon_mod.cpp:2616
+#, max-length:450
+msgctxt "row.NeonColor.description"
+msgid "The underglow's main color. Custom 1 to 10 are set in fh2-mods\\Underglow.ini ([CustomColors])."
+msgstr ""
+
+#: src/neon_mod.cpp:2627
+#, max-length:30
+msgctxt "row.NeonColor2.label"
+msgid "Secondary Color"
+msgstr ""
+
+#: src/neon_mod.cpp:2628
+#, max-length:450
+msgctxt "row.NeonColor2.description"
+msgid "The second color, for the effects with 2 colors and some audio visualizers."
+msgstr ""
+
+#. in ANNA (Car > Lights), what choosing it does, as ANNA's own switches say it ("Hazard Lights On")
+#: src/neon_mod.cpp:2640
+msgctxt "anna.toggle.on"
+msgid "Underglow On"
+msgstr ""
+
+#. in ANNA (Car > Lights), what choosing it does, as ANNA's own switches say it ("Hazard Lights Off")
+#: src/neon_mod.cpp:2642
+msgctxt "anna.toggle.off"
+msgid "Underglow Off"
+msgstr ""
+
+#. in ANNA (Car > Underglow and Effect > a part), shown grayed out while the car has no Underglow Kit for it
+#: src/neon_mod.cpp:2645
+msgctxt "anna.nokit"
+msgid "No Underglow Kit"
+msgstr ""
+
+#. ANNA's list for the underglow (Car > Underglow)
+#: src/neon_mod.cpp:2654
+msgctxt "anna.underglow"
+msgid "Underglow"
+msgstr ""
+
+#. ANNA's list of colors for the underglow's main color (Car > Underglow)
+#: src/neon_mod.cpp:2656
+msgctxt "anna.color"
+msgid "Primary Color"
+msgstr ""
+
+#. ANNA's list of colors for the second color, which some effects use (Car > Underglow)
+#: src/neon_mod.cpp:2658
+msgctxt "anna.color2"
+msgid "Secondary Color"
+msgstr ""
+
+#. ANNA's list of the underglow's effects (Car > Underglow)
+#: src/neon_mod.cpp:2660
+msgctxt "anna.effect"
+msgid "Effect"
+msgstr ""
+
+#. ANNA's list of the parts of the underglow to switch on or off (Car > Underglow)
+#: src/neon_mod.cpp:2662
+msgctxt "anna.parts"
+msgid "Parts"
+msgstr ""
+
+#. in ANNA (Car > Underglow > Parts), what choosing it does: switch the front part on or off
+#: src/neon_mod.cpp:2685
+msgctxt "anna.part.Front.off"
+msgid "Front Off"
+msgstr ""
+
+#: src/neon_mod.cpp:2686
+msgctxt "anna.part.Front.on"
+msgid "Front On"
+msgstr ""
+
+#. in ANNA (Car > Underglow > Parts), what choosing it does: switch the right side's part on or off
+#: src/neon_mod.cpp:2688
+msgctxt "anna.part.Right.off"
+msgid "Right Side Off"
+msgstr ""
+
+#: src/neon_mod.cpp:2689
+msgctxt "anna.part.Right.on"
+msgid "Right Side On"
+msgstr ""
+
+#. in ANNA (Car > Underglow > Parts), what choosing it does: switch the back part on or off
+#: src/neon_mod.cpp:2691
+msgctxt "anna.part.Rear.off"
+msgid "Rear Off"
+msgstr ""
+
+#: src/neon_mod.cpp:2692
+msgctxt "anna.part.Rear.on"
+msgid "Rear On"
+msgstr ""
+
+#. in ANNA (Car > Underglow > Parts), what choosing it does: switch the left side's part on or off
+#: src/neon_mod.cpp:2694
+msgctxt "anna.part.Left.off"
+msgid "Left Side Off"
+msgstr ""
+
+#: src/neon_mod.cpp:2695
+msgctxt "anna.part.Left.on"
+msgid "Left Side On"
+msgstr ""
+
+#: src/neon_mod.cpp:2998
+#, max-length:450
+msgctxt "mod.description"
+msgid "Neon underglow made of the game's own lights, so it lights up the road: 61 effects (15 follow the car radio's music), 28 colors, and each part of the car on its own. Buy an Underglow Kit for a car in the garage (Upgrades > Aero and Appearance); set it up in ANNA: Car > Underglow."
+msgstr ""
+
+#. the Underglow Kit's first choice, no underglow (use the game's own word for a stock part)
+#: src/ug_upgrade.h:74
+#, max-length:40
+msgctxt "garage.stock.name"
+msgid "Stock"
+msgstr ""
+
+#. a kit you can buy, then " Lv1" to " Lv3" (its number of LEDs): lights at the front
+#: src/ug_upgrade.h:76
+#, max-length:40
+msgctxt "garage.front.name"
+msgid "Front"
+msgstr ""
+
+#. a kit you can buy, then " Lv1" to " Lv3": lights at the back
+#: src/ug_upgrade.h:78
+#, max-length:40
+msgctxt "garage.back.name"
+msgid "Back"
+msgstr ""
+
+#. a kit you can buy, then " Lv1" to " Lv3": lights along both sides
+#: src/ug_upgrade.h:80
+#, max-length:40
+msgctxt "garage.sides.name"
+msgid "Sides"
+msgstr ""
+
+#. a kit you can buy, then " Lv1" to " Lv3"
+#: src/ug_upgrade.h:82
+#, max-length:40
+msgctxt "garage.front_back.name"
+msgid "Front and Back"
+msgstr ""
+
+#. a kit you can buy, then " Lv1" to " Lv3"
+#: src/ug_upgrade.h:84
+#, max-length:40
+msgctxt "garage.front_sides.name"
+msgid "Front and Sides"
+msgstr ""
+
+#. a kit you can buy, then " Lv1" to " Lv3"
+#: src/ug_upgrade.h:86
+#, max-length:40
+msgctxt "garage.back_sides.name"
+msgid "Back and Sides"
+msgstr ""
+
+#. a kit you can buy, then " Lv1" to " Lv3": lights all around the car
+#: src/ug_upgrade.h:88
+#, max-length:40
+msgctxt "garage.all.name"
+msgid "Front, Back and Sides"
+msgstr ""
+
+#. the description of the Stock choice
+#: src/ug_upgrade.h:94
+#, max-length:110
+msgctxt "garage.stock.description"
+msgid "No underglow."
+msgstr ""
+
+#. a kit's description, then its number of LEDs
+#: src/ug_upgrade.h:96
+#, max-length:110
+msgctxt "garage.front.description"
+msgid "Underglow at the front."
+msgstr ""
+
+#. a kit's description, then its number of LEDs
+#: src/ug_upgrade.h:98
+#, max-length:110
+msgctxt "garage.back.description"
+msgid "Underglow at the back."
+msgstr ""
+
+#. a kit's description, then its number of LEDs
+#: src/ug_upgrade.h:100
+#, max-length:110
+msgctxt "garage.sides.description"
+msgid "Underglow along both sides."
+msgstr ""
+
+#. a kit's description, then its number of LEDs
+#: src/ug_upgrade.h:102
+#, max-length:110
+msgctxt "garage.front_back.description"
+msgid "Underglow at the front and the back."
+msgstr ""
+
+#. a kit's description, then its number of LEDs
+#: src/ug_upgrade.h:104
+#, max-length:110
+msgctxt "garage.front_sides.description"
+msgid "Underglow at the front and along both sides."
+msgstr ""
+
+#. a kit's description, then its number of LEDs
+#: src/ug_upgrade.h:106
+#, max-length:110
+msgctxt "garage.back_sides.description"
+msgid "Underglow at the back and along both sides."
+msgstr ""
+
+#. a kit's description, then its number of LEDs
+#: src/ug_upgrade.h:108
+#, max-length:110
+msgctxt "garage.all.description"
+msgid "Underglow all around the car."
+msgstr ""
+
+#. the garage upgrade's name, under Custom upgrade > Aero and Appearance
+#: src/ug_upgrade.h:860
+#, max-length:40
+msgctxt "garage.kit.name"
+msgid "Underglow Kit"
+msgstr ""
+
+#. the upgrade's description in the garage
+#: src/ug_upgrade.h:862
+#, max-length:110
+msgctxt "garage.kit.description"
+msgid "Neon lights under the car. The kit sets which parts of the car can light up; the colors and effects are in ANNA: Car > Underglow."
+msgstr ""
+
+#. after a kit's description; {count} is how many LEDs it has (6 to 64)
+#: src/ug_upgrade.h:876
+#, max-length:110
+msgctxt "garage.leds"
+msgid "{count} LEDs."
+msgstr ""

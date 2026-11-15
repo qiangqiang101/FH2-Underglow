@@ -1,0 +1,560 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Underglow\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgctxt "mod.description"
+msgid "Neon underglow made of the game's own lights, so it lights up the road: 61 effects (15 follow the car radio's music), 28 colors, and each part of the car on its own. Buy an Underglow Kit for a car in the garage (Upgrades > Aero and Appearance); set it up in ANNA: Car > Underglow."
+msgstr "ゲーム自体のライトで作られたアンダーネオンで、路面を本当に照らします。61種類のエフェクト（15種類はカーラジオの音楽に合わせて動きます）、28色、車の各部分を個別に設定できます。ガレージで車にアンダーネオン キットを購入し（アップグレード > エアロと外観）、ANNAの「車 > アンダーネオン」で設定します。"
+
+msgctxt "color.Cyan"
+msgid "Cyan"
+msgstr "シアン"
+
+msgctxt "color.Blue"
+msgid "Blue"
+msgstr "ブルー"
+
+msgctxt "color.Purple"
+msgid "Purple"
+msgstr "パープル"
+
+msgctxt "color.Pink"
+msgid "Pink"
+msgstr "ピンク"
+
+msgctxt "color.Red"
+msgid "Red"
+msgstr "レッド"
+
+msgctxt "color.Orange"
+msgid "Orange"
+msgstr "オレンジ"
+
+msgctxt "color.Yellow"
+msgid "Yellow"
+msgstr "イエロー"
+
+msgctxt "color.Green"
+msgid "Green"
+msgstr "グリーン"
+
+msgctxt "color.White"
+msgid "White"
+msgstr "ホワイト"
+
+msgctxt "color.Lime"
+msgid "Lime"
+msgstr "ライム"
+
+msgctxt "color.Teal"
+msgid "Teal"
+msgstr "ティール"
+
+msgctxt "color.SkyBlue"
+msgid "Sky Blue"
+msgstr "スカイブルー"
+
+msgctxt "color.Indigo"
+msgid "Indigo"
+msgstr "インディゴ"
+
+msgctxt "color.Magenta"
+msgid "Magenta"
+msgstr "マゼンタ"
+
+msgctxt "color.Crimson"
+msgid "Crimson"
+msgstr "クリムゾン"
+
+msgctxt "color.Amber"
+msgid "Amber"
+msgstr "アンバー"
+
+msgctxt "color.Mint"
+msgid "Mint"
+msgstr "ミント"
+
+msgctxt "color.Lavender"
+msgid "Lavender"
+msgstr "ラベンダー"
+
+msgctxt "effect.Static"
+msgid "Static"
+msgstr "固定"
+
+msgctxt "effect.Rainbow"
+msgid "Rainbow"
+msgstr "レインボー"
+
+msgctxt "effect.RainbowWave"
+msgid "Rainbow Wave"
+msgstr "レインボー ウェーブ"
+
+msgctxt "effect.Breathe"
+msgid "Breathe"
+msgstr "呼吸"
+
+msgctxt "effect.Wipe"
+msgid "Wipe"
+msgstr "ワイプ"
+
+msgctxt "effect.Stack"
+msgid "Stack"
+msgstr "スタック"
+
+msgctxt "effect.Blink"
+msgid "Blink"
+msgstr "ブリンク"
+
+msgctxt "effect.Police"
+msgid "Police"
+msgstr "ポリス"
+
+msgctxt "effect.AudioVisualizer"
+msgid "Audio Visualizer"
+msgstr "オーディオ ビジュアライザー"
+
+msgctxt "effect.CrossingBeams"
+msgid "Crossing Beams"
+msgstr "クロス ビーム"
+
+msgctxt "effect.Hypnotoad"
+msgid "Hypnotoad"
+msgstr "ハイプノトード"
+
+msgctxt "effect.Lightning"
+msgid "Lightning"
+msgstr "ライトニング"
+
+msgctxt "effect.RandomMarquee"
+msgid "Random Marquee"
+msgstr "ランダム マーキー"
+
+msgctxt "effect.Comet"
+msgid "Comet"
+msgstr "コメット"
+
+msgctxt "effect.Fill"
+msgid "Fill"
+msgstr "フィル"
+
+msgctxt "effect.Swap"
+msgid "Swap"
+msgstr "スワップ"
+
+msgctxt "effect.Visor"
+msgid "Visor"
+msgstr "バイザー"
+
+msgctxt "effect.AudioPulse"
+msgid "Audio Pulse"
+msgstr "オーディオ パルス"
+
+msgctxt "effect.PeakMeter"
+msgid "Peak Meter"
+msgstr "ピーク メーター"
+
+msgctxt "effect.AudioBlend"
+msgid "Audio Blend"
+msgstr "オーディオ ブレンド"
+
+msgctxt "effect.BassFlash"
+msgid "Bass Flash"
+msgstr "ベース フラッシュ"
+
+msgctxt "effect.AudioSparkle"
+msgid "Audio Sparkle"
+msgstr "オーディオ スパークル"
+
+msgctxt "effect.AudioRainbow"
+msgid "Audio Rainbow"
+msgstr "オーディオ レインボー"
+
+msgctxt "effect.CenterBurst"
+msgid "Center Burst"
+msgstr "センター バースト"
+
+msgctxt "effect.AudioBubbles"
+msgid "Audio Bubbles"
+msgstr "オーディオ バブル"
+
+msgctxt "effect.AudioParty"
+msgid "Audio Party"
+msgstr "オーディオ パーティー"
+
+msgctxt "effect.AudioSine"
+msgid "Audio Sine"
+msgstr "オーディオ サイン"
+
+msgctxt "effect.AudioStar"
+msgid "Audio Star"
+msgstr "オーディオ スター"
+
+msgctxt "effect.AudioSync"
+msgid "Audio Sync"
+msgstr "オーディオ シンク"
+
+msgctxt "effect.VUMeter"
+msgid "VU Meter"
+msgstr "VUメーター"
+
+msgctxt "effect.AudioSwirl"
+msgid "Audio Swirl"
+msgstr "オーディオ スワール"
+
+msgctxt "effect.BouncingBall"
+msgid "Bouncing Ball"
+msgstr "バウンドボール"
+
+msgctxt "effect.BreathingCircle"
+msgid "Breathing Circle"
+msgstr "呼吸サークル"
+
+msgctxt "effect.FractalMotion"
+msgid "Fractal Motion"
+msgstr "フラクタル モーション"
+
+msgctxt "effect.MotionPoint"
+msgid "Motion Point"
+msgstr "モーション ポイント"
+
+msgctxt "effect.Rain"
+msgid "Rain"
+msgstr "雨"
+
+msgctxt "effect.RotatingBeam"
+msgid "Rotating Beam"
+msgstr "回転ビーム"
+
+msgctxt "effect.SmoothBlink"
+msgid "Smooth Blink"
+msgstr "スムーズ ブリンク"
+
+msgctxt "effect.SparkleFade"
+msgid "Sparkle Fade"
+msgstr "スパークル フェード"
+
+msgctxt "effect.ZigZag"
+msgid "Zig Zag"
+msgstr "ジグザグ"
+
+msgctxt "effect.Marquee"
+msgid "Marquee"
+msgstr "マーキー"
+
+msgctxt "effect.AlternateBlink"
+msgid "Alternate Blink"
+msgstr "交互ブリンク"
+
+msgctxt "effect.GradientWave"
+msgid "Gradient Wave"
+msgstr "グラデーション ウェーブ"
+
+msgctxt "effect.MovingPanes"
+msgid "Moving Panes"
+msgstr "ムービング パネル"
+
+msgctxt "effect.NoiseMap"
+msgid "Noise Map"
+msgstr "ノイズ マップ"
+
+msgctxt "effect.Sequence"
+msgid "Sequence"
+msgstr "シーケンス"
+
+msgctxt "effect.Wavy"
+msgid "Wavy"
+msgstr "ウェービー"
+
+msgctxt "effect.TwoColorMarquee"
+msgid "Two-Color Marquee"
+msgstr "2色マーキー"
+
+msgctxt "effect.Bloom"
+msgid "Bloom"
+msgstr "ブルーム"
+
+msgctxt "effect.Bubbles"
+msgid "Bubbles"
+msgstr "バブル"
+
+msgctxt "effect.ColorWheel"
+msgid "Color Wheel"
+msgstr "カラーホイール"
+
+msgctxt "effect.DoubleRainbow"
+msgid "Double Rainbow"
+msgstr "ダブル レインボー"
+
+msgctxt "effect.MotionPoints"
+msgid "Motion Points"
+msgstr "マルチ ポイント"
+
+msgctxt "effect.Mosaic"
+msgid "Mosaic"
+msgstr "モザイク"
+
+msgctxt "effect.RadialRainbow"
+msgid "Radial Rainbow"
+msgstr "ラジアル レインボー"
+
+msgctxt "effect.RandomSpin"
+msgid "Random Spin"
+msgstr "ランダム スピン"
+
+msgctxt "effect.RotatingRainbow"
+msgid "Rotating Rainbow"
+msgstr "回転レインボー"
+
+msgctxt "effect.Spiral"
+msgid "Spiral"
+msgstr "スパイラル"
+
+msgctxt "effect.StarryNight"
+msgid "Starry Night"
+msgstr "夜空"
+
+msgctxt "effect.Sunrise"
+msgid "Sunrise"
+msgstr "日の出"
+
+msgctxt "effect.SwirlCircles"
+msgid "Swirl Circles"
+msgstr "スワール サークル"
+
+msgctxt "zone.Front"
+msgid "Front"
+msgstr "フロント"
+
+msgctxt "zone.Right"
+msgid "Right Side"
+msgstr "右側"
+
+msgctxt "zone.Rear"
+msgid "Rear"
+msgstr "リア"
+
+msgctxt "zone.Left"
+msgid "Left Side"
+msgstr "左側"
+
+msgctxt "zone.All"
+msgid "All"
+msgstr "すべて"
+
+msgctxt "group.audio"
+msgid "Audio Visualizer"
+msgstr "オーディオ ビジュアライザー"
+
+msgctxt "group.one"
+msgid "Effects with 1 Color"
+msgstr "1色のエフェクト"
+
+msgctxt "group.two"
+msgid "Effects with 2 Colors"
+msgstr "2色のエフェクト"
+
+msgctxt "group.none"
+msgid "Multicolor Effects"
+msgstr "マルチカラー エフェクト"
+
+msgctxt "color.custom"
+msgid "Custom {n}"
+msgstr "カスタム {n}"
+
+msgctxt "row.NeonFront.label"
+msgid "Underglow: Front"
+msgstr "アンダーネオン: フロント"
+
+msgctxt "row.NeonRight.label"
+msgid "Underglow: Right Side"
+msgstr "アンダーネオン: 右側"
+
+msgctxt "row.NeonRear.label"
+msgid "Underglow: Rear"
+msgstr "アンダーネオン: リア"
+
+msgctxt "row.NeonLeft.label"
+msgid "Underglow: Left Side"
+msgstr "アンダーネオン: 左側"
+
+msgctxt "row.Neon.label"
+msgid "Underglow"
+msgstr "アンダーネオン"
+
+msgctxt "row.Neon.description"
+msgid "Neon lights under your car. Also in ANNA: Car > Lights and Car > Underglow."
+msgstr "車の下のネオンライト。ANNAの「車 > ライト」と「車 > アンダーネオン」からも操作できます。"
+
+msgctxt "row.NeonPart.description"
+msgid "Turns this part of the underglow on or off."
+msgstr "アンダーネオンのこの部分をオンまたはオフにします。"
+
+msgctxt "row.RequireKit.label"
+msgid "Require Underglow Kit"
+msgstr "アンダーネオン キットが必要"
+
+msgctxt "row.RequireKit.description"
+msgid "On: a car only lights the parts of its Underglow Kit (Garage > Upgrades > Aero and Appearance). Off: every car lights every part."
+msgstr "オン: 車はアンダーネオン キットの部分だけが光ります（ガレージ > アップグレード > エアロと外観）。オフ: どの車もすべての部分が光ります。"
+
+msgctxt "row.NeonColor.label"
+msgid "Primary Color"
+msgstr "メインカラー"
+
+msgctxt "row.NeonColor.description"
+msgid "The underglow's main color. Custom 1 to 10 are set in fh2-mods\\Underglow.ini ([CustomColors])."
+msgstr "アンダーネオンのメインカラー。カスタム1～10は fh2-mods\\Underglow.ini の [CustomColors] で設定します。"
+
+msgctxt "row.NeonColor2.label"
+msgid "Secondary Color"
+msgstr "サブカラー"
+
+msgctxt "row.NeonColor2.description"
+msgid "The second color, for the effects with 2 colors and some audio visualizers."
+msgstr "2色のエフェクトと一部のオーディオ ビジュアライザーで使う2つ目の色。"
+
+msgctxt "anna.toggle.on"
+msgid "Underglow On"
+msgstr "アンダーネオン オン"
+
+msgctxt "anna.toggle.off"
+msgid "Underglow Off"
+msgstr "アンダーネオン オフ"
+
+msgctxt "anna.nokit"
+msgid "No Underglow Kit"
+msgstr "アンダーネオン キットなし"
+
+msgctxt "anna.underglow"
+msgid "Underglow"
+msgstr "アンダーネオン"
+
+msgctxt "anna.color"
+msgid "Primary Color"
+msgstr "メインカラー"
+
+msgctxt "anna.color2"
+msgid "Secondary Color"
+msgstr "サブカラー"
+
+msgctxt "anna.effect"
+msgid "Effect"
+msgstr "ネオン エフェクト"
+
+msgctxt "anna.parts"
+msgid "Parts"
+msgstr "パーツ"
+
+msgctxt "anna.part.Front.off"
+msgid "Front Off"
+msgstr "フロント オフ"
+
+msgctxt "anna.part.Front.on"
+msgid "Front On"
+msgstr "フロント オン"
+
+msgctxt "anna.part.Right.off"
+msgid "Right Side Off"
+msgstr "右側 オフ"
+
+msgctxt "anna.part.Right.on"
+msgid "Right Side On"
+msgstr "右側 オン"
+
+msgctxt "anna.part.Rear.off"
+msgid "Rear Off"
+msgstr "リア オフ"
+
+msgctxt "anna.part.Rear.on"
+msgid "Rear On"
+msgstr "リア オン"
+
+msgctxt "anna.part.Left.off"
+msgid "Left Side Off"
+msgstr "左側 オフ"
+
+msgctxt "anna.part.Left.on"
+msgid "Left Side On"
+msgstr "左側 オン"
+
+msgctxt "garage.stock.name"
+msgid "Stock"
+msgstr "ノーマル"
+
+msgctxt "garage.front.name"
+msgid "Front"
+msgstr "フロント"
+
+msgctxt "garage.back.name"
+msgid "Back"
+msgstr "リア"
+
+msgctxt "garage.sides.name"
+msgid "Sides"
+msgstr "サイド"
+
+msgctxt "garage.front_back.name"
+msgid "Front and Back"
+msgstr "フロントとリア"
+
+msgctxt "garage.front_sides.name"
+msgid "Front and Sides"
+msgstr "フロントとサイド"
+
+msgctxt "garage.back_sides.name"
+msgid "Back and Sides"
+msgstr "リアとサイド"
+
+msgctxt "garage.all.name"
+msgid "Front, Back and Sides"
+msgstr "フロント、リア、サイド"
+
+msgctxt "garage.stock.description"
+msgid "No underglow."
+msgstr "アンダーネオンなし。"
+
+msgctxt "garage.front.description"
+msgid "Underglow at the front."
+msgstr "フロントにアンダーネオン。"
+
+msgctxt "garage.back.description"
+msgid "Underglow at the back."
+msgstr "リアにアンダーネオン。"
+
+msgctxt "garage.sides.description"
+msgid "Underglow along both sides."
+msgstr "両サイドにアンダーネオン。"
+
+msgctxt "garage.front_back.description"
+msgid "Underglow at the front and the back."
+msgstr "フロントとリアにアンダーネオン。"
+
+msgctxt "garage.front_sides.description"
+msgid "Underglow at the front and along both sides."
+msgstr "フロントと両サイドにアンダーネオン。"
+
+msgctxt "garage.back_sides.description"
+msgid "Underglow at the back and along both sides."
+msgstr "リアと両サイドにアンダーネオン。"
+
+msgctxt "garage.all.description"
+msgid "Underglow all around the car."
+msgstr "車の周り全体にアンダーネオン。"
+
+msgctxt "garage.kit.name"
+msgid "Underglow Kit"
+msgstr "アンダーネオン キット"
+
+msgctxt "garage.kit.description"
+msgid "Neon lights under the car. The kit sets which parts of the car can light up; the colors and effects are in ANNA: Car > Underglow."
+msgstr "車の下のネオンライト。キットで光る部分が決まります。色とエフェクトはANNAの「車 > アンダーネオン」で選べます。"
+
+msgctxt "garage.leds"
+msgid "{count} LEDs."
+msgstr "LED {count}個。"

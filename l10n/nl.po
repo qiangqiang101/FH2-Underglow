@@ -1,0 +1,560 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Underglow\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "mod.description"
+msgid "Neon underglow made of the game's own lights, so it lights up the road: 61 effects (15 follow the car radio's music), 28 colors, and each part of the car on its own. Buy an Underglow Kit for a car in the garage (Upgrades > Aero and Appearance); set it up in ANNA: Car > Underglow."
+msgstr "Onderbodemverlichting van neon, gemaakt van de eigen lichten van de game, die echt de weg verlicht: 61 effecten (15 volgen de muziek van de autoradio), 28 kleuren en elk deel van de auto apart. Koop in de garage een onderbodemverlichtingsset voor een auto (Upgrades > Aerodynamica en uiterlijk); stel hem in bij ANNA: Auto > Onderbodemverlichting."
+
+msgctxt "color.Cyan"
+msgid "Cyan"
+msgstr "Cyaan"
+
+msgctxt "color.Blue"
+msgid "Blue"
+msgstr "Blauw"
+
+msgctxt "color.Purple"
+msgid "Purple"
+msgstr "Paars"
+
+msgctxt "color.Pink"
+msgid "Pink"
+msgstr "Roze"
+
+msgctxt "color.Red"
+msgid "Red"
+msgstr "Rood"
+
+msgctxt "color.Orange"
+msgid "Orange"
+msgstr "Oranje"
+
+msgctxt "color.Yellow"
+msgid "Yellow"
+msgstr "Geel"
+
+msgctxt "color.Green"
+msgid "Green"
+msgstr "Groen"
+
+msgctxt "color.White"
+msgid "White"
+msgstr "Wit"
+
+msgctxt "color.Lime"
+msgid "Lime"
+msgstr "Limoen"
+
+msgctxt "color.Teal"
+msgid "Teal"
+msgstr "Groenblauw"
+
+msgctxt "color.SkyBlue"
+msgid "Sky Blue"
+msgstr "Hemelsblauw"
+
+msgctxt "color.Indigo"
+msgid "Indigo"
+msgstr "Indigo"
+
+msgctxt "color.Magenta"
+msgid "Magenta"
+msgstr "Magenta"
+
+msgctxt "color.Crimson"
+msgid "Crimson"
+msgstr "Karmijnrood"
+
+msgctxt "color.Amber"
+msgid "Amber"
+msgstr "Amber"
+
+msgctxt "color.Mint"
+msgid "Mint"
+msgstr "Mint"
+
+msgctxt "color.Lavender"
+msgid "Lavender"
+msgstr "Lavendel"
+
+msgctxt "effect.Static"
+msgid "Static"
+msgstr "Statisch"
+
+msgctxt "effect.Rainbow"
+msgid "Rainbow"
+msgstr "Regenboog"
+
+msgctxt "effect.RainbowWave"
+msgid "Rainbow Wave"
+msgstr "Regenboogolf"
+
+msgctxt "effect.Breathe"
+msgid "Breathe"
+msgstr "Ademen"
+
+msgctxt "effect.Wipe"
+msgid "Wipe"
+msgstr "Veeg"
+
+msgctxt "effect.Stack"
+msgid "Stack"
+msgstr "Stapelen"
+
+msgctxt "effect.Blink"
+msgid "Blink"
+msgstr "Knipperen"
+
+msgctxt "effect.Police"
+msgid "Police"
+msgstr "Politie"
+
+msgctxt "effect.AudioVisualizer"
+msgid "Audio Visualizer"
+msgstr "Audiovisualisatie"
+
+msgctxt "effect.CrossingBeams"
+msgid "Crossing Beams"
+msgstr "Kruisende stralen"
+
+msgctxt "effect.Hypnotoad"
+msgid "Hypnotoad"
+msgstr "Hypnotoad"
+
+msgctxt "effect.Lightning"
+msgid "Lightning"
+msgstr "Bliksem"
+
+msgctxt "effect.RandomMarquee"
+msgid "Random Marquee"
+msgstr "Willekeurig looplicht"
+
+msgctxt "effect.Comet"
+msgid "Comet"
+msgstr "Komeet"
+
+msgctxt "effect.Fill"
+msgid "Fill"
+msgstr "Vullen"
+
+msgctxt "effect.Swap"
+msgid "Swap"
+msgstr "Wisselen"
+
+msgctxt "effect.Visor"
+msgid "Visor"
+msgstr "Vizier"
+
+msgctxt "effect.AudioPulse"
+msgid "Audio Pulse"
+msgstr "Audiopuls"
+
+msgctxt "effect.PeakMeter"
+msgid "Peak Meter"
+msgstr "Piekmeter"
+
+msgctxt "effect.AudioBlend"
+msgid "Audio Blend"
+msgstr "Audiomenging"
+
+msgctxt "effect.BassFlash"
+msgid "Bass Flash"
+msgstr "Basflits"
+
+msgctxt "effect.AudioSparkle"
+msgid "Audio Sparkle"
+msgstr "Audiofonkeling"
+
+msgctxt "effect.AudioRainbow"
+msgid "Audio Rainbow"
+msgstr "Audioregenboog"
+
+msgctxt "effect.CenterBurst"
+msgid "Center Burst"
+msgstr "Middenexplosie"
+
+msgctxt "effect.AudioBubbles"
+msgid "Audio Bubbles"
+msgstr "Audiobellen"
+
+msgctxt "effect.AudioParty"
+msgid "Audio Party"
+msgstr "Audiofeest"
+
+msgctxt "effect.AudioSine"
+msgid "Audio Sine"
+msgstr "Audiosinus"
+
+msgctxt "effect.AudioStar"
+msgid "Audio Star"
+msgstr "Audiosterren"
+
+msgctxt "effect.AudioSync"
+msgid "Audio Sync"
+msgstr "Audiosync"
+
+msgctxt "effect.VUMeter"
+msgid "VU Meter"
+msgstr "VU-meter"
+
+msgctxt "effect.AudioSwirl"
+msgid "Audio Swirl"
+msgstr "Audiowervel"
+
+msgctxt "effect.BouncingBall"
+msgid "Bouncing Ball"
+msgstr "Stuiterende bal"
+
+msgctxt "effect.BreathingCircle"
+msgid "Breathing Circle"
+msgstr "Ademende cirkel"
+
+msgctxt "effect.FractalMotion"
+msgid "Fractal Motion"
+msgstr "Fractale beweging"
+
+msgctxt "effect.MotionPoint"
+msgid "Motion Point"
+msgstr "Bewegend punt"
+
+msgctxt "effect.Rain"
+msgid "Rain"
+msgstr "Regen"
+
+msgctxt "effect.RotatingBeam"
+msgid "Rotating Beam"
+msgstr "Draaiende straal"
+
+msgctxt "effect.SmoothBlink"
+msgid "Smooth Blink"
+msgstr "Zacht knipperen"
+
+msgctxt "effect.SparkleFade"
+msgid "Sparkle Fade"
+msgstr "Vervagende fonkels"
+
+msgctxt "effect.ZigZag"
+msgid "Zig Zag"
+msgstr "Zigzag"
+
+msgctxt "effect.Marquee"
+msgid "Marquee"
+msgstr "Looplicht"
+
+msgctxt "effect.AlternateBlink"
+msgid "Alternate Blink"
+msgstr "Afwisselend knipperen"
+
+msgctxt "effect.GradientWave"
+msgid "Gradient Wave"
+msgstr "Kleurverloopgolf"
+
+msgctxt "effect.MovingPanes"
+msgid "Moving Panes"
+msgstr "Bewegende panelen"
+
+msgctxt "effect.NoiseMap"
+msgid "Noise Map"
+msgstr "Ruiskaart"
+
+msgctxt "effect.Sequence"
+msgid "Sequence"
+msgstr "Reeks"
+
+msgctxt "effect.Wavy"
+msgid "Wavy"
+msgstr "Golvend"
+
+msgctxt "effect.TwoColorMarquee"
+msgid "Two-Color Marquee"
+msgstr "Tweekleurig looplicht"
+
+msgctxt "effect.Bloom"
+msgid "Bloom"
+msgstr "Bloei"
+
+msgctxt "effect.Bubbles"
+msgid "Bubbles"
+msgstr "Bellen"
+
+msgctxt "effect.ColorWheel"
+msgid "Color Wheel"
+msgstr "Kleurenwiel"
+
+msgctxt "effect.DoubleRainbow"
+msgid "Double Rainbow"
+msgstr "Dubbele regenboog"
+
+msgctxt "effect.MotionPoints"
+msgid "Motion Points"
+msgstr "Bewegende punten"
+
+msgctxt "effect.Mosaic"
+msgid "Mosaic"
+msgstr "Mozaïek"
+
+msgctxt "effect.RadialRainbow"
+msgid "Radial Rainbow"
+msgstr "Radiale regenboog"
+
+msgctxt "effect.RandomSpin"
+msgid "Random Spin"
+msgstr "Willekeurige draai"
+
+msgctxt "effect.RotatingRainbow"
+msgid "Rotating Rainbow"
+msgstr "Draaiende regenboog"
+
+msgctxt "effect.Spiral"
+msgid "Spiral"
+msgstr "Spiraal"
+
+msgctxt "effect.StarryNight"
+msgid "Starry Night"
+msgstr "Sterrennacht"
+
+msgctxt "effect.Sunrise"
+msgid "Sunrise"
+msgstr "Zonsopgang"
+
+msgctxt "effect.SwirlCircles"
+msgid "Swirl Circles"
+msgstr "Wervelende cirkels"
+
+msgctxt "zone.Front"
+msgid "Front"
+msgstr "Voorkant"
+
+msgctxt "zone.Right"
+msgid "Right Side"
+msgstr "Rechterkant"
+
+msgctxt "zone.Rear"
+msgid "Rear"
+msgstr "Achterkant"
+
+msgctxt "zone.Left"
+msgid "Left Side"
+msgstr "Linkerkant"
+
+msgctxt "zone.All"
+msgid "All"
+msgstr "Alle"
+
+msgctxt "group.audio"
+msgid "Audio Visualizer"
+msgstr "Audiovisualisatie"
+
+msgctxt "group.one"
+msgid "Effects with 1 Color"
+msgstr "Effecten met 1 kleur"
+
+msgctxt "group.two"
+msgid "Effects with 2 Colors"
+msgstr "Effecten met 2 kleuren"
+
+msgctxt "group.none"
+msgid "Multicolor Effects"
+msgstr "Veelkleurige effecten"
+
+msgctxt "color.custom"
+msgid "Custom {n}"
+msgstr "Eigen {n}"
+
+msgctxt "row.NeonFront.label"
+msgid "Underglow: Front"
+msgstr "Onderbodemverlichting: Voorkant"
+
+msgctxt "row.NeonRight.label"
+msgid "Underglow: Right Side"
+msgstr "Onderbodemverlichting: Rechterkant"
+
+msgctxt "row.NeonRear.label"
+msgid "Underglow: Rear"
+msgstr "Onderbodemverlichting: Achterkant"
+
+msgctxt "row.NeonLeft.label"
+msgid "Underglow: Left Side"
+msgstr "Onderbodemverlichting: Linkerkant"
+
+msgctxt "row.Neon.label"
+msgid "Underglow"
+msgstr "Onderbodemverlichting"
+
+msgctxt "row.Neon.description"
+msgid "Neon lights under your car. Also in ANNA: Car > Lights and Car > Underglow."
+msgstr "Neonlicht onder je auto. Ook in ANNA: Auto > Lichten en Auto > Onderbodemverlichting."
+
+msgctxt "row.NeonPart.description"
+msgid "Turns this part of the underglow on or off."
+msgstr "Zet dit deel van de verlichting aan of uit."
+
+msgctxt "row.RequireKit.label"
+msgid "Require Underglow Kit"
+msgstr "Onderbodemverlichtingsset vereist"
+
+msgctxt "row.RequireKit.description"
+msgid "On: a car only lights the parts of its Underglow Kit (Garage > Upgrades > Aero and Appearance). Off: every car lights every part."
+msgstr "Aan: een auto licht alleen op bij de delen van zijn onderbodemverlichtingsset (Garage > Upgrades > Aerodynamica en uiterlijk). Uit: elke auto licht overal op."
+
+msgctxt "row.NeonColor.label"
+msgid "Primary Color"
+msgstr "Primaire kleur"
+
+msgctxt "row.NeonColor.description"
+msgid "The underglow's main color. Custom 1 to 10 are set in fh2-mods\\Underglow.ini ([CustomColors])."
+msgstr "De hoofdkleur van de verlichting. Eigen 1 tot 10 stel je in in fh2-mods\\Underglow.ini ([CustomColors])."
+
+msgctxt "row.NeonColor2.label"
+msgid "Secondary Color"
+msgstr "Secundaire kleur"
+
+msgctxt "row.NeonColor2.description"
+msgid "The second color, for the effects with 2 colors and some audio visualizers."
+msgstr "De tweede kleur, voor de effecten met 2 kleuren en sommige audiovisualisaties."
+
+msgctxt "anna.toggle.on"
+msgid "Underglow On"
+msgstr "Onderbodemverlichting aan"
+
+msgctxt "anna.toggle.off"
+msgid "Underglow Off"
+msgstr "Onderbodemverlichting uit"
+
+msgctxt "anna.nokit"
+msgid "No Underglow Kit"
+msgstr "Geen onderbodemverlichtingsset"
+
+msgctxt "anna.underglow"
+msgid "Underglow"
+msgstr "Onderbodemverlichting"
+
+msgctxt "anna.color"
+msgid "Primary Color"
+msgstr "Primaire kleur"
+
+msgctxt "anna.color2"
+msgid "Secondary Color"
+msgstr "Secundaire kleur"
+
+msgctxt "anna.effect"
+msgid "Effect"
+msgstr "Neoneffect"
+
+msgctxt "anna.parts"
+msgid "Parts"
+msgstr "Delen"
+
+msgctxt "anna.part.Front.off"
+msgid "Front Off"
+msgstr "Voorkant uit"
+
+msgctxt "anna.part.Front.on"
+msgid "Front On"
+msgstr "Voorkant aan"
+
+msgctxt "anna.part.Right.off"
+msgid "Right Side Off"
+msgstr "Rechterkant uit"
+
+msgctxt "anna.part.Right.on"
+msgid "Right Side On"
+msgstr "Rechterkant aan"
+
+msgctxt "anna.part.Rear.off"
+msgid "Rear Off"
+msgstr "Achterkant uit"
+
+msgctxt "anna.part.Rear.on"
+msgid "Rear On"
+msgstr "Achterkant aan"
+
+msgctxt "anna.part.Left.off"
+msgid "Left Side Off"
+msgstr "Linkerkant uit"
+
+msgctxt "anna.part.Left.on"
+msgid "Left Side On"
+msgstr "Linkerkant aan"
+
+msgctxt "garage.stock.name"
+msgid "Stock"
+msgstr "Standaard"
+
+msgctxt "garage.front.name"
+msgid "Front"
+msgstr "Voorkant"
+
+msgctxt "garage.back.name"
+msgid "Back"
+msgstr "Achterkant"
+
+msgctxt "garage.sides.name"
+msgid "Sides"
+msgstr "Zijkanten"
+
+msgctxt "garage.front_back.name"
+msgid "Front and Back"
+msgstr "Voor- en achterkant"
+
+msgctxt "garage.front_sides.name"
+msgid "Front and Sides"
+msgstr "Voorkant en zijkanten"
+
+msgctxt "garage.back_sides.name"
+msgid "Back and Sides"
+msgstr "Achterkant en zijkanten"
+
+msgctxt "garage.all.name"
+msgid "Front, Back and Sides"
+msgstr "Voor-, achterkant en zijkanten"
+
+msgctxt "garage.stock.description"
+msgid "No underglow."
+msgstr "Geen onderbodemverlichting."
+
+msgctxt "garage.front.description"
+msgid "Underglow at the front."
+msgstr "Onderbodemverlichting aan de voorkant."
+
+msgctxt "garage.back.description"
+msgid "Underglow at the back."
+msgstr "Onderbodemverlichting aan de achterkant."
+
+msgctxt "garage.sides.description"
+msgid "Underglow along both sides."
+msgstr "Onderbodemverlichting aan beide zijkanten."
+
+msgctxt "garage.front_back.description"
+msgid "Underglow at the front and the back."
+msgstr "Onderbodemverlichting aan de voor- en achterkant."
+
+msgctxt "garage.front_sides.description"
+msgid "Underglow at the front and along both sides."
+msgstr "Onderbodemverlichting aan de voorkant en beide zijkanten."
+
+msgctxt "garage.back_sides.description"
+msgid "Underglow at the back and along both sides."
+msgstr "Onderbodemverlichting aan de achterkant en beide zijkanten."
+
+msgctxt "garage.all.description"
+msgid "Underglow all around the car."
+msgstr "Onderbodemverlichting rondom de auto."
+
+msgctxt "garage.kit.name"
+msgid "Underglow Kit"
+msgstr "Onderbodemverlichtingsset"
+
+msgctxt "garage.kit.description"
+msgid "Neon lights under the car. The kit sets which parts of the car can light up; the colors and effects are in ANNA: Car > Underglow."
+msgstr "Neonlicht onder de auto. De set bepaalt welke delen van de auto oplichten; kleuren en effecten staan in ANNA: Auto > Onderbodemverlichting."
+
+msgctxt "garage.leds"
+msgid "{count} LEDs."
+msgstr "{count} leds."

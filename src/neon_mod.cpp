@@ -48,7 +48,11 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include "neon_text.h"
+#include "fh2mod_l10n.h"     // the platform's translations (API 10): FH2_TR
+#pragma warning(push)
+#pragma warning(disable : 4125)   // po2inc.py writes 3-digit octal escapes; a digit after one is just the next character
+#include "underglow_l10n.inc"     // l10n/*.po, built in by platform/tools/l10n/po2inc.py (README.md, "Translating")
+#pragma warning(pop)
 #include "ug_upgrade.h"
 #include "car_sizes.h"
 
@@ -256,20 +260,41 @@ bool parse_color(const char* text, float out[3]) {
     return true;
 }
 
-struct Color {
-    const char* name;
-    float rgb[3];
-};
 // The menus' colors: these, then the ini's ten custom ones ([CustomColors]). Settings keep a color by its
 // place in that list (0.1 to 0.4 had nine colors and one Custom, at 9: see load_config).
-const Color kColors[] = {
-    {"Cyan", {0.0f, 1.0f, 1.0f}},    {"Blue", {0.0f, 0.25f, 1.0f}},   {"Purple", {0.6f, 0.0f, 1.0f}},
-    {"Pink", {1.0f, 0.1f, 0.6f}},    {"Red", {1.0f, 0.0f, 0.0f}},     {"Orange", {1.0f, 0.35f, 0.0f}},
-    {"Yellow", {1.0f, 0.85f, 0.0f}}, {"Green", {0.0f, 1.0f, 0.15f}},  {"White", {1.0f, 1.0f, 1.0f}},
-    {"Lime", {0.55f, 1.0f, 0.0f}},   {"Teal", {0.0f, 0.75f, 0.6f}},   {"Sky Blue", {0.3f, 0.7f, 1.0f}},
-    {"Indigo", {0.3f, 0.0f, 1.0f}},  {"Magenta", {1.0f, 0.0f, 1.0f}}, {"Crimson", {1.0f, 0.0f, 0.25f}},
-    {"Amber", {1.0f, 0.6f, 0.0f}},   {"Mint", {0.4f, 1.0f, 0.6f}},    {"Lavender", {0.7f, 0.5f, 1.0f}},
+const float kColors[][3] = {
+    {0.0f, 1.0f, 1.0f}, {0.0f, 0.25f, 1.0f}, {0.6f, 0.0f, 1.0f}, {1.0f, 0.1f, 0.6f},   // Cyan, Blue, Purple, Pink
+    {1.0f, 0.0f, 0.0f}, {1.0f, 0.35f, 0.0f}, {1.0f, 0.85f, 0.0f}, {0.0f, 1.0f, 0.15f},   // Red, Orange, Yellow, Green
+    {1.0f, 1.0f, 1.0f}, {0.55f, 1.0f, 0.0f}, {0.0f, 0.75f, 0.6f}, {0.3f, 0.7f, 1.0f},   // White, Lime, Teal, Sky Blue
+    {0.3f, 0.0f, 1.0f}, {1.0f, 0.0f, 1.0f}, {1.0f, 0.0f, 0.25f}, {1.0f, 0.6f, 0.0f},   // Indigo, Magenta, Crimson, Amber
+    {0.4f, 1.0f, 0.6f}, {0.7f, 0.5f, 1.0f},   // Mint, Lavender
 };
+// A preset color's name: in the game's language with the platform's api, in English (the ini, the commands, the
+// log) with nullptr.
+const char* color_text(const FH2ModApi* api, int i) {
+    // L10N: the colors, in ANNA (Car > Underglow > Primary Color) and in the Mods page's color rows
+    switch (i) {
+    case 0: return FH2_TR(api, g_mod, "color.Cyan", "Cyan");
+    case 1: return FH2_TR(api, g_mod, "color.Blue", "Blue");
+    case 2: return FH2_TR(api, g_mod, "color.Purple", "Purple");
+    case 3: return FH2_TR(api, g_mod, "color.Pink", "Pink");
+    case 4: return FH2_TR(api, g_mod, "color.Red", "Red");
+    case 5: return FH2_TR(api, g_mod, "color.Orange", "Orange");
+    case 6: return FH2_TR(api, g_mod, "color.Yellow", "Yellow");
+    case 7: return FH2_TR(api, g_mod, "color.Green", "Green");
+    case 8: return FH2_TR(api, g_mod, "color.White", "White");
+    case 9: return FH2_TR(api, g_mod, "color.Lime", "Lime");
+    case 10: return FH2_TR(api, g_mod, "color.Teal", "Teal");
+    case 11: return FH2_TR(api, g_mod, "color.SkyBlue", "Sky Blue");
+    case 12: return FH2_TR(api, g_mod, "color.Indigo", "Indigo");
+    case 13: return FH2_TR(api, g_mod, "color.Magenta", "Magenta");
+    case 14: return FH2_TR(api, g_mod, "color.Crimson", "Crimson");
+    case 15: return FH2_TR(api, g_mod, "color.Amber", "Amber");
+    case 16: return FH2_TR(api, g_mod, "color.Mint", "Mint");
+    case 17: return FH2_TR(api, g_mod, "color.Lavender", "Lavender");
+    default: return "";
+    }
+}
 const int kColorCount = int(sizeof kColors / sizeof kColors[0]);   // the preset colors
 const int kCustomCount = 10;
 const int kColorTotal = kColorCount + kCustomCount;                 // with the custom ones after them
@@ -297,22 +322,77 @@ enum Effect {
     kEffectSunrise, kEffectSwirlCircles,
     kEffectCount
 };
-const char* const kEffects[kEffectCount] = {
-    "Static", "Rainbow", "Rainbow Wave", "Breathe", "Wipe", "Stack", "Blink", "Police", "Audio Visualizer",
-    "Crossing Beams", "Hypnotoad", "Lightning", "Random Marquee", "Comet", "Fill", "Swap", "Visor",
-    "Audio Pulse", "Peak Meter", "Audio Blend", "Bass Flash", "Audio Sparkle", "Audio Rainbow", "Center Burst",
-    "Audio Bubbles", "Audio Party", "Audio Sine", "Audio Star", "Audio Sync", "VU Meter", "Audio Swirl",
-    "Bouncing Ball", "Breathing Circle", "Fractal Motion", "Motion Point", "Rain", "Rotating Beam", "Smooth Blink",
-    "Sparkle Fade", "Zig Zag", "Marquee",
-    "Alternate Blink", "Gradient Wave", "Moving Panes", "Noise Map", "Sequence", "Wavy", "Two-Color Marquee",
-    "Bloom", "Bubbles", "Color Wheel", "Double Rainbow", "Motion Points", "Mosaic", "Radial Rainbow", "Random Spin",
-    "Rotating Rainbow", "Spiral", "Starry Night", "Sunrise", "Swirl Circles",
-};
+// An effect's name, as color_text. New effects go on the end: the ini keeps effects by number.
+const char* effect_text(const FH2ModApi* api, int i) {
+    // L10N: an underglow effect, in ANNA (Car > Underglow > Effect)
+    switch (i) {
+    case 0: return FH2_TR(api, g_mod, "effect.Static", "Static");
+    case 1: return FH2_TR(api, g_mod, "effect.Rainbow", "Rainbow");
+    case 2: return FH2_TR(api, g_mod, "effect.RainbowWave", "Rainbow Wave");
+    case 3: return FH2_TR(api, g_mod, "effect.Breathe", "Breathe");
+    case 4: return FH2_TR(api, g_mod, "effect.Wipe", "Wipe");
+    case 5: return FH2_TR(api, g_mod, "effect.Stack", "Stack");
+    case 6: return FH2_TR(api, g_mod, "effect.Blink", "Blink");
+    case 7: return FH2_TR(api, g_mod, "effect.Police", "Police");
+    case 8: return FH2_TR(api, g_mod, "effect.AudioVisualizer", "Audio Visualizer");
+    case 9: return FH2_TR(api, g_mod, "effect.CrossingBeams", "Crossing Beams");
+    case 10: return FH2_TR(api, g_mod, "effect.Hypnotoad", "Hypnotoad");
+    case 11: return FH2_TR(api, g_mod, "effect.Lightning", "Lightning");
+    case 12: return FH2_TR(api, g_mod, "effect.RandomMarquee", "Random Marquee");
+    case 13: return FH2_TR(api, g_mod, "effect.Comet", "Comet");
+    case 14: return FH2_TR(api, g_mod, "effect.Fill", "Fill");
+    case 15: return FH2_TR(api, g_mod, "effect.Swap", "Swap");
+    case 16: return FH2_TR(api, g_mod, "effect.Visor", "Visor");
+    case 17: return FH2_TR(api, g_mod, "effect.AudioPulse", "Audio Pulse");
+    case 18: return FH2_TR(api, g_mod, "effect.PeakMeter", "Peak Meter");
+    case 19: return FH2_TR(api, g_mod, "effect.AudioBlend", "Audio Blend");
+    case 20: return FH2_TR(api, g_mod, "effect.BassFlash", "Bass Flash");
+    case 21: return FH2_TR(api, g_mod, "effect.AudioSparkle", "Audio Sparkle");
+    case 22: return FH2_TR(api, g_mod, "effect.AudioRainbow", "Audio Rainbow");
+    case 23: return FH2_TR(api, g_mod, "effect.CenterBurst", "Center Burst");
+    case 24: return FH2_TR(api, g_mod, "effect.AudioBubbles", "Audio Bubbles");
+    case 25: return FH2_TR(api, g_mod, "effect.AudioParty", "Audio Party");
+    case 26: return FH2_TR(api, g_mod, "effect.AudioSine", "Audio Sine");
+    case 27: return FH2_TR(api, g_mod, "effect.AudioStar", "Audio Star");
+    case 28: return FH2_TR(api, g_mod, "effect.AudioSync", "Audio Sync");
+    case 29: return FH2_TR(api, g_mod, "effect.VUMeter", "VU Meter");
+    case 30: return FH2_TR(api, g_mod, "effect.AudioSwirl", "Audio Swirl");
+    case 31: return FH2_TR(api, g_mod, "effect.BouncingBall", "Bouncing Ball");
+    case 32: return FH2_TR(api, g_mod, "effect.BreathingCircle", "Breathing Circle");
+    case 33: return FH2_TR(api, g_mod, "effect.FractalMotion", "Fractal Motion");
+    case 34: return FH2_TR(api, g_mod, "effect.MotionPoint", "Motion Point");
+    case 35: return FH2_TR(api, g_mod, "effect.Rain", "Rain");
+    case 36: return FH2_TR(api, g_mod, "effect.RotatingBeam", "Rotating Beam");
+    case 37: return FH2_TR(api, g_mod, "effect.SmoothBlink", "Smooth Blink");
+    case 38: return FH2_TR(api, g_mod, "effect.SparkleFade", "Sparkle Fade");
+    case 39: return FH2_TR(api, g_mod, "effect.ZigZag", "Zig Zag");
+    case 40: return FH2_TR(api, g_mod, "effect.Marquee", "Marquee");
+    case 41: return FH2_TR(api, g_mod, "effect.AlternateBlink", "Alternate Blink");
+    case 42: return FH2_TR(api, g_mod, "effect.GradientWave", "Gradient Wave");
+    case 43: return FH2_TR(api, g_mod, "effect.MovingPanes", "Moving Panes");
+    case 44: return FH2_TR(api, g_mod, "effect.NoiseMap", "Noise Map");
+    case 45: return FH2_TR(api, g_mod, "effect.Sequence", "Sequence");
+    case 46: return FH2_TR(api, g_mod, "effect.Wavy", "Wavy");
+    case 47: return FH2_TR(api, g_mod, "effect.TwoColorMarquee", "Two-Color Marquee");
+    case 48: return FH2_TR(api, g_mod, "effect.Bloom", "Bloom");
+    case 49: return FH2_TR(api, g_mod, "effect.Bubbles", "Bubbles");
+    case 50: return FH2_TR(api, g_mod, "effect.ColorWheel", "Color Wheel");
+    case 51: return FH2_TR(api, g_mod, "effect.DoubleRainbow", "Double Rainbow");
+    case 52: return FH2_TR(api, g_mod, "effect.MotionPoints", "Motion Points");
+    case 53: return FH2_TR(api, g_mod, "effect.Mosaic", "Mosaic");
+    case 54: return FH2_TR(api, g_mod, "effect.RadialRainbow", "Radial Rainbow");
+    case 55: return FH2_TR(api, g_mod, "effect.RandomSpin", "Random Spin");
+    case 56: return FH2_TR(api, g_mod, "effect.RotatingRainbow", "Rotating Rainbow");
+    case 57: return FH2_TR(api, g_mod, "effect.Spiral", "Spiral");
+    case 58: return FH2_TR(api, g_mod, "effect.StarryNight", "Starry Night");
+    case 59: return FH2_TR(api, g_mod, "effect.Sunrise", "Sunrise");
+    case 60: return FH2_TR(api, g_mod, "effect.SwirlCircles", "Swirl Circles");
+    default: return "";
+    }
+}
 
 // The effects in groups, for the menus (ANNA's submenus, the Mods page's list in this order).
 enum EffectGroup { kGroupAudio, kGroupOneColor, kGroupTwoColors, kGroupNoColor, kGroupCount };
-const char* const kGroupNames[kGroupCount] = {"Audio Visualizer", "Effects with 1 Color", "Effects with 2 Colors",
-                                              "Multicolor Effects"};
 const char* const kGroupKeys[kGroupCount] = {"audio", "one", "two", "none"};
 struct GroupedEffect {
     int group, effect;
@@ -350,7 +430,6 @@ const int kMaxNeon = 64;
 // effect.
 enum Zone { kZoneFront, kZoneRight, kZoneRear, kZoneLeft, kZoneCount };
 const char* const kZoneNames[kZoneCount] = {"Front", "Right", "Rear", "Left"};
-const char* const kZoneLabels[kZoneCount] = {"Front", "Right Side", "Rear", "Left Side"};
 const char* const kZoneSettings[kZoneCount] = {"NeonEffectFront", "NeonEffectRight", "NeonEffectRear",
                                                "NeonEffectLeft"};
 const wchar_t* const kZoneIniKeys[kZoneCount] = {L"FrontEffect", L"RightEffect", L"RearEffect", L"LeftEffect"};
@@ -425,9 +504,9 @@ Config config() {
 }
 
 void color_rgb(const Config& c, int color, float out[3]) {
-    const float* s = color >= 0 && color < kColorCount ? kColors[color].rgb
+    const float* s = color >= 0 && color < kColorCount ? kColors[color]
                      : color >= kColorCount && color < kColorTotal ? c.custom[color - kColorCount]
-                                                                   : kColors[0].rgb;
+                                                                   : kColors[0];
     for (int i = 0; i < 3; ++i) out[i] = s[i];
 }
 void neon_rgb(const Config& c, float out[3]) { color_rgb(c, c.color, out); }
@@ -435,7 +514,7 @@ void second_rgb(const Config& c, float out[3]) { color_rgb(c, c.color2, out); }
 
 // A color's English name, for the log and the commands: "Cyan", "Custom 3" or the ini's name for it.
 const char* color_name(const Config& c, int color, char* buf, size_t size) {
-    if (color >= 0 && color < kColorCount) return kColors[color].name;
+    if (color >= 0 && color < kColorCount) return color_text(nullptr, color);
     const int k = color - kColorCount;
     if (k >= 0 && k < kCustomCount && c.custom_name[k][0]) return c.custom_name[k];
     snprintf(buf, size, "Custom %d", k + 1);
@@ -591,89 +670,62 @@ void save_config() {
 // The effects aren't on the Mods page (more than a choice row holds): ANNA, the ini and `effect` set them.
 void publish_effects(const Config&) {}
 
-// ---- The game's language ----------------------------------------------------------------------------------------
-// As FH2 ANNA reads it: the string tables' manager ([game+0x3662990]) has the text language's code, an MSVC
-// std::string ("EN", "DE", "CHT"...), at +0x30. The Mods page's rows are written before the game has a language,
-// so the one seen last is kept in the ini ([Language] Last; FH2ANNA.ini's when Underglow has none yet).
+// ---- Text in the game's language -----------------------------------------------------------------------------
+// The platform translates (API 10): FH2_TR looks a text up by its key in the game's language, in l10n/*.po (built
+// in as underglow_l10n.inc), and gives the English without a translation or on an older platform. Text handed to
+// the platform as FH2_TR gave it (a row's label) follows the game's language by itself; what's built from it (a
+// custom color's "Custom 3") is set again when the language changes (see refresh_color_choices).
 
-const uintptr_t kStringTables = 0x3662990;
-std::atomic<int> g_lang_saved{-2};   // an index into neon_text::kCodes, -1 English, -2 not read yet
-
-// Czech and Hungarian: the game's own text is English there, and its fonts may not have their letters.
-bool english_there(int i) { return !strcmp(neon_text::kCodes[i], "CZ") || !strcmp(neon_text::kCodes[i], "HU"); }
-
-int lang_index(const wchar_t* code) {
-    for (int i = 0; i < neon_text::kLangs; ++i) {
-        wchar_t w[8];
-        MultiByteToWideChar(CP_UTF8, 0, neon_text::kCodes[i], -1, w, 8);
-        if (!_wcsicmp(code, w)) return english_there(i) ? -1 : i;
+// A part's name, in ANNA's lists and the Mods page's part rows.
+const char* zone_text(const FH2ModApi* api, int z) {
+    switch (z) {
+    // L10N: the front of the car, in ANNA (Car > Underglow > Parts, and Effect)
+    case kZoneFront: return FH2_TR(api, g_mod, "zone.Front", "Front");
+    // L10N: the car's right side, in ANNA (Car > Underglow > Parts, and Effect)
+    case kZoneRight: return FH2_TR(api, g_mod, "zone.Right", "Right Side");
+    // L10N: the back of the car, in ANNA (Car > Underglow > Parts, and Effect)
+    case kZoneRear: return FH2_TR(api, g_mod, "zone.Rear", "Rear");
+    // L10N: the car's left side, in ANNA (Car > Underglow > Parts, and Effect)
+    case kZoneLeft: return FH2_TR(api, g_mod, "zone.Left", "Left Side");
+    // L10N: all four parts of the car at once, in ANNA (Car > Underglow > Effect)
+    default: return FH2_TR(api, g_mod, "zone.All", "All");
     }
-    return -1;
 }
 
-void lang_load() {
-    wchar_t code[8] = {};
-    GetPrivateProfileStringW(L"Language", L"Last", L"", code, 8, g_ini);
-    if (!code[0]) {
-        wchar_t anna[MAX_PATH];
-        swprintf_s(anna, L"%s\\FH2ANNA.ini", g_mods_dir);
-        GetPrivateProfileStringW(L"Language", L"Last", L"EN", code, 8, anna);
-        WritePrivateProfileStringW(L"Language", L"Last", code, g_ini);   // in the ini from the start (EN)
-        g_ini_time.store(ini_write_time());   // not a change to reload
+// A group of effects, in ANNA (Car > Underglow > Effect > a part).
+const char* group_text(int g) {
+    switch (g) {
+    // L10N: the effects that follow the car radio's music
+    case kGroupAudio: return FH2_TR(g_api, g_mod, "group.audio", "Audio Visualizer");
+    // L10N: the effects in the primary color
+    case kGroupOneColor: return FH2_TR(g_api, g_mod, "group.one", "Effects with 1 Color");
+    // L10N: the effects in the primary and the secondary color
+    case kGroupTwoColors: return FH2_TR(g_api, g_mod, "group.two", "Effects with 2 Colors");
+    // L10N: the effects with colors of their own (rainbows and the like)
+    default: return FH2_TR(g_api, g_mod, "group.none", "Multicolor Effects");
     }
-    g_lang_saved.store(lang_index(code));
 }
-
-int game_language() {
-    uintptr_t strings = 0;
-    uint8_t name[32];
-    if (!g_base || !rdp(g_base + kStringTables, &strings) || !rd(strings + 0x30, name, sizeof name)) return -2;
-    size_t count, capacity;
-    memcpy(&count, name + 16, sizeof count);
-    memcpy(&capacity, name + 24, sizeof capacity);
-    if (capacity != 15 || count < 2 || count > 3 || name[count]) return -2;
-    wchar_t code[8];
-    MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<const char*>(name), -1, code, 8);
-    return lang_index(code);   // EN, GB, DEV, LOC: English
-}
-
-int language() {
-    const int now = game_language();
-    if (now == -2) return g_lang_saved.load() < -1 ? -1 : g_lang_saved.load();
-    if (now != g_lang_saved.exchange(now)) {   // for the Mods page next time
-        wchar_t code[8];
-        MultiByteToWideChar(CP_UTF8, 0, now < 0 ? "EN" : neon_text::kCodes[now], -1, code, 8);
-        WritePrivateProfileStringW(L"Language", L"Last", code, g_ini);
-        g_ini_time.store(ini_write_time());   // not a change to reload
-    }
-    return now;
-}
-
-// `english` in language l (an index into neon_text::kCodes; -1 English), itself when there's no translation.
-const char* tr_in(int l, const char* english) {
-    if (l < 0 || l >= neon_text::kLangs || !english) return english;
-    for (const auto& t : neon_text::kTexts)
-        if (!strcmp(t.en, english)) return t.t[l];
-    return english;
-}
-
-// `english` in the game's language now.
-const char* tr(const char* english) { return tr_in(language(), english); }
 
 // A color's name in the menus: translated, or the ini's own name for a custom one.
 const char* color_label(const Config& c, int color, char* buf, size_t size) {
-    if (color >= 0 && color < kColorCount) return tr(kColors[color].name);
+    if (color >= 0 && color < kColorCount) return color_text(g_api, color);
     const int k = color - kColorCount;
     if (k >= 0 && k < kCustomCount && c.custom_name[k][0]) return c.custom_name[k];
-    snprintf(buf, size, "%s %d", tr("Custom"), k + 1);
+    // L10N: one of the ten colors the player sets in Underglow.ini; {n} is its number, 1 to 10
+    const std::string t = fh2_fill(FH2_TR(g_api, g_mod, "color.custom", "Custom {n}"), {{"n", std::to_string(k + 1)}});
+    strncpy_s(buf, size, t.c_str(), _TRUNCATE);
     return buf;
 }
 
-// Live tuning: Underglow.ini saved in an editor takes effect within half a second.
+void refresh_color_choices(bool always);
+
+// Live tuning: Underglow.ini saved in an editor takes effect within half a second. The color rows' custom names
+// follow the game's language from here too.
 DWORD WINAPI watch_ini(LPVOID) {
     g_ini_time.store(ini_write_time());
     for (;;) {
         Sleep(500);
+        refresh_color_choices(false);
         uint64_t t = ini_write_time();
         if (!t || t == g_ini_time.load()) continue;
         Sleep(100);   // let the editor finish writing
@@ -686,6 +738,7 @@ DWORD WINAPI watch_ini(LPVOID) {
         for (int z = 0; z < kZoneCount; ++z) g_api->set_setting(g_mod, kPartSettings[z], c.part[z] ? 1 : 0);
         g_api->set_setting(g_mod, "RequireKit", c.require_kit ? 1 : 0);
         publish_effects(c);
+        refresh_color_choices(true);   // the custom colors' names
         g_api->log(g_mod, "Underglow.ini changed: reloaded");
     }
 }
@@ -2268,8 +2321,8 @@ void cmd_status(char* reply, size_t size) {
              "%s\n%s\n%s",
              c.neon ? "on" : "off", color_name(c, c.color, name1, sizeof name1), rgb[0], rgb[1], rgb[2],
              color_name(c, c.color2, name2, sizeof name2),
-             c.brightness, kEffects[c.effect[kZoneFront]], kEffects[c.effect[kZoneRight]],
-             kEffects[c.effect[kZoneRear]], kEffects[c.effect[kZoneLeft]], c.speed,
+             c.brightness, effect_text(nullptr, c.effect[kZoneFront]), effect_text(nullptr, c.effect[kZoneRight]),
+             effect_text(nullptr, c.effect[kZoneRear]), effect_text(nullptr, c.effect[kZoneLeft]), c.speed,
              c.part[kZoneFront] ? "front " : "", c.part[kZoneRight] ? "right " : "", c.part[kZoneRear] ? "rear " : "",
              c.part[kZoneLeft] ? "left" : "", s.side, s.front, s.rear, s.height, s.front_inset, s.rear_inset, s.side_offset, s.side_trim, s.range, s.power, s.inner,
              s.outer, g_player_car_id.load(), ref.half_width, ref.db_width ? "from the game's data" : "from its lights",
@@ -2329,7 +2382,7 @@ int parse_effect(const char* text) {
     if (strcmp(want, "audio") == 0) return kEffectAudio;
     if (strcmp(want, "crossing") == 0) return kEffectCrossing;
     for (int i = 0; i < kEffectCount; ++i) {
-        squash(kEffects[i], name, sizeof name);
+        squash(effect_text(nullptr, i), name, sizeof name);
         if (strcmp(want, name) == 0) return i;
     }
     return -1;
@@ -2354,8 +2407,9 @@ void command(void*, const char* name, const char* args, char* reply, size_t size
             if (args[i] != ' ') squashed[o++] = args[i];
         for (int i = 0; i < kColorCount; ++i) {
             char n[64] = {};
-            for (int j = 0, o = 0; kColors[i].name[j] && o < 63; ++j)
-                if (kColors[i].name[j] != ' ') n[o++] = kColors[i].name[j];
+            const char* english = color_text(nullptr, i);
+            for (int j = 0, o = 0; english[j] && o < 63; ++j)
+                if (english[j] != ' ') n[o++] = english[j];
             if (_stricmp(squashed, n) == 0) found = i;
         }
         const Config now = config();
@@ -2378,7 +2432,7 @@ void command(void*, const char* name, const char* args, char* reply, size_t size
             char list[512] = {};
             for (int i = 0; i < kColorCount; ++i) {
                 strcat_s(list, i ? "|" : "");
-                strcat_s(list, kColors[i].name);
+                strcat_s(list, color_text(nullptr, i));
             }
             snprintf(reply, size,
                      "error: %s <%s|Custom1..Custom%d> | %s <r g b (0-1 or 0-255) | #RRGGBB> (sets the custom color in use)",
@@ -2394,7 +2448,7 @@ void command(void*, const char* name, const char* args, char* reply, size_t size
             char list[512] = {};
             for (int i = 0; i < kEffectCount; ++i) {
                 strcat_s(list, i ? "|" : "");
-                strcat_s(list, kEffects[i]);
+                strcat_s(list, effect_text(nullptr, i));
             }
             snprintf(reply, size, "error: effect [front|right|rear|left|all] <%s> (or 0-%d)", list, kEffectCount - 1);
             return;
@@ -2484,49 +2538,83 @@ void on_setting(void*, const char* key, int value) {
     save_config();
 }
 
+// The color rows' choices: the presets as FH2_TR gave them (they follow the game's language by themselves), the
+// custom ones built here ("Custom 3", or the ini's name).
+void build_color_choices(const Config& c) {
+    for (int i = 0; i < kColorTotal; ++i)
+        g_color_choices[i] = color_label(c, i, g_color_choice_text[i], sizeof g_color_choice_text[i]);
+}
+
+// The language the color rows' custom names were built in; they're built again when it changes.
+char g_choices_language[32] = {};
+const char* platform_language() { return FH2_L10N_HAS(g_api, language) ? g_api->language() : "en"; }
+void refresh_color_choices(bool always) {
+    const char* now = platform_language();
+    if (!now || (!always && strcmp(now, g_choices_language) == 0)) return;
+    strncpy_s(g_choices_language, now, _TRUNCATE);
+    if (!FH2_L10N_HAS(g_api, set_setting_text)) return;
+    build_color_choices(config());
+    g_api->set_setting_text(g_mod, "NeonColor", nullptr, nullptr, g_color_choices, kColorTotal);
+    g_api->set_setting_text(g_mod, "NeonColor2", nullptr, nullptr, g_color_choices, kColorTotal);
+}
+
+// A part's row on the Mods page: "Underglow: Front".
+const char* part_row_text(int z) {
+    switch (z) {
+    // L10N: the switch for the front part of the underglow
+    case kZoneFront: return FH2_TR(g_api, g_mod, "row.NeonFront.label", "Underglow: Front");
+    // L10N: the switch for the right side's part of the underglow
+    case kZoneRight: return FH2_TR(g_api, g_mod, "row.NeonRight.label", "Underglow: Right Side");
+    // L10N: the switch for the back part of the underglow
+    case kZoneRear: return FH2_TR(g_api, g_mod, "row.NeonRear.label", "Underglow: Rear");
+    // L10N: the switch for the left side's part of the underglow
+    default: return FH2_TR(g_api, g_mod, "row.NeonLeft.label", "Underglow: Left Side");
+    }
+}
+
 void add_settings() {
     Config c = config();
     FH2Setting s{};
     s.size = sizeof s;
     s.key = "Neon";
-    s.label = tr("Underglow");
-    s.description = tr("Neon lights under your car. Also in ANNA: Car > Lights and Car > Underglow.");
+    // L10N: the switch for the whole underglow
+    s.label = FH2_TR(g_api, g_mod, "row.Neon.label", "Underglow");
+    s.description = FH2_TR(g_api, g_mod, "row.Neon.description",
+                           "Neon lights under your car. Also in ANNA: Car > Lights and Car > Underglow.");
     s.value = c.neon ? 1 : 0;
     s.on_change = on_setting;
     g_api->add_setting(g_mod, &s);
 
     // A row for each part: Underglow: Front, ...
-    static char part_labels[kZoneCount][128];
     static const int part_order[kZoneCount] = {kZoneFront, kZoneRear, kZoneLeft, kZoneRight};
     for (int k = 0; k < kZoneCount; ++k) {
         const int z = part_order[k];
-        snprintf(part_labels[z], sizeof part_labels[z], "%s: %s", tr("Underglow"), tr(kZoneLabels[z]));
         FH2Setting ps = s;
         ps.key = kPartSettings[z];
-        ps.label = part_labels[z];
-        ps.description = tr("Turns this part of the underglow on or off.");
+        ps.label = part_row_text(z);
+        // L10N: the description of each of the four part rows (Underglow: Front, ...)
+        ps.description = FH2_TR(g_api, g_mod, "row.NeonPart.description", "Turns this part of the underglow on or off.");
         ps.value = c.part[z] ? 1 : 0;
         g_api->add_setting(g_mod, &ps);
     }
 
     FH2Setting kit = s;
     kit.key = "RequireKit";
-    kit.label = tr("Require Underglow Kit");
-    kit.description = tr("On: a car only lights the parts of its Underglow Kit (Garage > Upgrades > Aero and "
-                         "Appearance). Off: every car lights every part.");
+    kit.label = FH2_TR(g_api, g_mod, "row.RequireKit.label", "Require Underglow Kit");
+    kit.description = FH2_TR(g_api, g_mod, "row.RequireKit.description",
+                             "On: a car only lights the parts of its Underglow Kit (Garage > Upgrades > Aero and "
+                             "Appearance). Off: every car lights every part.");
     kit.value = c.require_kit ? 1 : 0;
     g_api->add_setting(g_mod, &kit);
 
-    for (int i = 0; i < kColorTotal; ++i) {
-        const char* n = color_label(c, i, g_color_choice_text[i], sizeof g_color_choice_text[i]);
-        if (n != g_color_choice_text[i]) strcpy_s(g_color_choice_text[i], n);
-        g_color_choices[i] = g_color_choice_text[i];
-    }
+    build_color_choices(c);
+    strncpy_s(g_choices_language, platform_language() ? platform_language() : "", _TRUNCATE);
     FH2Setting col{};
     col.size = sizeof col;
     col.key = "NeonColor";
-    col.label = tr("Primary Color");
-    col.description = tr("The underglow's main color. Custom 1 to 10 are set in fh2-mods\\Underglow.ini ([CustomColors]).");
+    col.label = FH2_TR(g_api, g_mod, "row.NeonColor.label", "Primary Color");
+    col.description = FH2_TR(g_api, g_mod, "row.NeonColor.description",
+                             "The underglow's main color. Custom 1 to 10 are set in fh2-mods\\Underglow.ini ([CustomColors]).");
     col.value = c.color;
     col.on_change = on_setting;
     col.kind = FH2_SETTING_CHOICE;
@@ -2536,11 +2624,11 @@ void add_settings() {
 
     FH2Setting col2 = col;
     col2.key = "NeonColor2";
-    col2.label = tr("Secondary Color");
-    col2.description = tr("The second color, for the effects with 2 colors and some audio visualizers.");
+    col2.label = FH2_TR(g_api, g_mod, "row.NeonColor2.label", "Secondary Color");
+    col2.description = FH2_TR(g_api, g_mod, "row.NeonColor2.description",
+                              "The second color, for the effects with 2 colors and some audio visualizers.");
     col2.value = c.color2;
     g_api->add_setting(g_mod, &col2);
-
 }
 
 // Car > Lights > Underglow On / Off: grayed out while the car being driven has no Underglow Kit (Stock).
@@ -2548,10 +2636,33 @@ int anna_has_kit(void*, const char*) { return kit_parts(config()) ? 1 : 0; }
 void anna_toggle(void* user, const char* key) {
     if (anna_has_kit(user, key)) set_neon(!config().neon);
 }
-const char* anna_toggle_label(void*, const char*) { return tr(config().neon ? "Underglow Off" : "Underglow On"); }
+// L10N: in ANNA (Car > Lights), what choosing it does, as ANNA's own switches say it ("Hazard Lights On")
+const char* toggle_on_text() { return FH2_TR(g_api, g_mod, "anna.toggle.on", "Underglow On"); }
+// L10N: in ANNA (Car > Lights), what choosing it does, as ANNA's own switches say it ("Hazard Lights Off")
+const char* toggle_off_text() { return FH2_TR(g_api, g_mod, "anna.toggle.off", "Underglow Off"); }
+const char* anna_toggle_label(void*, const char*) { return config().neon ? toggle_off_text() : toggle_on_text(); }
+// L10N: in ANNA (Car > Underglow and Effect > a part), shown grayed out while the car has no Underglow Kit for it
+const char* no_kit_text() { return FH2_TR(g_api, g_mod, "anna.nokit", "No Underglow Kit"); }
 
-// A list's label, in the game's language: its user is the English.
-const char* anna_text_label(void* user, const char*) { return tr(static_cast<const char*>(user)); }
+// ANNA's lists: a list entry's user says which, and its label is looked up in the game's language each time.
+enum ListText { kListUnderglow, kListPrimary, kListSecondary, kListEffect, kListParts, kListZone = 100, kListGroup = 200 };
+const char* list_text(int id) {
+    if (id >= kListGroup) return group_text(id - kListGroup);
+    if (id >= kListZone) return zone_text(g_api, id - kListZone);
+    switch (id) {
+    // L10N: ANNA's list for the underglow (Car > Underglow)
+    case kListUnderglow: return FH2_TR(g_api, g_mod, "anna.underglow", "Underglow");
+    // L10N: ANNA's list of colors for the underglow's main color (Car > Underglow)
+    case kListPrimary: return FH2_TR(g_api, g_mod, "anna.color", "Primary Color");
+    // L10N: ANNA's list of colors for the second color, which some effects use (Car > Underglow)
+    case kListSecondary: return FH2_TR(g_api, g_mod, "anna.color2", "Secondary Color");
+    // L10N: ANNA's list of the underglow's effects (Car > Underglow)
+    case kListEffect: return FH2_TR(g_api, g_mod, "anna.effect", "Effect");
+    // L10N: ANNA's list of the parts of the underglow to switch on or off (Car > Underglow)
+    default: return FH2_TR(g_api, g_mod, "anna.parts", "Parts");
+    }
+}
+const char* anna_text_label(void* user, const char*) { return list_text((int)(intptr_t)user); }
 
 // A color entry's user: which * 100 + color (which 1: the secondary).
 // A part entry's user: its zone. Choosing it switches it; switching one on turns the underglow on too.
@@ -2565,14 +2676,24 @@ void anna_part(void* user, const char*) {
 }
 
 const char* anna_part_label(void* user, const char*) {
-    static char buf[128];
     const int z = (int)(intptr_t)user;
     const Config c = config();
     // What choosing it does, as ANNA's own switches say it ("Hazard Lights Off"): "Front Off" while it's lit.
-    static const char* const on[kZoneCount] = {"Front On", "Right Side On", "Rear On", "Left Side On"};
-    static const char* const off[kZoneCount] = {"Front Off", "Right Side Off", "Rear Off", "Left Side Off"};
-    snprintf(buf, sizeof buf, "%s", tr(c.part[z] && c.neon ? off[z] : on[z]));
-    return buf;
+    const bool lit = c.part[z] && c.neon;
+    switch (z) {
+    // L10N: in ANNA (Car > Underglow > Parts), what choosing it does: switch the front part on or off
+    case kZoneFront: return lit ? FH2_TR(g_api, g_mod, "anna.part.Front.off", "Front Off")
+                                : FH2_TR(g_api, g_mod, "anna.part.Front.on", "Front On");
+    // L10N: in ANNA (Car > Underglow > Parts), what choosing it does: switch the right side's part on or off
+    case kZoneRight: return lit ? FH2_TR(g_api, g_mod, "anna.part.Right.off", "Right Side Off")
+                                : FH2_TR(g_api, g_mod, "anna.part.Right.on", "Right Side On");
+    // L10N: in ANNA (Car > Underglow > Parts), what choosing it does: switch the back part on or off
+    case kZoneRear: return lit ? FH2_TR(g_api, g_mod, "anna.part.Rear.off", "Rear Off")
+                               : FH2_TR(g_api, g_mod, "anna.part.Rear.on", "Rear On");
+    // L10N: in ANNA (Car > Underglow > Parts), what choosing it does: switch the left side's part on or off
+    default: return lit ? FH2_TR(g_api, g_mod, "anna.part.Left.off", "Left Side Off")
+                        : FH2_TR(g_api, g_mod, "anna.part.Left.on", "Left Side On");
+    }
 }
 
 // Colors and effects chosen in ANNA are the car's own (UnderglowGarage.json); the ini's until the game has said
@@ -2597,7 +2718,7 @@ const char* anna_effect_label(void* user, const char*) {
     bool on = c.neon;
     for (int z = 0; z < kZoneCount; ++z)
         if (zone >= kZoneCount || z == zone) on = on && c.effect[z] == i;
-    snprintf(buf, sizeof buf, on ? "» %s" : "%s", tr(kEffects[i]));   // the one in use: "» Comet" (no ▶ in the game's fonts)
+    snprintf(buf, sizeof buf, on ? "» %s" : "%s", effect_text(g_api, i));   // the one in use: "» Comet" (no ▶ in the game's fonts)
     return buf;
 }
 
@@ -2658,7 +2779,7 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
     FH2AnnaEntry t = {sizeof t};
     t.key = "underglow.toggle";
     t.parent = "car.lights";
-    t.label = tr("Underglow On");   // what shows grayed out
+    t.label = toggle_on_text();   // what shows grayed out
     t.on_choose = anna_toggle;
     t.label_now = anna_toggle_label;
     t.stays_open = 1;
@@ -2669,34 +2790,34 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
     FH2AnnaEntry ug = {sizeof ug};
     ug.key = "underglow.underglow";
     ug.parent = "car";
-    ug.label = tr("Underglow");   // what shows grayed out
+    ug.label = list_text(kListUnderglow);   // what shows grayed out
     ug.label_now = anna_text_label;
-    ug.user = (void*)"Underglow";
+    ug.user = (void*)(intptr_t)kListUnderglow;
     anna->add_entry(&ug);
     FH2AnnaEntry stand_in = {sizeof stand_in};   // see anna_underglow_on
     stand_in.key = "underglow.off";
     stand_in.parent = "underglow.underglow";
-    stand_in.label = tr("Underglow Off");
+    stand_in.label = toggle_off_text();
     stand_in.on_choose = anna_nothing;
     stand_in.shown = anna_underglow_off;
     stand_in.enabled = anna_never;
     anna->add_entry(&stand_in);
     FH2AnnaEntry no_kit = stand_in;
     no_kit.key = "underglow.nokit";
-    no_kit.label = tr("No Underglow Kit");
+    no_kit.label = no_kit_text();
     no_kit.shown = anna_no_kit;
     anna->add_entry(&no_kit);
 
     static const char* const color_lists[2] = {"underglow.color", "underglow.color2"};
-    static const char* const color_labels[2] = {"Primary Color", "Secondary Color"};
+    static const int color_labels[2] = {kListPrimary, kListSecondary};
     static char keys[2][kColorTotal][32];
     for (int w = 0; w < 2; ++w) {
         FH2AnnaEntry list = {sizeof list};
         list.key = color_lists[w];
         list.parent = "underglow.underglow";
-        list.label = color_labels[w];
+        list.label = list_text(color_labels[w]);
         list.label_now = anna_text_label;
-        list.user = (void*)color_labels[w];
+        list.user = (void*)(intptr_t)color_labels[w];
         list.shown = anna_underglow_on;
         anna->add_entry(&list);
         for (int i = 0; i < kColorTotal; ++i) {
@@ -2704,7 +2825,7 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
             FH2AnnaEntry e = {sizeof e};
             e.key = keys[w][i];
             e.parent = color_lists[w];
-            e.label = i < kColorCount ? kColors[i].name : "Custom";
+            e.label = i < kColorCount ? color_text(g_api, i) : "Custom";
             e.on_choose = anna_color;
             e.label_now = anna_color_label;
             e.user = (void*)(intptr_t)(w * 100 + i);
@@ -2715,18 +2836,18 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
     FH2AnnaEntry fx = {sizeof fx};
     fx.key = "underglow.effect";
     fx.parent = "underglow.underglow";
-    fx.label = "Effect";
+    fx.label = list_text(kListEffect);
     fx.label_now = anna_text_label;
-    fx.user = (void*)"Effect";
+    fx.user = (void*)(intptr_t)kListEffect;
     fx.shown = anna_underglow_on;
     anna->add_entry(&fx);
 
     FH2AnnaEntry parts = {sizeof parts};
     parts.key = "underglow.parts";
     parts.parent = "underglow.underglow";
-    parts.label = "Parts";
+    parts.label = list_text(kListParts);
     parts.label_now = anna_text_label;
-    parts.user = (void*)"Parts";
+    parts.user = (void*)(intptr_t)kListParts;
     parts.shown = anna_underglow_on;
     anna->add_entry(&parts);
     static const char* const part_keys[kZoneCount] = {"underglow.parts.front", "underglow.parts.right",
@@ -2737,7 +2858,7 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
         FH2AnnaEntry e = {sizeof e};
         e.key = part_keys[z];
         e.parent = "underglow.parts";
-        e.label = tr(kZoneLabels[z]);   // what shows grayed out
+        e.label = zone_text(g_api, z);   // what shows grayed out
         e.on_choose = anna_part;
         e.label_now = anna_part_label;
         e.user = (void*)(intptr_t)z;
@@ -2757,10 +2878,9 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
         FH2AnnaEntry zl = {sizeof zl};
         zl.key = zone_keys[zi];
         zl.parent = "underglow.effect";
-        const char* english = zone < kZoneCount ? kZoneLabels[zone] : "All";
-        zl.label = tr(english);   // what shows grayed out
+        zl.label = zone_text(g_api, zone);   // what shows grayed out
         zl.label_now = anna_text_label;
-        zl.user = (void*)english;
+        zl.user = (void*)(intptr_t)(kListZone + zone);
         anna->add_entry(&zl);
         static char nokit_keys[kZoneCount + 1][48];
         if (zone < kZoneCount) {   // a part the car's kit hasn't: grayed out (see anna_zone_fitted)
@@ -2768,7 +2888,7 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
             FH2AnnaEntry no = {sizeof no};
             no.key = nokit_keys[zi];
             no.parent = zone_keys[zi];
-            no.label = tr("No Underglow Kit");
+            no.label = no_kit_text();
             no.on_choose = anna_nothing;
             no.shown = anna_zone_missing;
             no.enabled = anna_never;
@@ -2779,9 +2899,9 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
             FH2AnnaEntry ge = {sizeof ge};
             ge.key = group_keys[zi][g];
             ge.parent = zone_keys[zi];
-            ge.label = kGroupNames[g];
+            ge.label = group_text(g);
             ge.label_now = anna_text_label;
-            ge.user = (void*)kGroupNames[g];
+            ge.user = (void*)(intptr_t)(kListGroup + g);
             if (zone < kZoneCount) ge.shown = anna_zone_fitted;
             anna->add_entry(&ge);
         }
@@ -2791,7 +2911,7 @@ void add_anna_entries_to(const FH2AnnaApi* anna) {
             FH2AnnaEntry e = {sizeof e};
             e.key = fx_keys[zi][k];
             e.parent = group_keys[zi][kEffectOrder[k].group];
-            e.label = kEffects[i];
+            e.label = effect_text(g_api, i);
             e.on_choose = anna_effect;
             e.label_now = anna_effect_label;
             e.user = (void*)(intptr_t)(zone * 100 + i);
@@ -2873,14 +2993,15 @@ FH2MOD_EXPORT int fh2mod_init(const FH2ModApi* api) {
     info.size = sizeof info;
     info.name = "Underglow";
     info.version = UNDERGLOW_VERSION;
-    info.github_repo = "qiangqiang101/FH2Underglow";
+    info.github_repo = "qiangqiang101/FH2-Underglow";
     info.platform_version = FH2MOD_PLATFORM_VERSION;
-    info.description = "Neon underglow made of the game's own lights, so it lights up the road: 61 effects (15 follow "
+    info.description = FH2_TR_DESCRIPTION("Neon underglow made of the game's own lights, so it lights up the road: 61 effects (15 follow "
                        "the car radio's music), 28 colors, and each part of the car on its own. Buy an Underglow Kit for a car "
-                       "in the garage (Upgrades > Aero and Appearance); set it up in ANNA: Car > Underglow.";
+                       "in the garage (Upgrades > Aero and Appearance); set it up in ANNA: Car > Underglow.");
     info.check_updates = 1;
     g_mod = api->register_mod(&info);
     if (!g_mod) return 1;
+    FH2_ADD_TRANSLATIONS(api, g_mod, underglow_translations);   // nothing before platform 2.9.0: English
 
     swprintf_s(g_mods_dir, MAX_PATH, L"%s\\fh2-mods", api->azimuth_dir);
     swprintf_s(g_ini, MAX_PATH, L"%s\\Underglow.ini", g_mods_dir);
@@ -2911,9 +3032,9 @@ FH2MOD_EXPORT int fh2mod_init(const FH2ModApi* api) {
     WritePrivateProfileStringW(L"Neon", L"Lead", nullptr, g_ini);          // test builds'
     WritePrivateProfileStringW(L"Neon", L"LeadFrames", nullptr, g_ini);
     WritePrivateProfileStringW(L"Neon", L"RenderPlace", nullptr, g_ini);
+    WritePrivateProfileStringW(L"Language", nullptr, nullptr, g_ini);   // 1.1's last language: the platform knows it now
     load_config();
     save_config();
-    lang_load();   // the Mods page's rows are written in the language seen last
 
     // The Underglow Kit, a garage upgrade bought for each car. Which car has which kit is kept beside the game's
     // saves, outside the saves folder itself (Azimuth checks the hashes of what's in there):
@@ -2936,7 +3057,7 @@ FH2MOD_EXPORT int fh2mod_init(const FH2ModApi* api) {
         }
         swprintf_s(json, L"%s\\Underglow\\%s\\UnderglowGarage.json", title, player);
         const Shape lv1 = config().shape;
-        g_kit_set_up.store(ug::init(api, g_mod, g_ini, json, tr_in, language, neon_text::kLangs, lv1.side, lv1.front,
+        g_kit_set_up.store(ug::init(api, g_mod, g_ini, json, lv1.side, lv1.front,
                                     lv1.rear));
         char msg[MAX_PATH * 3];
         if (g_kit_set_up.load()) snprintf(msg, sizeof msg, "Underglow Kit of each car: %ls", json);

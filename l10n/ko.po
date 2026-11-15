@@ -1,0 +1,560 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Underglow\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgctxt "mod.description"
+msgid "Neon underglow made of the game's own lights, so it lights up the road: 61 effects (15 follow the car radio's music), 28 colors, and each part of the car on its own. Buy an Underglow Kit for a car in the garage (Upgrades > Aero and Appearance); set it up in ANNA: Car > Underglow."
+msgstr "게임 자체의 조명으로 만든 언더글로우로, 도로를 실제로 비춥니다. 효과 61개(15개는 카 라디오 음악에 맞춰 움직임), 색상 28개, 차의 각 부위를 따로 설정할 수 있습니다. 차고에서 차에 언더글로우 키트를 구입하고(업그레이드 > 에어로 및 외관) ANNA의 자동차 > 언더글로우에서 설정하세요."
+
+msgctxt "color.Cyan"
+msgid "Cyan"
+msgstr "시안"
+
+msgctxt "color.Blue"
+msgid "Blue"
+msgstr "파란색"
+
+msgctxt "color.Purple"
+msgid "Purple"
+msgstr "보라색"
+
+msgctxt "color.Pink"
+msgid "Pink"
+msgstr "분홍색"
+
+msgctxt "color.Red"
+msgid "Red"
+msgstr "빨간색"
+
+msgctxt "color.Orange"
+msgid "Orange"
+msgstr "주황색"
+
+msgctxt "color.Yellow"
+msgid "Yellow"
+msgstr "노란색"
+
+msgctxt "color.Green"
+msgid "Green"
+msgstr "초록색"
+
+msgctxt "color.White"
+msgid "White"
+msgstr "흰색"
+
+msgctxt "color.Lime"
+msgid "Lime"
+msgstr "라임색"
+
+msgctxt "color.Teal"
+msgid "Teal"
+msgstr "청록색"
+
+msgctxt "color.SkyBlue"
+msgid "Sky Blue"
+msgstr "하늘색"
+
+msgctxt "color.Indigo"
+msgid "Indigo"
+msgstr "남색"
+
+msgctxt "color.Magenta"
+msgid "Magenta"
+msgstr "자홍색"
+
+msgctxt "color.Crimson"
+msgid "Crimson"
+msgstr "진홍색"
+
+msgctxt "color.Amber"
+msgid "Amber"
+msgstr "호박색"
+
+msgctxt "color.Mint"
+msgid "Mint"
+msgstr "민트색"
+
+msgctxt "color.Lavender"
+msgid "Lavender"
+msgstr "라벤더색"
+
+msgctxt "effect.Static"
+msgid "Static"
+msgstr "고정"
+
+msgctxt "effect.Rainbow"
+msgid "Rainbow"
+msgstr "무지개"
+
+msgctxt "effect.RainbowWave"
+msgid "Rainbow Wave"
+msgstr "무지개 물결"
+
+msgctxt "effect.Breathe"
+msgid "Breathe"
+msgstr "숨쉬기"
+
+msgctxt "effect.Wipe"
+msgid "Wipe"
+msgstr "와이프"
+
+msgctxt "effect.Stack"
+msgid "Stack"
+msgstr "쌓기"
+
+msgctxt "effect.Blink"
+msgid "Blink"
+msgstr "점멸"
+
+msgctxt "effect.Police"
+msgid "Police"
+msgstr "경찰"
+
+msgctxt "effect.AudioVisualizer"
+msgid "Audio Visualizer"
+msgstr "오디오 비주얼라이저"
+
+msgctxt "effect.CrossingBeams"
+msgid "Crossing Beams"
+msgstr "교차 빔"
+
+msgctxt "effect.Hypnotoad"
+msgid "Hypnotoad"
+msgstr "하이프노토드"
+
+msgctxt "effect.Lightning"
+msgid "Lightning"
+msgstr "번개"
+
+msgctxt "effect.RandomMarquee"
+msgid "Random Marquee"
+msgstr "무작위 마키"
+
+msgctxt "effect.Comet"
+msgid "Comet"
+msgstr "혜성"
+
+msgctxt "effect.Fill"
+msgid "Fill"
+msgstr "채우기"
+
+msgctxt "effect.Swap"
+msgid "Swap"
+msgstr "교체"
+
+msgctxt "effect.Visor"
+msgid "Visor"
+msgstr "바이저"
+
+msgctxt "effect.AudioPulse"
+msgid "Audio Pulse"
+msgstr "오디오 박동"
+
+msgctxt "effect.PeakMeter"
+msgid "Peak Meter"
+msgstr "피크 미터"
+
+msgctxt "effect.AudioBlend"
+msgid "Audio Blend"
+msgstr "오디오 혼합"
+
+msgctxt "effect.BassFlash"
+msgid "Bass Flash"
+msgstr "베이스 플래시"
+
+msgctxt "effect.AudioSparkle"
+msgid "Audio Sparkle"
+msgstr "오디오 반짝임"
+
+msgctxt "effect.AudioRainbow"
+msgid "Audio Rainbow"
+msgstr "오디오 무지개"
+
+msgctxt "effect.CenterBurst"
+msgid "Center Burst"
+msgstr "중앙 폭발"
+
+msgctxt "effect.AudioBubbles"
+msgid "Audio Bubbles"
+msgstr "오디오 버블"
+
+msgctxt "effect.AudioParty"
+msgid "Audio Party"
+msgstr "오디오 파티"
+
+msgctxt "effect.AudioSine"
+msgid "Audio Sine"
+msgstr "오디오 사인파"
+
+msgctxt "effect.AudioStar"
+msgid "Audio Star"
+msgstr "오디오 별"
+
+msgctxt "effect.AudioSync"
+msgid "Audio Sync"
+msgstr "오디오 싱크"
+
+msgctxt "effect.VUMeter"
+msgid "VU Meter"
+msgstr "VU 미터"
+
+msgctxt "effect.AudioSwirl"
+msgid "Audio Swirl"
+msgstr "오디오 소용돌이"
+
+msgctxt "effect.BouncingBall"
+msgid "Bouncing Ball"
+msgstr "바운싱 볼"
+
+msgctxt "effect.BreathingCircle"
+msgid "Breathing Circle"
+msgstr "숨쉬는 원"
+
+msgctxt "effect.FractalMotion"
+msgid "Fractal Motion"
+msgstr "프랙탈 모션"
+
+msgctxt "effect.MotionPoint"
+msgid "Motion Point"
+msgstr "움직이는 점"
+
+msgctxt "effect.Rain"
+msgid "Rain"
+msgstr "비"
+
+msgctxt "effect.RotatingBeam"
+msgid "Rotating Beam"
+msgstr "회전 빔"
+
+msgctxt "effect.SmoothBlink"
+msgid "Smooth Blink"
+msgstr "부드러운 점멸"
+
+msgctxt "effect.SparkleFade"
+msgid "Sparkle Fade"
+msgstr "반짝임 페이드"
+
+msgctxt "effect.ZigZag"
+msgid "Zig Zag"
+msgstr "지그재그"
+
+msgctxt "effect.Marquee"
+msgid "Marquee"
+msgstr "마키"
+
+msgctxt "effect.AlternateBlink"
+msgid "Alternate Blink"
+msgstr "교대 점멸"
+
+msgctxt "effect.GradientWave"
+msgid "Gradient Wave"
+msgstr "그라데이션 물결"
+
+msgctxt "effect.MovingPanes"
+msgid "Moving Panes"
+msgstr "움직이는 패널"
+
+msgctxt "effect.NoiseMap"
+msgid "Noise Map"
+msgstr "노이즈 맵"
+
+msgctxt "effect.Sequence"
+msgid "Sequence"
+msgstr "순서"
+
+msgctxt "effect.Wavy"
+msgid "Wavy"
+msgstr "물결"
+
+msgctxt "effect.TwoColorMarquee"
+msgid "Two-Color Marquee"
+msgstr "2색 마키"
+
+msgctxt "effect.Bloom"
+msgid "Bloom"
+msgstr "블룸"
+
+msgctxt "effect.Bubbles"
+msgid "Bubbles"
+msgstr "버블"
+
+msgctxt "effect.ColorWheel"
+msgid "Color Wheel"
+msgstr "컬러 휠"
+
+msgctxt "effect.DoubleRainbow"
+msgid "Double Rainbow"
+msgstr "이중 무지개"
+
+msgctxt "effect.MotionPoints"
+msgid "Motion Points"
+msgstr "움직이는 점들"
+
+msgctxt "effect.Mosaic"
+msgid "Mosaic"
+msgstr "모자이크"
+
+msgctxt "effect.RadialRainbow"
+msgid "Radial Rainbow"
+msgstr "방사형 무지개"
+
+msgctxt "effect.RandomSpin"
+msgid "Random Spin"
+msgstr "무작위 회전"
+
+msgctxt "effect.RotatingRainbow"
+msgid "Rotating Rainbow"
+msgstr "회전 무지개"
+
+msgctxt "effect.Spiral"
+msgid "Spiral"
+msgstr "나선"
+
+msgctxt "effect.StarryNight"
+msgid "Starry Night"
+msgstr "별이 빛나는 밤"
+
+msgctxt "effect.Sunrise"
+msgid "Sunrise"
+msgstr "일출"
+
+msgctxt "effect.SwirlCircles"
+msgid "Swirl Circles"
+msgstr "소용돌이 원"
+
+msgctxt "zone.Front"
+msgid "Front"
+msgstr "앞"
+
+msgctxt "zone.Right"
+msgid "Right Side"
+msgstr "오른쪽"
+
+msgctxt "zone.Rear"
+msgid "Rear"
+msgstr "뒤"
+
+msgctxt "zone.Left"
+msgid "Left Side"
+msgstr "왼쪽"
+
+msgctxt "zone.All"
+msgid "All"
+msgstr "전체"
+
+msgctxt "group.audio"
+msgid "Audio Visualizer"
+msgstr "오디오 비주얼라이저"
+
+msgctxt "group.one"
+msgid "Effects with 1 Color"
+msgstr "1색 효과"
+
+msgctxt "group.two"
+msgid "Effects with 2 Colors"
+msgstr "2색 효과"
+
+msgctxt "group.none"
+msgid "Multicolor Effects"
+msgstr "멀티컬러 효과"
+
+msgctxt "color.custom"
+msgid "Custom {n}"
+msgstr "사용자 지정 {n}"
+
+msgctxt "row.NeonFront.label"
+msgid "Underglow: Front"
+msgstr "언더글로우: 앞"
+
+msgctxt "row.NeonRight.label"
+msgid "Underglow: Right Side"
+msgstr "언더글로우: 오른쪽"
+
+msgctxt "row.NeonRear.label"
+msgid "Underglow: Rear"
+msgstr "언더글로우: 뒤"
+
+msgctxt "row.NeonLeft.label"
+msgid "Underglow: Left Side"
+msgstr "언더글로우: 왼쪽"
+
+msgctxt "row.Neon.label"
+msgid "Underglow"
+msgstr "언더글로우"
+
+msgctxt "row.Neon.description"
+msgid "Neon lights under your car. Also in ANNA: Car > Lights and Car > Underglow."
+msgstr "차 아래의 네온 조명입니다. ANNA의 자동차 > 라이트, 자동차 > 언더글로우에서도 바꿀 수 있습니다."
+
+msgctxt "row.NeonPart.description"
+msgid "Turns this part of the underglow on or off."
+msgstr "언더글로우의 이 부위를 켜거나 끕니다."
+
+msgctxt "row.RequireKit.label"
+msgid "Require Underglow Kit"
+msgstr "언더글로우 키트 필요"
+
+msgctxt "row.RequireKit.description"
+msgid "On: a car only lights the parts of its Underglow Kit (Garage > Upgrades > Aero and Appearance). Off: every car lights every part."
+msgstr "켜기: 차는 언더글로우 키트에 있는 부위만 켜집니다(차고 > 업그레이드 > 에어로 및 외관). 끄기: 모든 차의 모든 부위가 켜집니다."
+
+msgctxt "row.NeonColor.label"
+msgid "Primary Color"
+msgstr "기본 색상"
+
+msgctxt "row.NeonColor.description"
+msgid "The underglow's main color. Custom 1 to 10 are set in fh2-mods\\Underglow.ini ([CustomColors])."
+msgstr "언더글로우의 기본 색상입니다. 사용자 지정 1~10은 fh2-mods\\Underglow.ini의 [CustomColors]에서 설정합니다."
+
+msgctxt "row.NeonColor2.label"
+msgid "Secondary Color"
+msgstr "보조 색상"
+
+msgctxt "row.NeonColor2.description"
+msgid "The second color, for the effects with 2 colors and some audio visualizers."
+msgstr "2색 효과와 일부 오디오 비주얼라이저에 쓰이는 두 번째 색상입니다."
+
+msgctxt "anna.toggle.on"
+msgid "Underglow On"
+msgstr "언더글로우 켜기"
+
+msgctxt "anna.toggle.off"
+msgid "Underglow Off"
+msgstr "언더글로우 끄기"
+
+msgctxt "anna.nokit"
+msgid "No Underglow Kit"
+msgstr "언더글로우 키트 없음"
+
+msgctxt "anna.underglow"
+msgid "Underglow"
+msgstr "언더글로우"
+
+msgctxt "anna.color"
+msgid "Primary Color"
+msgstr "기본 색상"
+
+msgctxt "anna.color2"
+msgid "Secondary Color"
+msgstr "보조 색상"
+
+msgctxt "anna.effect"
+msgid "Effect"
+msgstr "네온 효과"
+
+msgctxt "anna.parts"
+msgid "Parts"
+msgstr "부위"
+
+msgctxt "anna.part.Front.off"
+msgid "Front Off"
+msgstr "앞 끄기"
+
+msgctxt "anna.part.Front.on"
+msgid "Front On"
+msgstr "앞 켜기"
+
+msgctxt "anna.part.Right.off"
+msgid "Right Side Off"
+msgstr "오른쪽 끄기"
+
+msgctxt "anna.part.Right.on"
+msgid "Right Side On"
+msgstr "오른쪽 켜기"
+
+msgctxt "anna.part.Rear.off"
+msgid "Rear Off"
+msgstr "뒤 끄기"
+
+msgctxt "anna.part.Rear.on"
+msgid "Rear On"
+msgstr "뒤 켜기"
+
+msgctxt "anna.part.Left.off"
+msgid "Left Side Off"
+msgstr "왼쪽 끄기"
+
+msgctxt "anna.part.Left.on"
+msgid "Left Side On"
+msgstr "왼쪽 켜기"
+
+msgctxt "garage.stock.name"
+msgid "Stock"
+msgstr "순정"
+
+msgctxt "garage.front.name"
+msgid "Front"
+msgstr "앞"
+
+msgctxt "garage.back.name"
+msgid "Back"
+msgstr "뒤"
+
+msgctxt "garage.sides.name"
+msgid "Sides"
+msgstr "옆"
+
+msgctxt "garage.front_back.name"
+msgid "Front and Back"
+msgstr "앞과 뒤"
+
+msgctxt "garage.front_sides.name"
+msgid "Front and Sides"
+msgstr "앞과 옆"
+
+msgctxt "garage.back_sides.name"
+msgid "Back and Sides"
+msgstr "뒤와 옆"
+
+msgctxt "garage.all.name"
+msgid "Front, Back and Sides"
+msgstr "앞, 뒤, 옆"
+
+msgctxt "garage.stock.description"
+msgid "No underglow."
+msgstr "언더글로우 없음."
+
+msgctxt "garage.front.description"
+msgid "Underglow at the front."
+msgstr "앞쪽 언더글로우."
+
+msgctxt "garage.back.description"
+msgid "Underglow at the back."
+msgstr "뒤쪽 언더글로우."
+
+msgctxt "garage.sides.description"
+msgid "Underglow along both sides."
+msgstr "양옆 언더글로우."
+
+msgctxt "garage.front_back.description"
+msgid "Underglow at the front and the back."
+msgstr "앞쪽과 뒤쪽 언더글로우."
+
+msgctxt "garage.front_sides.description"
+msgid "Underglow at the front and along both sides."
+msgstr "앞쪽과 양옆 언더글로우."
+
+msgctxt "garage.back_sides.description"
+msgid "Underglow at the back and along both sides."
+msgstr "뒤쪽과 양옆 언더글로우."
+
+msgctxt "garage.all.description"
+msgid "Underglow all around the car."
+msgstr "차 전체 둘레 언더글로우."
+
+msgctxt "garage.kit.name"
+msgid "Underglow Kit"
+msgstr "언더글로우 키트"
+
+msgctxt "garage.kit.description"
+msgid "Neon lights under the car. The kit sets which parts of the car can light up; the colors and effects are in ANNA: Car > Underglow."
+msgstr "차 아래의 네온 조명입니다. 키트에 따라 켜지는 부위가 정해지며, 색상과 효과는 ANNA의 자동차 > 언더글로우에서 바꿀 수 있습니다."
+
+msgctxt "garage.leds"
+msgid "{count} LEDs."
+msgstr "LED {count}개."

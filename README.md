@@ -27,7 +27,7 @@ To get Underglow's menus in the game (Car > Underglow, D-pad down), install [FH2
 - **Pause > Settings > MODS**: Underglow (On/Off), each part On/Off, Require Underglow Kit, Primary Color and Secondary Color. There are more effects than a row there can list, so they're in ANNA.
 - **Commands** (see [Commands](#commands)): `fh2mod Underglow effect comet`, `fh2mod Underglow effect left police`, `fh2mod Underglow part front off`.
 
-The menus are in the game's language (Brazilian Portuguese, German, French, Spanish, Mexican Spanish, Italian, Japanese, Korean, Traditional Chinese, Polish, Russian and Dutch; Czech and Hungarian show English, as the game does there).
+The menus are in the game's language (Brazilian Portuguese, German, French, Spanish, Mexican Spanish, Italian, Japanese, Korean, Traditional Chinese, Polish, Russian and Dutch; Czech and Hungarian show English, as the game does there), translated by the FH2 Mod Platform from 2.9.0 (English on an older one). See [Translating](#translating).
 
 The underglow stops with the game: in the pause menu and in photo mode its effects hold still.
 
@@ -125,9 +125,6 @@ Outer=170
 Color1=0 1 1         ; 0 to 1, or 0 to 255 ("255 105 180"), or hex ("#FF69B4")
 Name1=               ; the name in the menus (blank: Custom 1)
 ; ... up to Color10 / Name10
-
-[Language]
-Last=EN              ; the game's language seen last, for the Mods page at the next start
 ```
 
 Keep notes on lines of their own: a `;` after a value is read as part of it.
@@ -177,4 +174,19 @@ Put `Underglow.dll` in `fh2-mods` next to `azimuth.exe` (with the platform's `DW
 
 The Underglow Kit's garage pictures are PNGs in `icons/` (200x200, and 916x458 for `_LG`), drawn by `tools/draw_icons.py`: the kit's tile and large picture from `tools/icon_src/led_strip.png`, and each kit's large picture, a car glowing under its parts. Each kit's tile is the game's Forza logo, the one on the Forza race bumpers and wings (`Aftermarket_Logos\decal146`), used straight from the game's files. `tools/gen_icons.py --prefix underglow` packs them into `src/icon_data.h`, which the DLL carries (needs pillow and numpy; takes about a minute). Both tools and `tools/icontools/` come from Levilente's [NitroSystem II](https://github.com/Levilente/NitroSystem-II) (MIT License).
 
-`tools/vfont.py` and `tools/check_text.py` check the translations against the game's fonts, which only have the characters the game's own text uses (a missing one shows as a box).
+### Translating
+
+The text is translated through the platform (its `docs/translating.md`, in the `platform` submodule, has the details):
+
+- [`l10n/Underglow.pot`](l10n/Underglow.pot) lists every text, with its key, where it shows and how long it may be.
+- [`l10n/`](l10n/) has one PO file per language (`de.po`, `pt_BR.po`, `zh_Hant.po`...), built into the DLL as `src/underglow_l10n.inc`.
+- A translator can try a file in game without a build: put it in `fh2-mods\lang\Underglow\` (`pl.po`, say).
+
+After changing the text in the code, or a PO file:
+
+```sh
+python platform/tools/l10n/extract.py --domain Underglow src            # l10n/Underglow.pot
+python platform/tools/l10n/po2inc.py src/underglow_l10n.inc underglow_translations l10n/*.po
+```
+
+`tools/vfont.py` and `tools/check_text.py l10n <font dir>` check the translations against the game's fonts, which only have the characters the game's own text uses (a missing one shows as a box).

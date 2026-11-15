@@ -1,0 +1,560 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Underglow\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgctxt "mod.description"
+msgid "Neon underglow made of the game's own lights, so it lights up the road: 61 effects (15 follow the car radio's music), 28 colors, and each part of the car on its own. Buy an Underglow Kit for a car in the garage (Upgrades > Aero and Appearance); set it up in ANNA: Car > Underglow."
+msgstr "Неоновая подсветка днища из собственных огней игры, которая по-настоящему освещает дорогу: 61 эффект (15 следуют за музыкой автомагнитолы), 28 цветов и каждая часть машины отдельно. Купите в гараже комплект подсветки днища для машины (Улучшения > Аэродинамика и внешний вид); настройте его в ANNA: Машина > Подсветка днища."
+
+msgctxt "color.Cyan"
+msgid "Cyan"
+msgstr "Голубой"
+
+msgctxt "color.Blue"
+msgid "Blue"
+msgstr "Синий"
+
+msgctxt "color.Purple"
+msgid "Purple"
+msgstr "Фиолетовый"
+
+msgctxt "color.Pink"
+msgid "Pink"
+msgstr "Розовый"
+
+msgctxt "color.Red"
+msgid "Red"
+msgstr "Красный"
+
+msgctxt "color.Orange"
+msgid "Orange"
+msgstr "Оранжевый"
+
+msgctxt "color.Yellow"
+msgid "Yellow"
+msgstr "Жёлтый"
+
+msgctxt "color.Green"
+msgid "Green"
+msgstr "Зелёный"
+
+msgctxt "color.White"
+msgid "White"
+msgstr "Белый"
+
+msgctxt "color.Lime"
+msgid "Lime"
+msgstr "Лаймовый"
+
+msgctxt "color.Teal"
+msgid "Teal"
+msgstr "Бирюзовый"
+
+msgctxt "color.SkyBlue"
+msgid "Sky Blue"
+msgstr "Небесно-голубой"
+
+msgctxt "color.Indigo"
+msgid "Indigo"
+msgstr "Индиго"
+
+msgctxt "color.Magenta"
+msgid "Magenta"
+msgstr "Пурпурный"
+
+msgctxt "color.Crimson"
+msgid "Crimson"
+msgstr "Малиновый"
+
+msgctxt "color.Amber"
+msgid "Amber"
+msgstr "Янтарный"
+
+msgctxt "color.Mint"
+msgid "Mint"
+msgstr "Мятный"
+
+msgctxt "color.Lavender"
+msgid "Lavender"
+msgstr "Лавандовый"
+
+msgctxt "effect.Static"
+msgid "Static"
+msgstr "Статичный"
+
+msgctxt "effect.Rainbow"
+msgid "Rainbow"
+msgstr "Радуга"
+
+msgctxt "effect.RainbowWave"
+msgid "Rainbow Wave"
+msgstr "Радужная волна"
+
+msgctxt "effect.Breathe"
+msgid "Breathe"
+msgstr "Дыхание"
+
+msgctxt "effect.Wipe"
+msgid "Wipe"
+msgstr "Шторка"
+
+msgctxt "effect.Stack"
+msgid "Stack"
+msgstr "Стопка"
+
+msgctxt "effect.Blink"
+msgid "Blink"
+msgstr "Мигание"
+
+msgctxt "effect.Police"
+msgid "Police"
+msgstr "Полиция"
+
+msgctxt "effect.AudioVisualizer"
+msgid "Audio Visualizer"
+msgstr "Аудиовизуализация"
+
+msgctxt "effect.CrossingBeams"
+msgid "Crossing Beams"
+msgstr "Скрещённые лучи"
+
+msgctxt "effect.Hypnotoad"
+msgid "Hypnotoad"
+msgstr "Гипножаба"
+
+msgctxt "effect.Lightning"
+msgid "Lightning"
+msgstr "Молния"
+
+msgctxt "effect.RandomMarquee"
+msgid "Random Marquee"
+msgstr "Случайные бегущие огни"
+
+msgctxt "effect.Comet"
+msgid "Comet"
+msgstr "Комета"
+
+msgctxt "effect.Fill"
+msgid "Fill"
+msgstr "Заполнение"
+
+msgctxt "effect.Swap"
+msgid "Swap"
+msgstr "Смена"
+
+msgctxt "effect.Visor"
+msgid "Visor"
+msgstr "Визор"
+
+msgctxt "effect.AudioPulse"
+msgid "Audio Pulse"
+msgstr "Аудиопульс"
+
+msgctxt "effect.PeakMeter"
+msgid "Peak Meter"
+msgstr "Пиковый индикатор"
+
+msgctxt "effect.AudioBlend"
+msgid "Audio Blend"
+msgstr "Аудиосмешение"
+
+msgctxt "effect.BassFlash"
+msgid "Bass Flash"
+msgstr "Вспышка басов"
+
+msgctxt "effect.AudioSparkle"
+msgid "Audio Sparkle"
+msgstr "Аудиоискры"
+
+msgctxt "effect.AudioRainbow"
+msgid "Audio Rainbow"
+msgstr "Аудиорадуга"
+
+msgctxt "effect.CenterBurst"
+msgid "Center Burst"
+msgstr "Взрыв из центра"
+
+msgctxt "effect.AudioBubbles"
+msgid "Audio Bubbles"
+msgstr "Аудиопузыри"
+
+msgctxt "effect.AudioParty"
+msgid "Audio Party"
+msgstr "Аудиовечеринка"
+
+msgctxt "effect.AudioSine"
+msgid "Audio Sine"
+msgstr "Аудиосинусоида"
+
+msgctxt "effect.AudioStar"
+msgid "Audio Star"
+msgstr "Аудиозвёзды"
+
+msgctxt "effect.AudioSync"
+msgid "Audio Sync"
+msgstr "Аудиосинхронизация"
+
+msgctxt "effect.VUMeter"
+msgid "VU Meter"
+msgstr "VU-метр"
+
+msgctxt "effect.AudioSwirl"
+msgid "Audio Swirl"
+msgstr "Аудиовихрь"
+
+msgctxt "effect.BouncingBall"
+msgid "Bouncing Ball"
+msgstr "Прыгающий мяч"
+
+msgctxt "effect.BreathingCircle"
+msgid "Breathing Circle"
+msgstr "Дышащий круг"
+
+msgctxt "effect.FractalMotion"
+msgid "Fractal Motion"
+msgstr "Фрактальное движение"
+
+msgctxt "effect.MotionPoint"
+msgid "Motion Point"
+msgstr "Движущаяся точка"
+
+msgctxt "effect.Rain"
+msgid "Rain"
+msgstr "Дождь"
+
+msgctxt "effect.RotatingBeam"
+msgid "Rotating Beam"
+msgstr "Вращающийся луч"
+
+msgctxt "effect.SmoothBlink"
+msgid "Smooth Blink"
+msgstr "Плавное мигание"
+
+msgctxt "effect.SparkleFade"
+msgid "Sparkle Fade"
+msgstr "Гаснущие искры"
+
+msgctxt "effect.ZigZag"
+msgid "Zig Zag"
+msgstr "Зигзаг"
+
+msgctxt "effect.Marquee"
+msgid "Marquee"
+msgstr "Бегущие огни"
+
+msgctxt "effect.AlternateBlink"
+msgid "Alternate Blink"
+msgstr "Попеременное мигание"
+
+msgctxt "effect.GradientWave"
+msgid "Gradient Wave"
+msgstr "Градиентная волна"
+
+msgctxt "effect.MovingPanes"
+msgid "Moving Panes"
+msgstr "Движущиеся панели"
+
+msgctxt "effect.NoiseMap"
+msgid "Noise Map"
+msgstr "Карта шума"
+
+msgctxt "effect.Sequence"
+msgid "Sequence"
+msgstr "Последовательность"
+
+msgctxt "effect.Wavy"
+msgid "Wavy"
+msgstr "Волнистый"
+
+msgctxt "effect.TwoColorMarquee"
+msgid "Two-Color Marquee"
+msgstr "Двухцветные бегущие огни"
+
+msgctxt "effect.Bloom"
+msgid "Bloom"
+msgstr "Цветение"
+
+msgctxt "effect.Bubbles"
+msgid "Bubbles"
+msgstr "Пузыри"
+
+msgctxt "effect.ColorWheel"
+msgid "Color Wheel"
+msgstr "Цветовой круг"
+
+msgctxt "effect.DoubleRainbow"
+msgid "Double Rainbow"
+msgstr "Двойная радуга"
+
+msgctxt "effect.MotionPoints"
+msgid "Motion Points"
+msgstr "Движущиеся точки"
+
+msgctxt "effect.Mosaic"
+msgid "Mosaic"
+msgstr "Мозаика"
+
+msgctxt "effect.RadialRainbow"
+msgid "Radial Rainbow"
+msgstr "Радиальная радуга"
+
+msgctxt "effect.RandomSpin"
+msgid "Random Spin"
+msgstr "Случайное вращение"
+
+msgctxt "effect.RotatingRainbow"
+msgid "Rotating Rainbow"
+msgstr "Вращающаяся радуга"
+
+msgctxt "effect.Spiral"
+msgid "Spiral"
+msgstr "Спираль"
+
+msgctxt "effect.StarryNight"
+msgid "Starry Night"
+msgstr "Звёздная ночь"
+
+msgctxt "effect.Sunrise"
+msgid "Sunrise"
+msgstr "Рассвет"
+
+msgctxt "effect.SwirlCircles"
+msgid "Swirl Circles"
+msgstr "Вихревые круги"
+
+msgctxt "zone.Front"
+msgid "Front"
+msgstr "Спереди"
+
+msgctxt "zone.Right"
+msgid "Right Side"
+msgstr "Правая сторона"
+
+msgctxt "zone.Rear"
+msgid "Rear"
+msgstr "Сзади"
+
+msgctxt "zone.Left"
+msgid "Left Side"
+msgstr "Левая сторона"
+
+msgctxt "zone.All"
+msgid "All"
+msgstr "Все"
+
+msgctxt "group.audio"
+msgid "Audio Visualizer"
+msgstr "Аудиовизуализация"
+
+msgctxt "group.one"
+msgid "Effects with 1 Color"
+msgstr "Эффекты с 1 цветом"
+
+msgctxt "group.two"
+msgid "Effects with 2 Colors"
+msgstr "Эффекты с 2 цветами"
+
+msgctxt "group.none"
+msgid "Multicolor Effects"
+msgstr "Многоцветные эффекты"
+
+msgctxt "color.custom"
+msgid "Custom {n}"
+msgstr "Свой {n}"
+
+msgctxt "row.NeonFront.label"
+msgid "Underglow: Front"
+msgstr "Подсветка днища: Спереди"
+
+msgctxt "row.NeonRight.label"
+msgid "Underglow: Right Side"
+msgstr "Подсветка днища: Правая сторона"
+
+msgctxt "row.NeonRear.label"
+msgid "Underglow: Rear"
+msgstr "Подсветка днища: Сзади"
+
+msgctxt "row.NeonLeft.label"
+msgid "Underglow: Left Side"
+msgstr "Подсветка днища: Левая сторона"
+
+msgctxt "row.Neon.label"
+msgid "Underglow"
+msgstr "Подсветка днища"
+
+msgctxt "row.Neon.description"
+msgid "Neon lights under your car. Also in ANNA: Car > Lights and Car > Underglow."
+msgstr "Неоновые огни под машиной. Также в ANNA: Машина > Свет и Машина > Подсветка днища."
+
+msgctxt "row.NeonPart.description"
+msgid "Turns this part of the underglow on or off."
+msgstr "Включает или выключает эту часть подсветки."
+
+msgctxt "row.RequireKit.label"
+msgid "Require Underglow Kit"
+msgstr "Нужен комплект подсветки днища"
+
+msgctxt "row.RequireKit.description"
+msgid "On: a car only lights the parts of its Underglow Kit (Garage > Upgrades > Aero and Appearance). Off: every car lights every part."
+msgstr "Вкл.: машина светится только там, где есть её комплект подсветки днища (Гараж > Улучшения > Аэродинамика и внешний вид). Выкл.: любая машина светится везде."
+
+msgctxt "row.NeonColor.label"
+msgid "Primary Color"
+msgstr "Основной цвет"
+
+msgctxt "row.NeonColor.description"
+msgid "The underglow's main color. Custom 1 to 10 are set in fh2-mods\\Underglow.ini ([CustomColors])."
+msgstr "Основной цвет подсветки. Свои цвета 1–10 задаются в fh2-mods\\Underglow.ini ([CustomColors])."
+
+msgctxt "row.NeonColor2.label"
+msgid "Secondary Color"
+msgstr "Дополнительный цвет"
+
+msgctxt "row.NeonColor2.description"
+msgid "The second color, for the effects with 2 colors and some audio visualizers."
+msgstr "Второй цвет для эффектов с 2 цветами и некоторых аудиовизуализаций."
+
+msgctxt "anna.toggle.on"
+msgid "Underglow On"
+msgstr "Включить подсветку днища"
+
+msgctxt "anna.toggle.off"
+msgid "Underglow Off"
+msgstr "Выключить подсветку днища"
+
+msgctxt "anna.nokit"
+msgid "No Underglow Kit"
+msgstr "Нет комплекта подсветки днища"
+
+msgctxt "anna.underglow"
+msgid "Underglow"
+msgstr "Подсветка днища"
+
+msgctxt "anna.color"
+msgid "Primary Color"
+msgstr "Основной цвет"
+
+msgctxt "anna.color2"
+msgid "Secondary Color"
+msgstr "Дополнительный цвет"
+
+msgctxt "anna.effect"
+msgid "Effect"
+msgstr "Эффект подсветки"
+
+msgctxt "anna.parts"
+msgid "Parts"
+msgstr "Части"
+
+msgctxt "anna.part.Front.off"
+msgid "Front Off"
+msgstr "Выключить спереди"
+
+msgctxt "anna.part.Front.on"
+msgid "Front On"
+msgstr "Включить спереди"
+
+msgctxt "anna.part.Right.off"
+msgid "Right Side Off"
+msgstr "Выключить правую сторону"
+
+msgctxt "anna.part.Right.on"
+msgid "Right Side On"
+msgstr "Включить правую сторону"
+
+msgctxt "anna.part.Rear.off"
+msgid "Rear Off"
+msgstr "Выключить сзади"
+
+msgctxt "anna.part.Rear.on"
+msgid "Rear On"
+msgstr "Включить сзади"
+
+msgctxt "anna.part.Left.off"
+msgid "Left Side Off"
+msgstr "Выключить левую сторону"
+
+msgctxt "anna.part.Left.on"
+msgid "Left Side On"
+msgstr "Включить левую сторону"
+
+msgctxt "garage.stock.name"
+msgid "Stock"
+msgstr "Стандарт"
+
+msgctxt "garage.front.name"
+msgid "Front"
+msgstr "Спереди"
+
+msgctxt "garage.back.name"
+msgid "Back"
+msgstr "Сзади"
+
+msgctxt "garage.sides.name"
+msgid "Sides"
+msgstr "По бокам"
+
+msgctxt "garage.front_back.name"
+msgid "Front and Back"
+msgstr "Спереди и сзади"
+
+msgctxt "garage.front_sides.name"
+msgid "Front and Sides"
+msgstr "Спереди и по бокам"
+
+msgctxt "garage.back_sides.name"
+msgid "Back and Sides"
+msgstr "Сзади и по бокам"
+
+msgctxt "garage.all.name"
+msgid "Front, Back and Sides"
+msgstr "Спереди, сзади и по бокам"
+
+msgctxt "garage.stock.description"
+msgid "No underglow."
+msgstr "Без подсветки днища."
+
+msgctxt "garage.front.description"
+msgid "Underglow at the front."
+msgstr "Подсветка спереди."
+
+msgctxt "garage.back.description"
+msgid "Underglow at the back."
+msgstr "Подсветка сзади."
+
+msgctxt "garage.sides.description"
+msgid "Underglow along both sides."
+msgstr "Подсветка по обоим бокам."
+
+msgctxt "garage.front_back.description"
+msgid "Underglow at the front and the back."
+msgstr "Подсветка спереди и сзади."
+
+msgctxt "garage.front_sides.description"
+msgid "Underglow at the front and along both sides."
+msgstr "Подсветка спереди и по обоим бокам."
+
+msgctxt "garage.back_sides.description"
+msgid "Underglow at the back and along both sides."
+msgstr "Подсветка сзади и по обоим бокам."
+
+msgctxt "garage.all.description"
+msgid "Underglow all around the car."
+msgstr "Подсветка вокруг всей машины."
+
+msgctxt "garage.kit.name"
+msgid "Underglow Kit"
+msgstr "Комплект подсветки днища"
+
+msgctxt "garage.kit.description"
+msgid "Neon lights under the car. The kit sets which parts of the car can light up; the colors and effects are in ANNA: Car > Underglow."
+msgstr "Неоновые огни под машиной. Комплект задаёт, какие части машины светятся; цвета и эффекты — в ANNA: Машина > Подсветка днища."
+
+msgctxt "garage.leds"
+msgid "{count} LEDs."
+msgstr "Светодиодов: {count}."
